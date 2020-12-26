@@ -1,0 +1,187 @@
+@{
+    Layout = "_LayoutAdmin";
+    ViewBag.Title = "TÁC GIẢ";
+    ViewBag.PageName = "TÁC GIẢ";
+    ViewBag.Link = "/admin/book/author";
+    var user = ViewData["User"] as User;
+    
+    List<Author> Authors = Model;
+}
+
+
+@section Css {
+   <style>
+       
+     /* Styles for validation helpers
+-----------------------------------------------------------*/
+
+
+    .alert.alert-danger.validation-summary-valid {
+        display: none;
+    }
+   </style>
+}   
+
+
+                    <div class="card mb-4">
+                            <div asp-validation-summary="All" class="alert alert-danger"></div>
+                            
+                            @if(@TempData["message"] != null)
+                            {
+                                <div class="alert alert-success">
+                                    @TempData["message"]
+                                </div>
+                            }
+
+                            <form method="GET" action="/admin/book/author/search">
+                                    <div class="input-group mb-3 p-3">
+                                            <input name="query" type="text" class="form-control" placeholder="Tìm tác giả   " aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                            <div class="input-group-append">
+                                                <button type="submit" class="input-group-text" id="basic-addon2">Tìm kiếm</button>
+                                            </div>
+                                    </div>
+                            </form>
+
+
+                            <div class="card-header d-flex justify-content-between ">
+                                <span>
+                                    <i class="fas fa-table mr-1"></i>
+                                    Danh sách tác giả
+                                </span>
+                                 <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addAuthor" >Thêm mới</button>
+                            </div>
+                         
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Tác giả</th>
+                                                <th>Ghi chú</th>
+                                                <th colspan="2" class="text-center">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @{
+                                                int index = 1;
+                                            }
+                                            @foreach (var item in Authors)
+                                            {
+                                                <tr>
+                                                    <td>@index</td>
+                                                    <td>@item.Name</td>
+                                                    <td>@item.Description</td>
+                                                    <td style="width: 100px"><button class="btn btn-sm btn-success" type="button" data-toggle="modal" data-target="#editAuthor@(item.Id)">Sửa</button></td>
+                                                    <td style="width: 100px"><button class="btn btn-danger btn-sm"  type="button" data-toggle="modal" data-target="#deleteModal@(item.Id)">Xóa</button></td>
+                                                </tr>
+
+                                                index ++;
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                     </div>
+
+     @* Create Author  *@
+     <div class="modal fade" id="addAuthor" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Thêm mới tác giả</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+        <form method="Post" action="/admin/book/author">
+            <div class="modal-body">
+
+                <div class="form-group">
+                    <label for="recipient-name" class="col-form-label">Tên:</label>
+                    <input type="text" class="form-control" id="recipient-name" name="name">
+                </div>
+                <div class="form-group">
+                    <label for="message-text" class="col-form-label">Ghi chú:</label>
+                    <textarea class="form-control" id="message-text" name="description"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                <button type="submit" class="btn btn-primary">Đồng ý</button>
+            </div>
+        </form>
+        </div>
+        </div>
+     </div>
+
+    @* update Author  *@
+
+       @foreach (var item in Authors)
+                                            {
+    <div class="modal fade" id="editAuthor@(item.Id)" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit Author</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+        <form method="Post" action="/admin/book/author/update/@(item.Id)">
+            <div class="modal-body">
+
+                <div class="form-group">
+                    <label for="recipient-name" class="col-form-label">Tên:</label>
+                    <input type="text" class="form-control" id="recipient-name" name="name" value="@(item.Name)">
+                </div>
+                <div class="form-group">
+                    <label for="message-text" class="col-form-label">Ghi chú:</label>
+                    <textarea class="form-control" id="message-text" name="description">@(item.Description)</textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                <button type="submit" class="btn btn-primary">Đồng ý</button>
+            </div>
+        </form>
+     </div>
+     </div>
+     </div>
+
+    }
+  
+    @* delete Author  *@
+
+       @foreach (var item in Authors){
+
+        <div class="modal fade" id="deleteModal@(item.Id)" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Xóa tác giả</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Bạn chắc chắc xóa tác giả ?
+            </div>
+            <div class="modal-footer">
+                      <form method="Post" action="/admin/book/author/delete/@(item.Id)">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                            <button type="submit" class="btn btn-danger">Đồng ý</button>
+                     </form>
+            </div>
+            </div>
+        </div>
+        </div>
+    }
+
+
+@section Script {
+   <script>
+
+       
+   </script>
+}   

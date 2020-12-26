@@ -1,0 +1,145 @@
+
+
+
+TempData["message"] = "Create category success";
+
+
+     -->   @TempData["message"]
+	 
+khi tạo thành công danh mục thì đẩy cái biến này xuống view 
+
+
+
+--> khi tạo danh mục thành công 
+
+--> mình phải redirect về trang index --> để hiện thị list danh mục --> lúc này thì nó gọi hàm index trong controller
+
+																		select ra list danh mục --> bao gồm cái 
+																		mới rồi 
+
+--> kèm theo đó truyền đi thông báo tạo danh mục thành công -> TempData["message"] = "Create category success";
+
+--> hiển thị xuống view                 @TempData["message"]
+
+
+
+--> cái  tempData này bản chất nó chắc chắn là session -> vì khi từ cái hàm kia qua hàm này 
+
+addCategory --> redirect qua index --> nếu như k dùng session thì k truyền đi dc biến nào 
+
+
+mình xóa hết category đi
+
+
+
+2.Update 
+
+--> nếu k dùng js thì phải lặp ra số cái modal dialog 
+
+= với số item category
+
+data-target="#editCategory@(item.Id)"
+
+
+id="editCategory@(item.Id)" 
+
+--> thì cái thằng click vào nó sẽ có id == với thằng id 
+
+ở phần modal update ấy 
+
+--> lúc click vào nó show ra thằng tương ứng
+
+--> xác định giựa theo cái Id của category 
+
+
+
+3.Delete
+
+--> truyeenf len id --> tim roi xoa 
+
+
+--> xem lai code di ban khuc nao k hieu giai thich luon
+
+4.Search
+
+--> search thì thế thôi bạn 
+
+dùng contains || ilike 
+
+ilike của ef thì hiệu năng tốt hơn 
+
+--> nó cũng biên dịch ra select like cái thôi
+
+
+xong khung r h copy paste thôi
+
+============================================
+
+Books 
+
+
+1. Author --> là thêm lúc thêm sách 
+
+luôn à bạn 
+mình tính đâu add như category ấy rồi add Book là show select mấy cái db cấp 1.
+
+oke 
+
+-->
+
+Publisher là gì đấy "Nhà xuất bản"
+trong book db có mục yearpublish, mình đang tính hỏi bạn là cái này cần tạo db rồi add data năm vào ko hay có cách khác?
+
+bỏ cái lịch vào thôi 
+
+--> pdf --> upload file à bạn
+yep,
+
+ok 
+
+--> cái này là làm lâu nhất đây
+
+bữa mình cũng làm lâu nhưng mình làm dc rồi :)) xíu mình gửi bạn code cũ của mình.. đúng 1 hàng để down nó về
+chứ view online phiền lắm :)
+
+--> vãi banj làm dc mấy cái này r sao k tự làm luôn
+thì hồi đó mình hỏi làm front end thôi nhưng bạn đề nghị làm từ đầu bằng core mà :)) 
+
+à thế à :))
+
+San pham no k nhu the nay a ban 
+
+price ?
+
+à ko, mình làm mượn sách mà. đâu có thanh toán mua hàng
+à thực ra là trả phí phạt nếu trễ hạn trả sách
+
+ok
+
+
+1. title
+2. rate 
+3. price 
+4. description 
+5. so luong tồn 
+6. cateogry 
+7. details 
+
+
+như kia đủ chưa v
+ 
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+

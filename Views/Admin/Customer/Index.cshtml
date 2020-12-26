@@ -1,0 +1,241 @@
+@using System.Text.Json
+
+@{
+    Layout = "_LayoutAdmin";
+    ViewBag.Title = "KHÁCH HÀNG";
+    ViewBag.PageName = "KHÁCH HÀNG";
+    ViewBag.Link = "/admin/customer";
+
+    @* var user = ViewData["User"] as User;  *@
+
+        List<User> Customers = Model;
+}
+
+ @section Css {
+   <style>
+    .alert.alert-danger.validation-summary-valid {
+        display: none;
+    }
+   </style>
+}   
+
+
+ <main>
+                     <div class="card mb-4">
+                              <div asp-validation-summary="All" class="alert alert-danger"></div>
+                            
+                            @if(@TempData["message"] != null)
+                            {
+                                <div class="alert alert-success">
+                                    @TempData["message"]
+                                </div>
+                            }
+                            @if(@TempData["error"] != null)
+                            {
+                                <div class="alert alert-danger">
+                                    @TempData["error"]
+                                </div>
+                            }
+
+                            <form method="GET" action="/admin/customer/search">
+                                    <div class="input-group mb-3 p-3">
+                                            <input name="query" type="text" class="form-control" placeholder="Tìm khách hàng" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                            <div class="input-group-append">
+                                                <button type="submit" class="input-group-text" id="basic-addon2"><i class="fas fa-search"></i></button>
+                                            </div>
+                                    </div>
+                            </form>
+
+
+                            <div class="card-header d-flex justify-content-between ">
+                                 <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addCustomer" ><i class="fas fa-plus"></i></button>
+                            </div>
+                         
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Avatar</th>
+                                                <th>Tên khách hàng</th>
+                                                <th>Điện thoại</th>
+                                                <th>Email</th>
+                                                <th>Ngày tạo</th>
+                                                <th>Trạng thái</th>
+                                                <th colspan="2" class="text-center">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @{
+                                                int index = 1;
+                                            }
+                                            @foreach (var item in Customers)
+                                            {
+                                                <tr>
+                                                    <td style="width:80px">@index</td>
+                                                    <td style="width:80px"><img style="width:60px; border-radius: 50%" src="https://banner2.cleanpng.com/20180528/ccc/kisspng-computer-icons-user-avatar-woman-avatar-5b0c5b2f6ecaa1.2446433615275364314538.jpg" /></td>
+                                                    <td>@item.Username</td>
+                                                    <td>@item.Phone</td>
+                                                    <td>@item.Email</td>
+                                                    <td>@item.CreatTime.ToString("dd/MM/yyyy")</td>
+                                                    <td style="width:110px" class="text-center">@(item.Status ? @Html.Raw("<i class='far fa-check-circle' style='color: green'></i>") : @Html.Raw("<i class='far fa-times-circle' style='color: red'></i>"))</td>
+                                                    <td class="text-center"><button  style="font-size:10px" class="btn btn-sm btn-success" type="button" data-toggle="modal" data-target="#editCustomer@(item.Id)"><i class="fas fa-edit"></i></button></td>
+                                                    <td class="text-center"><button  style="font-size:10px" class="btn btn-danger btn-sm"  type="button" data-toggle="modal" data-target="#deleteModal@(item.Id)"><i class="fas fa-trash"></i></button></td>
+                                                </tr>
+
+                                                index ++;
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                     </div>
+ </main>
+
+
+                   
+
+     @* Create Customer  *@
+     <div class="modal fade" id="addCustomer" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Thêm Khách hàng</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+        <form method="Post" action="/admin/customer">
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="recipient-name" class="col-form-label">Tài khoản (*):</label>
+                    <input type="text" class="form-control" id="recipient-name" name="username">
+                </div>
+                <div class="form-group">
+                    <label for="recipient-name" class="col-form-label">Mật khẩu (*):</label>
+                    <input type="password" class="form-control" id="recipient-name" name="password">
+                </div>
+                <div class="form-group">
+                    <label for="recipient-name" class="col-form-label">Họ (*):</label>
+                    <input type="text" class="form-control" id="recipient-name" name="FirstName">
+                </div>
+                <div class="form-group">
+                    <label for="recipient-name" class="col-form-label">Tên (*):</label>
+                    <input type="text" class="form-control" id="recipient-name" name="LastName">
+                </div>
+                <div class="form-group">
+                    <label for="recipient-name" class="col-form-label">Điện thoại:</label>
+                    <input type="text" class="form-control" id="recipient-name" name="Phone">
+                </div>
+                <div class="form-group">
+                    <label for="recipient-name" class="col-form-label">Email:</label>
+                    <input type="text" class="form-control" id="recipient-name" name="Email">
+                </div>
+                <div class="form-group">
+                    <label for="recipient-name" class="col-form-label">Ngày sinh:</label>
+                    <input type="text" class="form-control" id="datepicker" name="BirthDate">
+                </div>
+            
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                <button type="submit" class="btn btn-primary">Tạo</button>
+            </div>
+        </form>
+        </div>
+        </div>
+     </div>
+
+    @* update Customer  *@
+
+       @foreach (var item in Customers)
+                                            {
+    <div class="modal fade" id="editCustomer@(item.Id)" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Cập nhật khách hàng</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+        <form method="Post" action="/admin/customer/update/@(item.Id)">
+            <div class="modal-body">
+
+               <div class="form-group">
+                    <label for="recipient-name" class="col-form-label">Tài khoản (*):</label>
+                    <input type="text" class="form-control" id="recipient-name" name="username" value="@item.Username" disabled >
+                </div>
+                <div class="form-group">
+                    <label for="recipient-name" class="col-form-label">Mật khẩu (*):</label>
+                    <input type="password" class="form-control" id="recipient-name" name="password"  value="******">
+                </div>
+                @* <div class="form-group">
+                    <label for="recipient-name" class="col-form-label">Họ (*):</label>
+                    <input type="text" class="form-control" id="recipient-name" name="FirstName" value="@item.FirstName">
+                </div>
+                <div class="form-group">
+                    <label for="recipient-name" class="col-form-label">Tên (*):</label>
+                    <input type="text" class="form-control" id="recipient-name" name="LastName" value="@item.LastName" >
+                </div> *@
+                <div class="form-group">
+                    <label for="recipient-name" class="col-form-label">Điện thoại:</label>
+                    <input type="text" class="form-control" id="recipient-name" name="Phone" value="@item.Phone">
+                </div>
+                <div class="form-group">
+                    <label for="recipient-name" class="col-form-label">Email:</label>
+                    <input type="text" class="form-control" id="recipient-name" name="Email" value="@item.Email">
+                </div>
+                <div class="form-group">
+                    <label for="recipient-name" class="col-form-label">Ngày sinh:</label>
+                    <input type="text" class="form-control" id="datepicker" name="BirthDate" value="@item.BirthDate">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                <button type="submit" class="btn btn-primary">Cập nhật</button>
+            </div>
+        </form>
+     </div>
+     </div>
+     </div>
+
+    }
+  
+    @* delete Customer  *@
+
+       @foreach (var item in Customers){
+
+        <div class="modal fade" id="deleteModal@(item.Id)" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Xóa khách hàng</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Bạn chắc chắn xóa khách hàng này không ?
+            </div>
+            <div class="modal-footer">
+                      <form method="Post" action="/admin/customer/delete/@(item.Id)">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                            <button type="submit" class="btn btn-danger">Xóa</button>
+                     </form>
+            </div>
+            </div>
+        </div>
+        </div>
+    }
+
+
+@section Script {
+   <script>
+        $( function() {
+            $( "#datepicker" ).datepicker();
+        } );
+        
+   </script>
+}   

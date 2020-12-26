@@ -1,0 +1,162 @@
+@using LibManage.ViewModels
+@{
+    Layout = "_LayoutAdmin";
+    ViewBag.Title = "TIN MỚI";
+    ViewBag.PageName = "TIN MỚI";
+    ViewBag.Link = "/admin/post";
+}
+@model List<PostIndexViewModel>
+ <main>
+                     <div class="card mb-4">
+                              <div asp-validation-summary="All" class="alert alert-danger"></div>
+                            
+                            @if(@TempData["message"] != null)
+                            {
+                                <div class="alert alert-success">
+                                    @TempData["message"]
+                                </div>
+                            }
+                            @if(@TempData["error"] != null)
+                            {
+                                <div class="alert alert-danger">
+                                    @TempData["error"]
+                                </div>
+                            }
+
+                            <form method="GET" action="/admin/post/search">
+                                    <div class="input-group mb-3 p-3">
+                                            <input name="query" type="text" class="form-control" placeholder="Tìm kiếm bài viết" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                            <div class="input-group-append">
+                                                <button type="submit" class="input-group-text" id="basic-addon2"><i class="fas fa-search"></i></button>
+                                            </div>
+                                    </div>
+                            </form>
+
+
+                            <div class="card-header d-flex justify-content-between ">
+                                 <a href="/admin/post/create" class="btn btn-primary btn-sm" ><i class="fas fa-plus"></i></a>
+                            </div>
+                         
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                        <thead>
+    <tr>
+      <th class="th-sm" >#ID
+      </th>
+       <th class="th-sm" >
+         
+      </th>
+      <th class="th-sm">Tiêu đề
+      </th>
+      <th class="th-sm">Mô tả
+      </th>
+      <th class="th-sm">Tác giả
+      </th>
+      <th class="th-sm text-center">Thời gian
+      </th>
+      <th colspan="2" class="text-center">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    @foreach (var item in  Model)
+    {
+    <tr style="cursor:pointer">
+      <td>@item.Id</td>
+      <td class="text-center">
+        <img style="width:50px" src="@item.Thumbnail" alt="">
+      </td>
+      <td style="width:25%">
+        <a href="/admin/post/@(item.Id)">
+          @(item.Title.Length > 30 ? item.Title.Substring(0,30) + "..." : item.Title )
+        </a>
+      </td>
+      <td style="width:25%">
+          <a href="/admin/post/@(item.Id)">
+             @(item.Description.Length > 30 ? item.Description.Substring(0,30) + "..." : item.Description )
+          </a>
+      </td>
+      <td>
+        @(item.Author ?? "Admin")
+      </td>
+      <td class="text-center">
+        @item.CreatedAt
+      </td>
+       <td style="width: 100px" class="text-center" ><a href = "/admin/post/@(item.Id)" class="btn btn-sm btn-success" >Sửa</a></td>
+       <td style="width: 100px" class="text-center"><button class="btn btn-danger btn-sm btn-delete" type="button" data-toggle="modal" data-target="#deleteModal@(item.Id)">Xóa</button></td>
+    </tr>
+
+     
+        
+    }
+    <script>
+      //  var deleteButtons = document.querySelectorAll('.btn-delete');
+      //  deleteButtons.forEach(item => item.addEventListener('click', function(e){ e.stopPropagation(); 
+
+      //  }));
+    </script>
+  </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                     </div>
+ </main>
+
+   @* delete category  *@
+
+       @foreach (var item in Model){
+
+        <div class="modal fade" id="deleteModal@(item.Id)" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Xóa bài viết</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Bạn có muốn xóa bài viết ?
+            </div>
+            <div class="modal-footer">
+                      <form method="Post" action="/admin/post/delete/@(item.Id)">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                            <button type="submit" class="btn btn-danger">Lưu</button>
+                     </form>
+            </div>
+            </div>
+        </div>
+        </div>
+       }
+  
+@section Css{
+    <link rel="stylesheet" href="~/common/css/jquery.dataTables.min.css">
+    <style>
+      .show-Content{
+        cursor: pointer;
+      }
+      .show-Content:hover{
+         color:blue;
+      }
+          .alert.alert-danger.validation-summary-valid {
+        display: none;
+    }
+    </style>
+}
+@section Script{
+    <script src="~/common/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#dtBasicExample').DataTable( 
+               {  
+                 "order": [[ 0, "desc" ]],
+               },
+            );
+            $('.dataTables_length').addClass('bs-select');
+        });
+      function blogDetail(id){
+        window.location.href = "/admin/post/" + id;
+      }
+    </script>
+
+}

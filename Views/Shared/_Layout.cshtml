@@ -1,0 +1,452 @@
+@using LibManage.Controllers
+@using Microsoft.AspNetCore.Http
+@using Newtonsoft.Json
+@inject IHttpContextAccessor httpContextAccessor
+
+@{
+	var cart = httpContextAccessor.HttpContext.Session.GetString("cart");
+			List<Cart> dataCart = new List<Cart>();
+	        if (cart != null)
+            {
+				dataCart = JsonConvert.DeserializeObject<List<Cart>>(cart);
+			}
+}
+
+<!doctype html>
+<html class="no-js" lang="vi">
+
+<head>
+ <meta charset="utf-8">
+ <meta http-equiv="x-ua-compatible" content="ie=edge">
+ <title>Home | Books Library eCommerce Store</title>
+ <meta name="description" content="">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+
+ <link rel="apple-touch-icon" href="/assets/page/images/icon.png">
+
+ <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
+ <link href="https://fonts.googleapis.com/css?family=Poppins:300,300i,400,400i,500,600,600i,700,700i,800"
+  rel="stylesheet">
+ <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+
+ <link rel="stylesheet" href="/assets/page/css/bootstrap.min.css">
+ <link rel="stylesheet" href="/assets/page/css/plugins.css">
+ <link rel="stylesheet" href="/assets/page/style.css">
+
+ <link rel="stylesheet" href="/assets/page/css/custom.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" />
+
+ <script src="/assets/page/js/vendor/modernizr-3.5.0.min.js"></script>
+ <style>
+  .fix-center {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+  }
+
+  .loader {
+   border: 16px solid #f3f3f3;
+   border-radius: 50%;
+   border-top: 16px solid #3498db;
+   width: 120px;
+   height: 120px;
+   -webkit-animation: spin 2s linear infinite;
+   /* Safari */
+   animation: spin 2s linear infinite;
+  }
+ </style>
+ @if (IsSectionDefined("Css"))
+	{
+	 @RenderSection("Css", required:true)
+	}
+
+
+
+</head>
+
+<body>
+
+ <div class="wrapper" id="wrapper">
+  <!-- Header -->
+  <header id="wn__header" class="header__area header__absolute sticky__header">
+   <div class="container-fluid">
+	<div class="row">
+	 <div class="col-md-6 col-sm-6 col-6 col-lg-2">
+	  <div class="logo">
+	   <a href="/">
+		<img src="/assets/page/images/logo/logo.png" alt="logo images">
+	   </a>
+	  </div>
+	 </div>
+	 <div class="col-lg-8 d-none d-lg-block">
+	  <nav class="mainmenu__nav">
+	   <ul class="meninmenu d-flex justify-content-start">
+		<li><a style="color:white" href="/">Trang chủ</a></li>
+		<li><a style="color:white" href="/new">Tin tức</a></li>
+		<li><a style="color:white" href="/about">Giới thiệu</a></li>
+		<li><a style="color:white" href="/contact">Liên hệ</a></li>
+	   </ul>
+	  </nav>
+	 </div>
+	 <div class="col-md-6 col-sm-6 col-6 col-lg-2">
+	  <ul class="header__sidebar__right d-flex justify-content-end align-items-center">
+	   <li class="shop_search"><a class="search__active" href="#"></a></li>
+	   <li class="shopcart"><a class="cartbox_active" href="#"><span
+		  class="product_qun">@(dataCart.Count())</span></a>
+		<!-- Start Shopping Cart -->
+		<div class="block-minicart minicart__active">
+		 <div class="minicart-content-wrapper">
+		  <div class="micart__close">
+		   <span>Đóng</span>
+		  </div>
+		  <div class="items-total d-flex justify-content-between">
+		   <span id="total-product">@(dataCart.Count()) sản phẩm</span>
+		   <span>Giỏ hàng</span>
+		  </div>
+		  <div class="total_amount text-right">
+		   <span>Miễn phí</span>
+		  </div>
+		  <div class="mini_action checkout">
+		   <a class="checkout__btn" href="cart.html">Xác nhận mượn</a>
+		  </div>
+		  <div class="single__items">
+		   <div class="miniproduct">
+			   @foreach (var item in dataCart)
+			   {
+				<div class="item01 d-flex">
+				<div class="thumb">
+				<a href="product-details.html"><img
+					src="@item.Product.Image"
+					alt="product images"></a>
+				</div>
+				<div class="content">
+				<h6><a href="product-details.html">@item.Product.Title</a></h6>
+				<span class="prize">@item.Product?.Authors?.Name</span>
+				<div class="product_prize d-flex justify-content-between">
+				<span class="qun">Qty: @item.Quantity</span>
+				<ul class="d-flex justify-content-end">
+					<li><a href="/cart/remove/@item.Product.Id"><i class="zmdi zmdi-delete"></i></a>
+					</li>
+				</ul>
+				</div>
+				</div>
+				</div>
+			   }
+			@* <div class="item01 d-flex">
+			 <div class="thumb">
+			  <a href="product-details.html"><img
+				src="/assets/page/images/product/sm-img/1.jpg"
+				alt="product images"></a>
+			 </div>
+			 <div class="content">
+			  <h6><a href="product-details.html">Voyage Yoga Bag</a></h6>
+			  <span class="prize">$30.00</span>
+			  <div class="product_prize d-flex justify-content-between">
+			   <span class="qun">Qty: 01</span>
+			   <ul class="d-flex justify-content-end">
+				<li><a href="#"><i class="zmdi zmdi-settings"></i></a>
+				</li>
+				<li><a href="#"><i class="zmdi zmdi-delete"></i></a>
+				</li>
+			   </ul>
+			  </div>
+			 </div>
+			</div>
+			<div class="item01 d-flex mt--20">
+			 <div class="thumb">
+			  <a href="product-details.html"><img
+				src="/assets/page/images/product/sm-img/3.jpg"
+				alt="product images"></a>
+			 </div>
+			 <div class="content">
+			  <h6><a href="product-details.html">Impulse Duffle</a></h6>
+			  <span class="prize">$40.00</span>
+			  <div class="product_prize d-flex justify-content-between">
+			   <span class="qun">Qty: 03</span>
+			   <ul class="d-flex justify-content-end">
+				<li><a href="#"><i class="zmdi zmdi-settings"></i></a>
+				</li>
+				<li><a href="#"><i class="zmdi zmdi-delete"></i></a>
+				</li>
+			   </ul>
+			  </div>
+			 </div>
+			</div>
+			<div class="item01 d-flex mt--20">
+			 <div class="thumb">
+			  <a href="product-details.html"><img
+				src="/assets/page/images/product/sm-img/2.jpg"
+				alt="product images"></a>
+			 </div>
+			 <div class="content">
+			  <h6><a href="product-details.html">Compete Track Tote</a></h6>
+			  <span class="prize">$40.00</span>
+			  <div class="product_prize d-flex justify-content-between">
+			   <span class="qun">Qty: 03</span>
+			   <ul class="d-flex justify-content-end">
+				<li><a href="#"><i class="zmdi zmdi-settings"></i></a>
+				</li>
+				<li><a href="#"><i class="zmdi zmdi-delete"></i></a>
+				</li>
+			   </ul>
+			  </div>
+			 </div>
+			</div> *@
+		   </div>
+		  </div>
+		  <div class="mini_action cart">
+		   <a class="cart__btn" href="/cart">Chỉnh sửa giỏ hàng</a>
+		  </div>
+		 </div>
+		</div>
+		<!-- End Shopping Cart -->
+	   </li>
+	   <li class="setting__bar__icon"><a href="/account"></a>
+	   </li>
+	  </ul>
+	 </div>
+	</div>
+   </div>
+  </header>
+  <!-- //Header -->
+  <!-- Start Search Popup -->
+  <div class="brown--color box-search-content search_active block-bg close__top">
+   <form id="search_mini_form" class="minisearch" method="get" action="/product/view/search">
+	<div class="field__search">
+	 <input type="text" name="search" placeholder="Tìm kiếm sách ...">
+	 <div class="action">
+	  <button type="submit"><i class="zmdi zmdi-search"></i></button>
+	 </div>
+	</div>
+   </form>
+   <div class="close__wrap">
+	<span>Đóng</span>
+   </div>
+  </div>
+  <!-- End Search Popup -->
+
+  @RenderBody()
+
+  <!-- Footer Area -->
+  <footer id="wn__footer" class="footer__area bg__cat--8 brown--color">
+   <div class="footer-static-top">
+	<div class="container">
+	 <div class="row">
+	  <div class="col-lg-12">
+	   <div class="footer__widget footer__menu">
+		<div class="ft__logo">
+		 <a href="index.html">
+		  <img src="/assets/page/images/logo/3.png" alt="logo">
+		 </a>
+		 <p>"The number of books will grow continually, and one can predict that a time will
+		  come when it will be almost as difficult to learn anything from books as from
+		  the direct study of the whole universe. It will be almost as convenient to
+		  search for some bit of truth concealed in nature as it will be to find it hidden
+		  away in an immense multitude of bound volumes." — Denis Diderot</p>
+
+		</div>
+		<div class="footer__content">
+		 <ul class="social__net social__net--2 d-flex justify-content-center">
+		  <li><a href="#"><i class="bi bi-facebook"></i></a></li>
+		  <li><a href="#"><i class="bi bi-google"></i></a></li>
+		  <li><a href="#"><i class="bi bi-twitter"></i></a></li>
+		  <li><a href="#"><i class="bi bi-linkedin"></i></a></li>
+		  <li><a href="#"><i class="bi bi-youtube"></i></a></li>
+		 </ul>
+		</div>
+	   </div>
+	  </div>
+	 </div>
+	</div>
+   </div>
+   <div class="copyright__wrapper">
+	<div class="container">
+	 <div class="row">
+	  <div class="col-lg-6 col-md-6 col-sm-12">
+	   <div class="copyright">
+		<div class="copy__right__inner text-left">
+		 <p>Copyright <i class="fa fa-copyright"></i> <a href="#">Boighor.</a> All Rights
+		  Reserved</p>
+		</div>
+	   </div>
+	  </div>
+	 </div>
+	</div>
+   </div>
+  </footer>
+  <!-- //Footer Area -->
+  <!-- QUICKVIEW PRODUCT -->
+  <div id="quickview-wrapper">
+   <!-- Modal -->
+   <div class="modal fade" id="productmodal" tabindex="-1" role="dialog">
+	<div class="modal-dialog modal__container" role="document">
+	 <div class="modal-content">
+	  <div class="modal-header modal__header">
+	   <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+		 aria-hidden="true">&times;</span></button>
+	  </div>
+	  <div class="modal-body">
+	   <div class="modal-product">
+		<!-- Start product images -->
+		<div class="product-images">
+		 <div class="main-image images">
+		  <img alt="big images" src="/assets/page/images/product/big-img/1.jpg">
+		 </div>
+		</div>
+		<!-- end product images -->
+		<div class="product-info">
+		 <h1>Simple Fabric Bags</h1>
+		 <div class="rating__and__review">
+		  <ul class="rating">
+		   <li><span class="ti-star"></span></li>
+		   <li><span class="ti-star"></span></li>
+		   <li><span class="ti-star"></span></li>
+		   <li><span class="ti-star"></span></li>
+		   <li><span class="ti-star"></span></li>
+		  </ul>
+		  <div class="review">
+		   <a href="#">4 customer reviews</a>
+		  </div>
+		 </div>
+		 <div class="price-box-3">
+		  <div class="s-price-box">
+		   <span class="new-price">$17.20</span>
+		   <span class="old-price">$45.00</span>
+		  </div>
+		 </div>
+		 <div class="quick-desc">
+		  Designed for simplicity and made from high quality materials. Its sleek geometry
+		  and material combinations creates a modern look.
+		 </div>
+		 <div class="select__color">
+		  <h2>Select color</h2>
+		  <ul class="color__list">
+		   <li class="red"><a title="Red" href="#">Red</a></li>
+		   <li class="gold"><a title="Gold" href="#">Gold</a></li>
+		   <li class="orange"><a title="Orange" href="#">Orange</a></li>
+		   <li class="orange"><a title="Orange" href="#">Orange</a></li>
+		  </ul>
+		 </div>
+		 <div class="select__size">
+		  <h2>Select size</h2>
+		  <ul class="color__list">
+		   <li class="l__size"><a title="L" href="#">L</a></li>
+		   <li class="m__size"><a title="M" href="#">M</a></li>
+		   <li class="s__size"><a title="S" href="#">S</a></li>
+		   <li class="xl__size"><a title="XL" href="#">XL</a></li>
+		   <li class="xxl__size"><a title="XXL" href="#">XXL</a></li>
+		  </ul>
+		 </div>
+		 <div class="social-sharing">
+		  <div class="widget widget_socialsharing_widget">
+		   <h3 class="widget-title-modal">Share this product</h3>
+		   <ul class="social__net social__net--2 d-flex justify-content-start">
+			<li class="facebook"><a href="#" class="rss social-icon"><i
+			   class="zmdi zmdi-rss"></i></a></li>
+			<li class="linkedin"><a href="#" class="linkedin social-icon"><i
+			   class="zmdi zmdi-linkedin"></i></a></li>
+			<li class="pinterest"><a href="#" class="pinterest social-icon"><i
+			   class="zmdi zmdi-pinterest"></i></a></li>
+			<li class="tumblr"><a href="#" class="tumblr social-icon"><i
+			   class="zmdi zmdi-tumblr"></i></a></li>
+		   </ul>
+		  </div>
+		 </div>
+		 <div class="addtocart-btn">
+		  <a href="#">Add to cart</a>
+		 </div>
+		</div>
+	   </div>
+	  </div>
+	 </div>
+	</div>
+   </div>
+  </div>
+  <!-- END QUICKVIEW PRODUCT -->
+ </div>
+ <!-- //Main wrapper -->
+
+ <!-- JS Files -->
+ <script src="/assets/page/js/vendor/jquery-3.2.1.min.js"></script>
+ <script src="/assets/page/js/popper.min.js"></script>
+ <script src="/assets/page/js/bootstrap.min.js"></script>
+ <script src="/assets/page/js/plugins.js"></script>
+ <script src="/assets/page/js/active.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous"></script>
+<script>
+		const URL = window.location.origin;
+
+		const eleCartList = document.querySelector('.miniproduct'); 
+		const totalProduct = document.querySelector('#total-product');
+		const product_qun = document.querySelector('.product_qun');
+		console.log(totalProduct);
+		let itemsHTML = '';
+		function product(id,title,image,quantity){
+
+		 							return     `
+														<div class="item01 d-flex">
+																<div class="thumb">
+																<a href="/product/${id}"><img
+																	src="${image}"
+																	alt="product images"></a>
+																</div>
+																<div class="content">
+																<h6><a href="product-details.html">${title}</a></h6>
+																<span class="prize">OK</span>
+																	<div class="product_prize d-flex justify-content-between">
+																	<span class="qun">Qty: ${quantity}</span>
+																	<ul class="d-flex justify-content-end">
+																		<li><a href="/cart/remove/${id}"><i class="zmdi zmdi-delete"></i></a>
+																		</li>
+																	</ul>
+																	</div>
+														    	</div>
+														</div>
+												`
+												
+		}
+
+		function addCartItem (id) {
+			fetch(`${URL}/cart/add/${id}`)
+			.then(response => response.json())
+			.then(data => {
+
+				toastr.success('Thêm vào giỏ thành công');
+				data.dataCart.forEach(item => {
+					itemsHTML += product(item.product.id, item.product.title, item.product.image,item.quantity);
+				});
+				eleCartList.innerHTML = itemsHTML;
+				totalProduct.innerHTML = data.dataCart.length + ' sản phẩm';
+				product_qun.innerHTML = data.dataCart.length;
+				itemsHTML = '';
+
+			})
+			.catch(err => console.log("ERR: " + err.message));
+		}
+
+		/*function removeCartItem (id) {
+			fetch(`${URL}/cart/remove/${id}`)
+			.then(response => response.json())
+			.then(data => {
+
+				toastr.success('Cập nhật giỏ hàng thành công');
+				data.dataCart.forEach(item => {
+					itemsHTML += product(item.product.id, item.product.title, item.product.image,item.product.quantity);
+				});
+				eleCartList.innerHTML = itemsHTML;
+				itemsHTML = '';
+			})
+			.catch(err => console.log("ERR: " + err.message));
+		}*/
+
+</script>
+
+ @if (IsSectionDefined("Script"))
+	{
+	 @RenderSection("Script", required:true)
+	}
+
+</body>
+
+
+</html>

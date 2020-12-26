@@ -1,0 +1,190 @@
+@using System.Text.Json;
+@using LibManage.ViewModels;
+@{
+    Layout = "_LayoutAdmin";
+    ViewBag.Title = "Dashboard";
+    ViewBag.PageName = "TỔNG QUAN";
+    ViewBag.Link = "/admin/dashboard";
+    var user = ViewData["User"] as User;
+    var dataChart  = JsonSerializer.Serialize(ViewBag.Chart_PerMonth);
+ }
+
+<div class="row">
+    <div class="col-xl-3 col-md-6">
+        <div class="text-white mb-4" style="background: #3498db">
+            <div class="card-body">SÁCH ĐANG ĐƯỢC MƯỢN</div>
+            <div class="card-footer d-flex align-items-center justify-content-between">
+                <span class="small text-white stretched-link" style="font-size: 20px;" >@ViewBag.TotalBook_Muon</span>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-md-6">
+        <div class="card text-white mb-4" style="background: #f39c12">
+            <div class="card-body">SÁCH ĐẾN HẠN TRẢ</div>
+            <div class="card-footer d-flex align-items-center justify-content-between">
+                 <span class="small text-white stretched-link" style="font-size: 20px;">@ViewBag.TotalBook_Phai_Tra</span>
+            </div>
+        </div>
+    </div>
+      <div class="col-xl-3 col-md-6">
+        <div class="card text-white mb-4" style="background-color: #e74c3c;">
+            <div class="card-body">SÁCH QUÁ HẠN TRẢ</div>
+            <div class="card-footer d-flex align-items-center justify-content-between">
+               <span class="small text-white stretched-link" style="font-size: 20px;">@ViewBag.TotalBook_Qua_Han</span>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-md-6">
+        <div class="card text-white mb-4" style="background-color: #1abc9c;">
+            <div class="card-body">KHÁCH HÀNG MỚI</div>
+            <div class="card-footer d-flex align-items-center justify-content-between">
+                <span class="small text-white stretched-link" style="font-size: 20px;">@ViewBag.TotalNewCustomer</span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row mt-4">
+    <div class="col-6">
+        <h5 class="text-center mb-5" style="font-weight:400;font-size:19px; color: #414141">Biểu đồ thống kê lượng sách và khách hàng trong tuần qua</h5>
+        <figure class="highcharts-figure">
+            <div id="container"></div>
+        </figure>
+    </div>
+    <div class="col-6">
+        <h5 class="text-center mb-5" style="font-weight:400; font-size:19px; color: #414141">Danh sách sách được mượn nhiều nhất trong tháng</h5>
+        <table class="table" style="margin-top: 3.5rem">
+            <thead>
+                <tr style='font-size:15px'>
+                    <th>#</th>
+                    <th>Sách</th>
+                    <th>Lượt mượn</th>
+                    <th>Số lượng tồn</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                     int index = 1;
+                }
+                @foreach (var item in ViewBag.ListBookOrders)
+                {
+                    <tr>
+                        <td>@index</td>
+                        <td>@item.Title</td>
+                        <td>@item.CountDiscount</td>
+                        <td>@item.Quantity</td>
+                    </tr>
+                    
+                    index ++;
+                }
+            </tbody>
+            <tfoot>
+
+            </tfoot>
+        </table>
+    </div>
+
+</div>
+
+@section Script {
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    <script src="/assets/helper.js"></script>
+    <script>
+
+ 
+
+            
+        var dataChart = '@dataChart';
+        dataChart = rhtmlspecialchars(dataChart);
+        dataChart = JSON.parse(dataChart);
+
+        function generateListDay(firstDay,countDay){
+            let listDays = [firstDay];
+            let i = 1;
+
+            while(i < countDay) {
+
+                firstDay = firstDay.addDays(1);
+                listDays.push(firstDay);
+                i ++;   
+            }
+
+            return  listDays;
+        } 
+
+
+        let categories = generateListDay(FIRST_DAY_OF_WEEK, 7).map(day => formatDate(day));
+
+        function mapDateChart(data,categories) {
+                return categories.map(c => {
+                    let found = data.filter(d =>  d.Key.substring(0,d.Key.indexOf('T')) == c) ?? [];
+                    if(found[0])
+                    {
+                        return found[0].Count;
+                    }
+                    return 0;
+                });
+        } 
+
+    
+
+        Highcharts.chart('container', {
+            chart: {
+                type: 'line'
+            },
+            title: {
+                text: ''
+            },
+            subtitle: {
+                text: ''
+            },
+            xAxis: {
+                categories: categories.map(d => formatDateVN(d)),
+                tickmarkPlacement: 'on',
+                title: {
+                    enabled: true
+                }
+            },
+            yAxis: {
+                title: {
+                    text: 'Số lượng'
+                },
+                labels: {
+                    formatter: function () {
+                        return this.value / 1000;
+                    }
+                }
+            },
+            tooltip: {
+                split: true
+            },
+            plotOptions: {
+                area: {
+                    stacking: 'normal',
+                    lineColor: '#666666',
+                    lineWidth: 1,
+                    marker: {
+                        lineWidth: 1,
+                        lineColor: '#666666'
+                    }
+                }
+            },
+            series: [{
+                name: 'Sách mượn',
+                data:  mapDateChart(dataChart.TotalBook_MuonPerWeek, categories)
+
+            }, {
+                name: 'Sách đến hạn trả',
+                data:  mapDateChart(dataChart.TotalBook_Phai_Tra_PerMonth, categories)
+
+            }, {
+                name: 'Sách quá hạn trả',
+                data:  mapDateChart(dataChart.TotalBook_Qua_Han_PerMoth, categories)
+            }, {
+                name: 'KH mới',
+                data:  mapDateChart(dataChart.TotalNewCustomerPerWeek, categories)
+            }]
+        });
+    </script>
+}

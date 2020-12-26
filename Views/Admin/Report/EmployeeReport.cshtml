@@ -1,0 +1,167 @@
+@using System.Text.Json;
+@using LibManage.ViewModels;
+@{
+    Layout = "_LayoutAdmin";
+    ViewBag.Title = "NHÂN VIÊN";
+    ViewBag.PageName = "BÁO CÁO TƯƠNG TÁC NHÂN VIÊN";
+    ViewBag.Link = "/admin/report/order";
+    var user = ViewData["User"] as User;
+    @* var dataChart  = JsonSerializer.Serialize(ViewBag.Chart_PerMonth); *@
+    var dataChart  = new List<object>();
+ }
+
+<div class="d-flex justify-content-end">
+    <div>
+        <div class="form-group">
+            <input class="form-control" type="text" name="daterange" value="12/01/2020 - 12/12/2020" />
+        </div>
+    </div>
+</div>
+<div class="row mt-4">
+    <div class="col-12">
+        <h5 class="text-center mb-5" style="font-weight:400;font-size:20px; color: #414141">
+            Biểu đồ thống kê lượng tương tác nhân viên <br /> 
+            <small>1/12/2020 - 12/12/2020</small> 
+        </h5>
+        <div class="d-flex justify-content-center">
+            <figure class="highcharts-figure">
+                <div id="container"></div>
+            </figure>
+        </div>
+    </div>
+</div>
+<div class="row mt-4">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nhân viên</th>
+                <th>Lượt mượn</th>
+                <th>Lượt trả đúng hạn</th>
+                <th>Lượt trả trễ hạn</th>
+                <th>Tiền nộp phạt</th>
+                <th>Số sách mượn</th>
+                <th>Số khách hàng</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Nguyễn Văn A</td>
+                <td>10</td>
+                <td>11</td>
+                <td>12</td>
+                <td>12.000 đ</td>
+                <td>10</td>
+                <td>13</td>
+            </tr>
+            <tr>
+                <td>Nguyễn Văn A</td>
+                <td>10</td>
+                <td>11</td>
+                <td>12</td>
+                <td>12.000 đ</td>
+                <td>10</td>
+                <td>13</td>
+            </tr>
+            <tr>
+                <td>Nguyễn Văn A</td>
+                <td>10</td>
+                <td>11</td>
+                <td>12</td>
+                <td>12.000 đ</td>
+                <td>10</td>
+                <td>13</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>Tổng</th>
+                <td>10</td>
+                <td>11</td>
+                <td>12</td>
+                <td>12.000 đ</td>
+                <td>10</td>
+                <td>13</td>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+
+@section Css {
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+}
+
+@section Script {
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <script>
+
+Highcharts.setOptions({
+    colors: ['#01BAF2', '#71BF45', '#FAA74B']
+});  
+Highcharts.chart('container', {
+    chart: {
+      plotBackgroundColor: null,
+      plotBorderWidth: null,
+      plotShadow: false,
+      type: 'pie'
+    },
+    title: {
+      text: 'Lượt cho mượn sách',
+      y:225
+    },
+  legend:{
+    enabled:false
+  },
+    tooltip: {
+      pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+    },
+    plotOptions: {
+      pie: {
+        allowPointSelect: true,
+        cursor: 'pointer',
+        dataLabels: {
+          enabled: true,
+          formatter:function(){
+            return this.key+ ': ' + this.y + '%';
+          }
+        },
+        showInLegend: true
+      }
+    },
+    series: [{
+      name: 'Nguyễn Văn A',
+      colorByPoint: true,
+        innerSize: '70%',
+      data: [{
+        name: 'Nguyễn Văn X',
+       // color: '#01BAF2',
+        y: 78,
+      }, {
+        name: 'Nguyễn Văn Y',
+       // color: '#71BF45',
+        y: 20.9
+      }, {
+        name: 'Nguyễn Văn Z',
+        //color: '#FAA74B',
+        y: 1.1
+      }]
+    }]
+  });
+
+
+    </script>
+    <script>
+        $(function() {
+        $('input[name="daterange"]').daterangepicker({
+            opens: 'left'
+        }, function(start, end, label) {
+            console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+        });
+        });
+    </script>
+
+}

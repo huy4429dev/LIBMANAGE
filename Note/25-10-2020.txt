@@ -1,0 +1,44 @@
+oke da up load
+
+
+--> upload xong lấy path 
+
+--> hiển thị tên file ra 
+
+--> h đẩy ngược cái path vào input name = thumbnail
+
+và pdf 
+
+sau đó submmit lên insert 
+
+vào 
+
+ví dụ 1 book 
+
+có nhiều booktype 
+
+bạn mới đặt là 
+
+booktypes 
+
+còn 1 book 1 booktype 
+
+thì cái quan hệ đặt là 
+
+bookType
+
+tương tự mấy cái kia
+
+
+K có goole tôi bỏ nghề lập trình 
+
+
+
+
+
+
+
+
+
+
+

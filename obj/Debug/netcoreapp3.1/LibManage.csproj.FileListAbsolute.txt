@@ -1,0 +1,227 @@
+C:\Users\HUY 4\Desktop\C#\LibManage\bin\Debug\netcoreapp3.1\appsettings.Development.json
+C:\Users\HUY 4\Desktop\C#\LibManage\bin\Debug\netcoreapp3.1\appsettings.json
+C:\Users\HUY 4\Desktop\C#\LibManage\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
+C:\Users\HUY 4\Desktop\C#\LibManage\bin\Debug\netcoreapp3.1\LibManage.exe
+C:\Users\HUY 4\Desktop\C#\LibManage\bin\Debug\netcoreapp3.1\LibManage.deps.json
+C:\Users\HUY 4\Desktop\C#\LibManage\bin\Debug\netcoreapp3.1\LibManage.runtimeconfig.json
+C:\Users\HUY 4\Desktop\C#\LibManage\bin\Debug\netcoreapp3.1\LibManage.runtimeconfig.dev.json
+C:\Users\HUY 4\Desktop\C#\LibManage\bin\Debug\netcoreapp3.1\LibManage.dll
+C:\Users\HUY 4\Desktop\C#\LibManage\bin\Debug\netcoreapp3.1\LibManage.pdb
+C:\Users\HUY 4\Desktop\C#\LibManage\obj\Debug\netcoreapp3.1\LibManage.csprojAssemblyReference.cache
+C:\Users\HUY 4\Desktop\C#\LibManage\obj\Debug\netcoreapp3.1\LibManage.AssemblyInfoInputs.cache
+C:\Users\HUY 4\Desktop\C#\LibManage\obj\Debug\netcoreapp3.1\LibManage.AssemblyInfo.cs
+C:\Users\HUY 4\Desktop\C#\LibManage\obj\Debug\netcoreapp3.1\LibManage.csproj.CoreCompileInputs.cache
+C:\Users\HUY 4\Desktop\C#\LibManage\obj\Debug\netcoreapp3.1\LibManage.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\HUY 4\Desktop\C#\LibManage\obj\Debug\netcoreapp3.1\LibManage.RazorTargetAssemblyInfo.cache
+C:\Users\HUY 4\Desktop\C#\LibManage\obj\Debug\netcoreapp3.1\staticwebassets\LibManage.StaticWebAssets.Manifest.cache
+C:\Users\HUY 4\Desktop\C#\LibManage\obj\Debug\netcoreapp3.1\staticwebassets\LibManage.StaticWebAssets.xml
+C:\Users\HUY 4\Desktop\C#\LibManage\obj\Debug\netcoreapp3.1\LibManage.dll
+C:\Users\HUY 4\Desktop\C#\LibManage\obj\Debug\netcoreapp3.1\LibManage.pdb
+C:\Users\HUY 4\Desktop\C#\LibManage\obj\Debug\netcoreapp3.1\LibManage.genruntimeconfig.cache
+C:\Users\HUY 4\Desktop\C#\LibManage\bin\Debug\netcoreapp3.1\LibManage.Views.dll
+C:\Users\HUY 4\Desktop\C#\LibManage\bin\Debug\netcoreapp3.1\LibManage.Views.pdb
+C:\Users\HUY 4\Desktop\C#\LibManage\obj\Debug\netcoreapp3.1\LibManage.RazorAssemblyInfo.cache
+C:\Users\HUY 4\Desktop\C#\LibManage\obj\Debug\netcoreapp3.1\LibManage.RazorAssemblyInfo.cs
+C:\Users\HUY 4\Desktop\C#\LibManage\obj\Debug\netcoreapp3.1\LibManage.TagHelpers.input.cache
+C:\Users\HUY 4\Desktop\C#\LibManage\obj\Debug\netcoreapp3.1\LibManage.TagHelpers.output.cache
+C:\Users\HUY 4\Desktop\C#\LibManage\obj\Debug\netcoreapp3.1\LibManage.RazorCoreGenerate.cache
+C:\Users\HUY 4\Desktop\C#\LibManage\obj\Debug\netcoreapp3.1\Razor\Views\Home\Index.cshtml.g.cs
+C:\Users\HUY 4\Desktop\C#\LibManage\obj\Debug\netcoreapp3.1\LibManage.RazorTargetAssemblyInfo.cs
+C:\Users\HUY 4\Desktop\C#\LibManage\obj\Debug\netcoreapp3.1\LibManage.Views.pdb
+C:\Users\HUY 4\Desktop\C#\LibManage\obj\Debug\netcoreapp3.1\LibManage.csproj.CopyComplete
+C:\Users\HUY 4\Desktop\C#\LibManage\bin\Debug\netcoreapp3.1\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\HUY 4\Desktop\C#\LibManage\bin\Debug\netcoreapp3.1\Microsoft.Bcl.HashCode.dll
+C:\Users\HUY 4\Desktop\C#\LibManage\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.dll
+C:\Users\HUY 4\Desktop\C#\LibManage\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\HUY 4\Desktop\C#\LibManage\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\HUY 4\Desktop\C#\LibManage\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Caching.Abstractions.dll
+C:\Users\HUY 4\Desktop\C#\LibManage\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Caching.Memory.dll
+C:\Users\HUY 4\Desktop\C#\LibManage\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.dll
+C:\Users\HUY 4\Desktop\C#\LibManage\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\Users\HUY 4\Desktop\C#\LibManage\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.Binder.dll
+C:\Users\HUY 4\Desktop\C#\LibManage\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\HUY 4\Desktop\C#\LibManage\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\HUY 4\Desktop\C#\LibManage\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Logging.dll
+C:\Users\HUY 4\Desktop\C#\LibManage\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\HUY 4\Desktop\C#\LibManage\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Options.dll
+C:\Users\HUY 4\Desktop\C#\LibManage\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Primitives.dll
+C:\Users\HUY 4\Desktop\C#\LibManage\bin\Debug\netcoreapp3.1\Npgsql.dll
+C:\Users\HUY 4\Desktop\C#\LibManage\bin\Debug\netcoreapp3.1\Npgsql.EntityFrameworkCore.PostgreSQL.dll
+C:\Users\HUY 4\Desktop\C#\LibManage\bin\Debug\netcoreapp3.1\System.Collections.Immutable.dll
+C:\Users\HUY 4\Desktop\C#\LibManage\bin\Debug\netcoreapp3.1\System.Diagnostics.DiagnosticSource.dll
+C:\Users\HUY 4\Desktop\C#\LibManage\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\HUY 4\Desktop\C#\LibManage\obj\Debug\netcoreapp3.1\Razor\Views\Admin\Login\Index.cshtml.g.cs
+C:\Users\HUY 4\Desktop\C#\LibManage\obj\Debug\netcoreapp3.1\Razor\Views\Admin\Dashboard\Index.cshtml.g.cs
+C:\Users\HUY 4\Desktop\C#\LibManage\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Layout.cshtml.g.cs
+C:\Users\HUY 4\Desktop\C#\LibManage\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_LayoutAdmin.cshtml.g.cs
+C:\Users\HUY 4\Desktop\C#\LibManage\obj\Debug\netcoreapp3.1\Razor\Views\_ViewImports.cshtml.g.cs
+C:\Users\HUY 4\Desktop\C#\LibManage\obj\Debug\netcoreapp3.1\Razor\Views\_ViewStart.cshtml.g.cs
+C:\Users\HUY 4\Desktop\C#\LibManage\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+C:\Users\HUY 4\Desktop\C#\LibManage\obj\Debug\netcoreapp3.1\Razor\Views\About\Index.cshtml.g.cs
+C:\Users\HUY 4\Desktop\C#\LibManage\obj\Debug\netcoreapp3.1\Razor\Views\Contact\Index.cshtml.g.cs
+C:\Users\HUY 4\Desktop\C#\LibManage\obj\Debug\netcoreapp3.1\Razor\Views\Product\Index.cshtml.g.cs
+C:\Users\HUY 4\Desktop\C#\LibManage\obj\Debug\netcoreapp3.1\Razor\Views\Cart\Index.cshtml.g.cs
+C:\Users\HUY 4\Desktop\C#\LibManage\obj\Debug\netcoreapp3.1\Razor\Views\Account\Index.cshtml.g.cs
+D:\Course Work\Project\Code\LibManageNetCore\bin\Debug\netcoreapp3.1\appsettings.Development.json
+D:\Course Work\Project\Code\LibManageNetCore\bin\Debug\netcoreapp3.1\appsettings.json
+D:\Course Work\Project\Code\LibManageNetCore\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
+D:\Course Work\Project\Code\LibManageNetCore\bin\Debug\netcoreapp3.1\LibManage.exe
+D:\Course Work\Project\Code\LibManageNetCore\bin\Debug\netcoreapp3.1\LibManage.deps.json
+D:\Course Work\Project\Code\LibManageNetCore\bin\Debug\netcoreapp3.1\LibManage.runtimeconfig.json
+D:\Course Work\Project\Code\LibManageNetCore\bin\Debug\netcoreapp3.1\LibManage.runtimeconfig.dev.json
+D:\Course Work\Project\Code\LibManageNetCore\bin\Debug\netcoreapp3.1\LibManage.dll
+D:\Course Work\Project\Code\LibManageNetCore\bin\Debug\netcoreapp3.1\LibManage.pdb
+D:\Course Work\Project\Code\LibManageNetCore\bin\Debug\netcoreapp3.1\LibManage.Views.dll
+D:\Course Work\Project\Code\LibManageNetCore\bin\Debug\netcoreapp3.1\LibManage.Views.pdb
+D:\Course Work\Project\Code\LibManageNetCore\bin\Debug\netcoreapp3.1\Microsoft.Bcl.AsyncInterfaces.dll
+D:\Course Work\Project\Code\LibManageNetCore\bin\Debug\netcoreapp3.1\Microsoft.Bcl.HashCode.dll
+D:\Course Work\Project\Code\LibManageNetCore\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.dll
+D:\Course Work\Project\Code\LibManageNetCore\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Abstractions.dll
+D:\Course Work\Project\Code\LibManageNetCore\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Design.dll
+D:\Course Work\Project\Code\LibManageNetCore\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Relational.dll
+D:\Course Work\Project\Code\LibManageNetCore\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Caching.Abstractions.dll
+D:\Course Work\Project\Code\LibManageNetCore\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Caching.Memory.dll
+D:\Course Work\Project\Code\LibManageNetCore\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.dll
+D:\Course Work\Project\Code\LibManageNetCore\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.Abstractions.dll
+D:\Course Work\Project\Code\LibManageNetCore\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.Binder.dll
+D:\Course Work\Project\Code\LibManageNetCore\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyInjection.dll
+D:\Course Work\Project\Code\LibManageNetCore\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+D:\Course Work\Project\Code\LibManageNetCore\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Logging.dll
+D:\Course Work\Project\Code\LibManageNetCore\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Logging.Abstractions.dll
+D:\Course Work\Project\Code\LibManageNetCore\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Options.dll
+D:\Course Work\Project\Code\LibManageNetCore\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Primitives.dll
+D:\Course Work\Project\Code\LibManageNetCore\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+D:\Course Work\Project\Code\LibManageNetCore\bin\Debug\netcoreapp3.1\Npgsql.dll
+D:\Course Work\Project\Code\LibManageNetCore\bin\Debug\netcoreapp3.1\Npgsql.EntityFrameworkCore.PostgreSQL.dll
+D:\Course Work\Project\Code\LibManageNetCore\bin\Debug\netcoreapp3.1\System.Collections.Immutable.dll
+D:\Course Work\Project\Code\LibManageNetCore\bin\Debug\netcoreapp3.1\System.Diagnostics.DiagnosticSource.dll
+D:\Course Work\Project\Code\LibManageNetCore\obj\Debug\netcoreapp3.1\LibManage.csprojAssemblyReference.cache
+D:\Course Work\Project\Code\LibManageNetCore\obj\Debug\netcoreapp3.1\LibManage.AssemblyInfoInputs.cache
+D:\Course Work\Project\Code\LibManageNetCore\obj\Debug\netcoreapp3.1\LibManage.AssemblyInfo.cs
+D:\Course Work\Project\Code\LibManageNetCore\obj\Debug\netcoreapp3.1\LibManage.csproj.CoreCompileInputs.cache
+D:\Course Work\Project\Code\LibManageNetCore\obj\Debug\netcoreapp3.1\LibManage.MvcApplicationPartsAssemblyInfo.cache
+D:\Course Work\Project\Code\LibManageNetCore\obj\Debug\netcoreapp3.1\LibManage.RazorAssemblyInfo.cache
+D:\Course Work\Project\Code\LibManageNetCore\obj\Debug\netcoreapp3.1\LibManage.RazorAssemblyInfo.cs
+D:\Course Work\Project\Code\LibManageNetCore\obj\Debug\netcoreapp3.1\LibManage.TagHelpers.input.cache
+D:\Course Work\Project\Code\LibManageNetCore\obj\Debug\netcoreapp3.1\LibManage.TagHelpers.output.cache
+D:\Course Work\Project\Code\LibManageNetCore\obj\Debug\netcoreapp3.1\LibManage.RazorCoreGenerate.cache
+D:\Course Work\Project\Code\LibManageNetCore\obj\Debug\netcoreapp3.1\Razor\Views\About\Index.cshtml.g.cs
+D:\Course Work\Project\Code\LibManageNetCore\obj\Debug\netcoreapp3.1\Razor\Views\Account\Index.cshtml.g.cs
+D:\Course Work\Project\Code\LibManageNetCore\obj\Debug\netcoreapp3.1\Razor\Views\Admin\Dashboard\Index.cshtml.g.cs
+D:\Course Work\Project\Code\LibManageNetCore\obj\Debug\netcoreapp3.1\Razor\Views\Admin\Login\Index.cshtml.g.cs
+D:\Course Work\Project\Code\LibManageNetCore\obj\Debug\netcoreapp3.1\Razor\Views\Cart\Index.cshtml.g.cs
+D:\Course Work\Project\Code\LibManageNetCore\obj\Debug\netcoreapp3.1\Razor\Views\Contact\Index.cshtml.g.cs
+D:\Course Work\Project\Code\LibManageNetCore\obj\Debug\netcoreapp3.1\Razor\Views\Home\Index.cshtml.g.cs
+D:\Course Work\Project\Code\LibManageNetCore\obj\Debug\netcoreapp3.1\Razor\Views\Product\Index.cshtml.g.cs
+D:\Course Work\Project\Code\LibManageNetCore\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Layout.cshtml.g.cs
+D:\Course Work\Project\Code\LibManageNetCore\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_LayoutAdmin.cshtml.g.cs
+D:\Course Work\Project\Code\LibManageNetCore\obj\Debug\netcoreapp3.1\Razor\Views\_ViewImports.cshtml.g.cs
+D:\Course Work\Project\Code\LibManageNetCore\obj\Debug\netcoreapp3.1\Razor\Views\_ViewStart.cshtml.g.cs
+D:\Course Work\Project\Code\LibManageNetCore\obj\Debug\netcoreapp3.1\LibManage.RazorTargetAssemblyInfo.cache
+D:\Course Work\Project\Code\LibManageNetCore\obj\Debug\netcoreapp3.1\LibManage.RazorTargetAssemblyInfo.cs
+D:\Course Work\Project\Code\LibManageNetCore\obj\Debug\netcoreapp3.1\LibManage.Views.pdb
+D:\Course Work\Project\Code\LibManageNetCore\obj\Debug\netcoreapp3.1\LibManage.csproj.CopyComplete
+D:\Course Work\Project\Code\LibManageNetCore\obj\Debug\netcoreapp3.1\staticwebassets\LibManage.StaticWebAssets.Manifest.cache
+D:\Course Work\Project\Code\LibManageNetCore\obj\Debug\netcoreapp3.1\staticwebassets\LibManage.StaticWebAssets.xml
+D:\Course Work\Project\Code\LibManageNetCore\obj\Debug\netcoreapp3.1\LibManage.dll
+D:\Course Work\Project\Code\LibManageNetCore\obj\Debug\netcoreapp3.1\LibManage.pdb
+D:\Course Work\Project\Code\LibManageNetCore\obj\Debug\netcoreapp3.1\LibManage.genruntimeconfig.cache
+D:\Course Work\Project\Code\LibManageNetCore\obj\Debug\netcoreapp3.1\Razor\Views\Profile\Index.cshtml.g.cs
+C:\Users\HUY 4\Desktop\C#\LibManage\obj\Debug\netcoreapp3.1\Razor\Views\Profile\Index.cshtml.g.cs
+D:\Course Work\Project\Code\LibManageNetCore\obj\Debug\netcoreapp3.1\Razor\Views\Admin\book\Author.cshtml.g.cs
+D:\Course Work\Project\Code\LibManageNetCore\obj\Debug\netcoreapp3.1\Razor\Views\Admin\book\BookType.cshtml.g.cs
+D:\Course Work\Project\Code\LibManageNetCore\obj\Debug\netcoreapp3.1\Razor\Views\Admin\book\Index.cshtml.g.cs
+D:\Course Work\Project\Code\LibManageNetCore\obj\Debug\netcoreapp3.1\Razor\Views\Admin\book\Publisher.cshtml.g.cs
+C:\Users\HUY 4\Desktop\C#\LibManage\obj\Debug\netcoreapp3.1\Razor\Views\Admin\book\Author.cshtml.g.cs
+C:\Users\HUY 4\Desktop\C#\LibManage\obj\Debug\netcoreapp3.1\Razor\Views\Admin\book\BookType.cshtml.g.cs
+C:\Users\HUY 4\Desktop\C#\LibManage\obj\Debug\netcoreapp3.1\Razor\Views\Admin\book\Index.cshtml.g.cs
+C:\Users\HUY 4\Desktop\C#\LibManage\obj\Debug\netcoreapp3.1\Razor\Views\Admin\book\Publisher.cshtml.g.cs
+D:\Course Work\COMP1682 Project\Code\LibManageNetCore\bin\Debug\netcoreapp3.1\appsettings.Development.json
+D:\Course Work\COMP1682 Project\Code\LibManageNetCore\bin\Debug\netcoreapp3.1\appsettings.json
+D:\Course Work\COMP1682 Project\Code\LibManageNetCore\bin\Debug\netcoreapp3.1\LibManage.exe
+D:\Course Work\COMP1682 Project\Code\LibManageNetCore\bin\Debug\netcoreapp3.1\LibManage.deps.json
+D:\Course Work\COMP1682 Project\Code\LibManageNetCore\bin\Debug\netcoreapp3.1\LibManage.runtimeconfig.json
+D:\Course Work\COMP1682 Project\Code\LibManageNetCore\bin\Debug\netcoreapp3.1\LibManage.runtimeconfig.dev.json
+D:\Course Work\COMP1682 Project\Code\LibManageNetCore\bin\Debug\netcoreapp3.1\LibManage.dll
+D:\Course Work\COMP1682 Project\Code\LibManageNetCore\bin\Debug\netcoreapp3.1\LibManage.pdb
+D:\Course Work\COMP1682 Project\Code\LibManageNetCore\bin\Debug\netcoreapp3.1\LibManage.Views.dll
+D:\Course Work\COMP1682 Project\Code\LibManageNetCore\bin\Debug\netcoreapp3.1\LibManage.Views.pdb
+D:\Course Work\COMP1682 Project\Code\LibManageNetCore\bin\Debug\netcoreapp3.1\Microsoft.Bcl.AsyncInterfaces.dll
+D:\Course Work\COMP1682 Project\Code\LibManageNetCore\bin\Debug\netcoreapp3.1\Microsoft.Bcl.HashCode.dll
+D:\Course Work\COMP1682 Project\Code\LibManageNetCore\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.dll
+D:\Course Work\COMP1682 Project\Code\LibManageNetCore\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Abstractions.dll
+D:\Course Work\COMP1682 Project\Code\LibManageNetCore\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Design.dll
+D:\Course Work\COMP1682 Project\Code\LibManageNetCore\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Relational.dll
+D:\Course Work\COMP1682 Project\Code\LibManageNetCore\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Caching.Abstractions.dll
+D:\Course Work\COMP1682 Project\Code\LibManageNetCore\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Caching.Memory.dll
+D:\Course Work\COMP1682 Project\Code\LibManageNetCore\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.dll
+D:\Course Work\COMP1682 Project\Code\LibManageNetCore\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.Abstractions.dll
+D:\Course Work\COMP1682 Project\Code\LibManageNetCore\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.Binder.dll
+D:\Course Work\COMP1682 Project\Code\LibManageNetCore\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyInjection.dll
+D:\Course Work\COMP1682 Project\Code\LibManageNetCore\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+D:\Course Work\COMP1682 Project\Code\LibManageNetCore\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Logging.dll
+D:\Course Work\COMP1682 Project\Code\LibManageNetCore\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Logging.Abstractions.dll
+D:\Course Work\COMP1682 Project\Code\LibManageNetCore\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Options.dll
+D:\Course Work\COMP1682 Project\Code\LibManageNetCore\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Primitives.dll
+D:\Course Work\COMP1682 Project\Code\LibManageNetCore\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+D:\Course Work\COMP1682 Project\Code\LibManageNetCore\bin\Debug\netcoreapp3.1\Npgsql.dll
+D:\Course Work\COMP1682 Project\Code\LibManageNetCore\bin\Debug\netcoreapp3.1\Npgsql.EntityFrameworkCore.PostgreSQL.dll
+D:\Course Work\COMP1682 Project\Code\LibManageNetCore\bin\Debug\netcoreapp3.1\System.Collections.Immutable.dll
+D:\Course Work\COMP1682 Project\Code\LibManageNetCore\bin\Debug\netcoreapp3.1\System.Diagnostics.DiagnosticSource.dll
+D:\Course Work\COMP1682 Project\Code\LibManageNetCore\obj\Debug\netcoreapp3.1\LibManage.csprojAssemblyReference.cache
+D:\Course Work\COMP1682 Project\Code\LibManageNetCore\obj\Debug\netcoreapp3.1\LibManage.AssemblyInfoInputs.cache
+D:\Course Work\COMP1682 Project\Code\LibManageNetCore\obj\Debug\netcoreapp3.1\LibManage.AssemblyInfo.cs
+D:\Course Work\COMP1682 Project\Code\LibManageNetCore\obj\Debug\netcoreapp3.1\LibManage.csproj.CoreCompileInputs.cache
+D:\Course Work\COMP1682 Project\Code\LibManageNetCore\obj\Debug\netcoreapp3.1\LibManage.MvcApplicationPartsAssemblyInfo.cache
+D:\Course Work\COMP1682 Project\Code\LibManageNetCore\obj\Debug\netcoreapp3.1\LibManage.RazorAssemblyInfo.cache
+D:\Course Work\COMP1682 Project\Code\LibManageNetCore\obj\Debug\netcoreapp3.1\LibManage.RazorAssemblyInfo.cs
+D:\Course Work\COMP1682 Project\Code\LibManageNetCore\obj\Debug\netcoreapp3.1\staticwebassets\LibManage.StaticWebAssets.Manifest.cache
+D:\Course Work\COMP1682 Project\Code\LibManageNetCore\obj\Debug\netcoreapp3.1\staticwebassets\LibManage.StaticWebAssets.xml
+D:\Course Work\COMP1682 Project\Code\LibManageNetCore\obj\Debug\netcoreapp3.1\scopedcss\bundle\LibManage.styles.css
+D:\Course Work\COMP1682 Project\Code\LibManageNetCore\obj\Debug\netcoreapp3.1\LibManage.TagHelpers.input.cache
+D:\Course Work\COMP1682 Project\Code\LibManageNetCore\obj\Debug\netcoreapp3.1\LibManage.TagHelpers.output.cache
+D:\Course Work\COMP1682 Project\Code\LibManageNetCore\obj\Debug\netcoreapp3.1\LibManage.RazorCoreGenerate.cache
+D:\Course Work\COMP1682 Project\Code\LibManageNetCore\obj\Debug\netcoreapp3.1\Razor\Views\About\Index.cshtml.g.cs
+D:\Course Work\COMP1682 Project\Code\LibManageNetCore\obj\Debug\netcoreapp3.1\Razor\Views\Account\Index.cshtml.g.cs
+D:\Course Work\COMP1682 Project\Code\LibManageNetCore\obj\Debug\netcoreapp3.1\Razor\Views\Admin\book\Author.cshtml.g.cs
+D:\Course Work\COMP1682 Project\Code\LibManageNetCore\obj\Debug\netcoreapp3.1\Razor\Views\Admin\book\BookType.cshtml.g.cs
+D:\Course Work\COMP1682 Project\Code\LibManageNetCore\obj\Debug\netcoreapp3.1\Razor\Views\Admin\book\Index.cshtml.g.cs
+D:\Course Work\COMP1682 Project\Code\LibManageNetCore\obj\Debug\netcoreapp3.1\Razor\Views\Admin\book\Publisher.cshtml.g.cs
+D:\Course Work\COMP1682 Project\Code\LibManageNetCore\obj\Debug\netcoreapp3.1\Razor\Views\Admin\Dashboard\Index.cshtml.g.cs
+D:\Course Work\COMP1682 Project\Code\LibManageNetCore\obj\Debug\netcoreapp3.1\Razor\Views\Admin\Login\Index.cshtml.g.cs
+D:\Course Work\COMP1682 Project\Code\LibManageNetCore\obj\Debug\netcoreapp3.1\Razor\Views\Cart\Index.cshtml.g.cs
+D:\Course Work\COMP1682 Project\Code\LibManageNetCore\obj\Debug\netcoreapp3.1\Razor\Views\Contact\Index.cshtml.g.cs
+D:\Course Work\COMP1682 Project\Code\LibManageNetCore\obj\Debug\netcoreapp3.1\Razor\Views\Home\Index.cshtml.g.cs
+D:\Course Work\COMP1682 Project\Code\LibManageNetCore\obj\Debug\netcoreapp3.1\Razor\Views\Product\Index.cshtml.g.cs
+D:\Course Work\COMP1682 Project\Code\LibManageNetCore\obj\Debug\netcoreapp3.1\Razor\Views\Profile\Index.cshtml.g.cs
+D:\Course Work\COMP1682 Project\Code\LibManageNetCore\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Layout.cshtml.g.cs
+D:\Course Work\COMP1682 Project\Code\LibManageNetCore\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_LayoutAdmin.cshtml.g.cs
+D:\Course Work\COMP1682 Project\Code\LibManageNetCore\obj\Debug\netcoreapp3.1\Razor\Views\_ViewImports.cshtml.g.cs
+D:\Course Work\COMP1682 Project\Code\LibManageNetCore\obj\Debug\netcoreapp3.1\Razor\Views\_ViewStart.cshtml.g.cs
+D:\Course Work\COMP1682 Project\Code\LibManageNetCore\obj\Debug\netcoreapp3.1\LibManage.RazorTargetAssemblyInfo.cache
+D:\Course Work\COMP1682 Project\Code\LibManageNetCore\obj\Debug\netcoreapp3.1\LibManage.RazorTargetAssemblyInfo.cs
+D:\Course Work\COMP1682 Project\Code\LibManageNetCore\obj\Debug\netcoreapp3.1\LibManage.Views.pdb
+D:\Course Work\COMP1682 Project\Code\LibManageNetCore\obj\Debug\netcoreapp3.1\LibManage.csproj.CopyComplete
+D:\Course Work\COMP1682 Project\Code\LibManageNetCore\obj\Debug\netcoreapp3.1\LibManage.dll
+D:\Course Work\COMP1682 Project\Code\LibManageNetCore\obj\Debug\netcoreapp3.1\LibManage.pdb
+D:\Course Work\COMP1682 Project\Code\LibManageNetCore\obj\Debug\netcoreapp3.1\LibManage.genruntimeconfig.cache
+C:\Users\HUY 4\Desktop\C#\LibManage\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Logging.Configuration.dll
+C:\Users\HUY 4\Desktop\C#\LibManage\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Logging.Console.dll
+C:\Users\HUY 4\Desktop\C#\LibManage\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Options.ConfigurationExtensions.dll
+C:\Users\HUY 4\Desktop\C#\LibManage\bin\Debug\netcoreapp3.1\System.Text.Json.dll
+C:\Users\HUY 4\Desktop\C#\LibManage\obj\Debug\netcoreapp3.1\Razor\Views\Admin\Contact\Index.cshtml.g.cs
+C:\Users\HUY 4\Desktop\C#\LibManage\obj\Debug\netcoreapp3.1\Razor\Views\Admin\Post\Create.cshtml.g.cs
+C:\Users\HUY 4\Desktop\C#\LibManage\obj\Debug\netcoreapp3.1\Razor\Views\Admin\Post\Detail.cshtml.g.cs
+C:\Users\HUY 4\Desktop\C#\LibManage\obj\Debug\netcoreapp3.1\Razor\Views\Admin\Post\Index.cshtml.g.cs
+C:\Users\HUY 4\Desktop\C#\LibManage\obj\Debug\netcoreapp3.1\Razor\Views\Admin\Profile\Index.cshtml.g.cs
+C:\Users\HUY 4\Desktop\C#\LibManage\obj\Debug\netcoreapp3.1\Razor\Views\Admin\Customer\Index.cshtml.g.cs
+C:\Users\HUY 4\Desktop\C#\LibManage\obj\Debug\netcoreapp3.1\Razor\Views\Admin\Order\Detail.cshtml.g.cs
+C:\Users\HUY 4\Desktop\C#\LibManage\obj\Debug\netcoreapp3.1\Razor\Views\Admin\Order\Index.cshtml.g.cs
+C:\Users\HUY 4\Desktop\C#\LibManage\bin\Debug\netcoreapp3.1\ClosedXML.dll
+C:\Users\HUY 4\Desktop\C#\LibManage\bin\Debug\netcoreapp3.1\DocumentFormat.OpenXml.dll
+C:\Users\HUY 4\Desktop\C#\LibManage\bin\Debug\netcoreapp3.1\ExcelNumberFormat.dll
+C:\Users\HUY 4\Desktop\C#\LibManage\bin\Debug\netcoreapp3.1\System.IO.Packaging.dll
+C:\Users\HUY 4\Desktop\C#\LibManage\obj\Debug\netcoreapp3.1\Razor\Views\Admin\Report\CustomerReport.cshtml.g.cs
+C:\Users\HUY 4\Desktop\C#\LibManage\obj\Debug\netcoreapp3.1\Razor\Views\Admin\Report\OrderReport.cshtml.g.cs
+C:\Users\HUY 4\Desktop\C#\LibManage\obj\Debug\netcoreapp3.1\Razor\Views\New\Index.cshtml.g.cs
+C:\Users\HUY 4\Desktop\C#\LibManage\obj\Debug\netcoreapp3.1\Razor\Views\Admin\Report\EmployeeReport.cshtml.g.cs

@@ -1,0 +1,187 @@
+@{
+    Layout = "_LayoutAdmin";
+    ViewBag.Title = "LOẠI SÁCH";
+    ViewBag.PageName = "LOẠI SÁCH";
+    ViewBag.Link = "/admin/book/booktype";
+    var user = ViewData["User"] as User;
+    
+    List<BookType> BookTypes = Model;
+}
+
+
+@section Css {
+   <style>
+       
+     /* Styles for validation helpers
+-----------------------------------------------------------*/
+
+
+    .alert.alert-danger.validation-summary-valid {
+        display: none;
+    }
+   </style>
+}   
+
+
+                    <div class="card mb-4">
+                            <div asp-validation-summary="All" class="alert alert-danger"></div>
+                            
+                            @if(@TempData["message"] != null)
+                            {
+                                <div class="alert alert-success">
+                                    @TempData["message"]
+                                </div>
+                            }
+
+                            <form method="GET" action="/admin/book/booktype/search">
+                                    <div class="input-group mb-3 p-3">
+                                            <input name="query" type="text" class="form-control" placeholder="Tìm loại sách" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                            <div class="input-group-append">
+                                                <button type="submit" class="input-group-text" id="basic-addon2">Tìm kiếm</button>
+                                            </div>
+                                    </div>
+                            </form>
+
+
+                            <div class="card-header d-flex justify-content-between ">
+                                <span>
+                                    <i class="fas fa-table mr-1"></i>
+                                    Danh sách loại sách
+                                </span>
+                                 <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addCategory" >Thêm mới</button>
+                            </div>
+                         
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Loại sách</th>
+                                                <th>Mô tả</th>
+                                                <th colspan="2" class="text-center">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @{
+                                                int index = 1;
+                                            }
+                                            @foreach (var item in BookTypes)
+                                            {
+                                                <tr>
+                                                    <td>@index</td>
+                                                    <td>@item.Name</td>
+                                                    <td>@item.Description</td>
+                                                    <td style="width: 100px"><button class="btn btn-sm btn-success" type="button" data-toggle="modal" data-target="#editCategory@(item.Id)">Sửa</button></td>
+                                                    <td style="width: 100px"><button class="btn btn-danger btn-sm"  type="button" data-toggle="modal" data-target="#deleteModal@(item.Id)">Xóa</button></td>
+                                                </tr>
+
+                                                index ++;
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                     </div>
+
+     @* Create category  *@
+     <div class="modal fade" id="addCategory" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">New Category</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+        <form method="Post" action="/admin/book/booktype">
+            <div class="modal-body">
+
+                <div class="form-group">
+                    <label for="recipient-name" class="col-form-label">Tên loại:</label>
+                    <input type="text" class="form-control" id="recipient-name" name="name">
+                </div>
+                <div class="form-group">
+                    <label for="message-text" class="col-form-label">Mô tả:</label>
+                    <textarea class="form-control" id="message-text" name="description"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                <button type="submit" class="btn btn-primary">Lưu</button>
+            </div>
+        </form>
+        </div>
+        </div>
+     </div>
+
+    @* update category  *@
+
+       @foreach (var item in BookTypes)
+                                            {
+    <div class="modal fade" id="editCategory@(item.Id)" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit Category</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+        <form method="Post" action="/admin/book/booktype/update/@(item.Id)">
+            <div class="modal-body">
+
+                <div class="form-group">
+                    <label for="recipient-name" class="col-form-label">Name:</label>
+                    <input type="text" class="form-control" id="recipient-name" name="name" value="@(item.Name)">
+                </div>
+                <div class="form-group">
+                    <label for="message-text" class="col-form-label">Desription:</label>
+                    <textarea class="form-control" id="message-text" name="description">@(item.Description)</textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                <button type="submit" class="btn btn-primary">Lưu</button>
+            </div>
+        </form>
+     </div>
+     </div>
+     </div>
+
+    }
+  
+    @* delete category  *@
+
+       @foreach (var item in BookTypes){
+
+        <div class="modal fade" id="deleteModal@(item.Id)" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Delete Category</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Bạn đồng ý xóa loại sách NÀY ?
+            </div>
+            <div class="modal-footer">
+                      <form method="Post" action="/admin/book/booktype/delete/@(item.Id)">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                            <button type="submit" class="btn btn-danger">Lưu</button>
+                     </form>
+            </div>
+            </div>
+        </div>
+        </div>
+    }
+
+
+@section Script {
+   <script>
+
+       
+   </script>
+}   

@@ -1,0 +1,83 @@
+@{
+    Layout = "_LayoutAdmin";
+    ViewBag.Title = "PHIẾU MƯỢN";
+    ViewBag.Link = "/admin/order";
+    var user = ViewData["User"] as User;
+}
+@model Order
+
+
+ <main>
+                    <div class="container-fluid">
+                        <h4 class="mt-4">CHI TIẾT PHIẾU MƯỢN# @Model.Id</h4>
+                    </div>
+                     <div class="card mb-4">
+                              <div asp-validation-summary="All" class="alert alert-danger"></div>
+                            
+                            @if(@TempData["message"] != null)
+                            {
+                                <div class="alert alert-success">
+                                    @TempData["message"]
+                                </div>
+                            }
+                            @if(@TempData["error"] != null)
+                            {
+                                <div class="alert alert-danger">
+                                    @TempData["error"]
+                                </div>
+                            }
+<div class="row">
+     <div class="col-8 mx-auto pb-5">
+            <form action="/admin/product/register/@Model.Id" method="post">
+                <div asp-validation-summary="All"></div>
+                    @if(!String.IsNullOrEmpty(ViewBag.message)){
+                        <div class="alert alert-success">@ViewBag.message</div>
+                    }
+                    <div class="md-form mt-5">
+                        <label for="form1"> <span style="width: 200px; display:inline-block"> Tên khách hàng:</span> @Model.User.Username</label>
+                    </div>
+                    <div class="md-form">
+                        <label for="form1"> <span style="width: 200px; display:inline-block"> Điện thoại:</span> @Model.User.Phone</label>
+                    </div>
+                    <div class="md-form">
+                        <label for="form1"> <span style="width: 200px; display:inline-block"> Email:</span> @Model.User.Email</label>
+                    </div>
+                    <div class="md-form">
+                        <label for="form1"> <span style="width: 200px; display:inline-block"> Địa chỉ:</span> @Model.User.Address</label>
+                    </div>
+                    @* <div class="md-form">
+                        <label for="form1"> <span style="width: 200px; display:inline-block"> Đơn giá:</span> @Model.UnitPrice.ToString("N0") VND</label>
+                    </div> *@
+                    <div class="md-form">
+                        <label for="form1"> <span style="width: 200px; display:inline-block"> Thành tiền:</span> @Model.Amount.ToString("N0") VND</label>
+                    </div>
+
+                    <div class="md-form">
+                        <label for="form1"> <span style="width: 200px; display:inline-block"> Trạng thái:</span></label>
+                        <select class="form-input" asp-for="Status">
+                        @(Model.Status == OrderStatus.Dispose ? Html.Raw("<option value='0' selected >Hủy</option>") : Html.Raw(" <option value='0' >Hủy</option>"))  
+                         @(Model.Status == OrderStatus.Dispose ? Html.Raw("<option value='1' selected >Hoàn thành</option>") : Html.Raw(" <option value='1' >Hoàn thành</option>"))  
+                        </select>
+                    </div>
+                 
+                    <div class="mb-4 mt-4">
+                        <button class="btn btn-primary btn-rounded btn-sm my-0" type="submit">Cập nhật</button>
+                        <a class="btn btn-success  btn-sm my-0" href="/admin/order/export/@Model.Id">Xuất EXCEL</a>
+                    </div>
+            </form>
+    </div>
+</div>
+                     </div>
+ </main>
+  @section Css{ 
+    <style>
+       .form-upload input[type="file"]{
+         width: 100px;
+         z-index: 999;
+         opacity: 0;
+       }
+            .alert.alert-danger.validation-summary-valid {
+        display: none;
+            }
+    </style>
+  }

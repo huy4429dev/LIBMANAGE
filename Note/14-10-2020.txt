@@ -1,0 +1,89 @@
+Giao diện h sắp xếp thế nào nhỉ 
+
+-> danh mục sách 
+
+hiển thị danh mục r click vào 
+
+hiện ra những sách của loại đó 
+
+hay làm 1 trang quan lý danh mục sách riêng bạn 
+
+mình nghĩ là 1 tab list hết các sách_ bookdb
+
+
+như vậy đc k 
+
+uk
+
+Author thì khỏi 
+
+lúc thêm sách thì thêm author thôi
+
+Mình có tạo một authordb để quản lý author
+
+Dashboard 
+Book 
++ Book Type
++ Publisher
++ Author
+Book managent
+	+ Book borrown
+	+ Book return
+Report
+Inbox (dùng để gửi tin nhắn tới user)
+
+-> giờ thì mình nghĩ ra được nhiêu đây
+
+sao bạn
+
+	sao bạn ơi 
+	
+	à đó là cái cột bên trái dự kiến nội dung sẽ như vậy ấy mà
+	hiện mình nghĩ dc thế nên note cho bạn xem
+	
+	ok
+
+--> Thêm danh mục 
+
+1. Form 
+
+-> view 
+ -> Form --> input name = "name"  và category 
+  
+         --> action --> route ProductCategory 
+		 
+		 --> method Post
+		 
+		 --> type button --> submit để submit data từ form lên server
+		 
+		 --> cụ thể là method kia
+
+--> logic 
+
+
+CREAT
+
+1. validate 
+2. check found 
+3. add 
+4. hiển thị thông báo thành công
+
+
+SHOW LIST
+
+1. getList 
+2. foreach ra thôi 
+
+Delete
+
+Update 
+
+sao bạn 
+
+
+
+
+
+
+
+                                         

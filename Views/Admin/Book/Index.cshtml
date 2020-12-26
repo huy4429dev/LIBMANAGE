@@ -1,0 +1,392 @@
+@{
+    Layout = "_LayoutAdmin";
+    ViewBag.Title = "SÁCH";
+    ViewBag.PageName = "SÁCH";
+    ViewBag.Link = "/admin/book";
+    var user = ViewData["User"] as User;
+    
+List<Book> Books = Model;
+}
+
+
+                    <div class="card mb-4">
+                            <div asp-validation-summary="All" class="alert alert-danger"></div>
+                            
+                            @if(@TempData["message"] != null)
+                            {
+                                <div class="alert alert-success">
+                                    @TempData["message"]
+                                </div>
+                            }
+
+                            <form method="GET" action="/admin/book/Books/search">
+                                    <div class="input-group mb-3 p-3">
+                                            <input name="query" type="text" class="form-control" placeholder="Tìm sách" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                            <div class="input-group-append">
+                                                <button type="submit" class="input-group-text" id="basic-addon2">Tìm kiếm</button>
+                                            </div>
+                                    </div>
+                            </form>
+
+
+                            <div class="card-header d-flex justify-content-between ">
+                                <span>
+                                    <i class="fas fa-table mr-1"></i>
+                                    Danh sách sách
+                                </span>
+                                 <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addCategory" >Thêm mới</button>
+                            </div>
+                         
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Tiêu đề</th>
+                                                <th>Mô tả</th>
+                                                <th></th>
+                                                <th>PDF</th>
+                                                <th>Tác giả</th>
+                                                <th>Loại sách</th>
+                                                <th>Nhà xuất bản</th>
+                                                <th>Năm xuất bản</th>
+                                                <th colspan="2" class="text-center">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @{
+                                                int index = 1;
+                                            }
+                                            @foreach (var item in Books)
+                                            {
+                                                <tr>
+                                                    <td>@index</td>
+                                                    <td>@item.Title</td>
+                                                    <td>@item.Description</td>
+                                                    <td>
+                                                        <img style="width:50px" src="@item.Image" alt="">
+                                                         
+                                                    </td>
+                                                    <td> <a href=" @item.PDFfile"> <i class="far fa-file-powerpoint"></i> @(item.PDFfile.Substring(item.PDFfile.LastIndexOf("\\") + 1).Length < 10 ? @item.PDFfile.Substring(item.PDFfile.LastIndexOf("\\") + 1) :  @item.PDFfile.Substring(item.PDFfile.LastIndexOf("\\") + 1).Substring(0,10) + "...")</a></td>
+                                                    <td>@item.Authors.Name</td>
+                                                    <td>@item.BookTypes`.Name</td>
+                                                    <td>@item.Publishers.Name</td>
+                                                    <td>@item.YearPublished</td>
+                                                    <td style="width: 100px"><button class="btn btn-sm btn-success" type="button" data-toggle="modal" data-target="#editCategory@(item.Id)">Sửa</button></td>
+                                                    <td style="width: 100px"><button class="btn btn-danger btn-sm"  type="button" data-toggle="modal" data-target="#deleteModal@(item.Id)">Xóa</button></td>
+                                                </tr>
+
+                                                index ++;
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                     </div>
+
+     @* Create Product  *@
+     <div class="modal fade" id="addCategory" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Thêm sách</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+        <form method="POST" action="/admin/book">
+            <div class="modal-body">
+
+                <div class="form-group">
+                    <label for="recipient-name" class="col-form-label">Tiêu đề:</label>
+                    <input type="text" class="form-control" id="recipient-name" name="title">
+                </div>
+        
+                <div class="form-group">
+                    <label for="message-text" class="col-form-label">Mô tả:</label>
+                    <textarea class="form-control" id="message-text" name="description"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <select class="form-control" name="BookTpye">
+                         <option>Loại sách</option>
+                        @foreach (var item in ViewData["BookTypes"] as IList<BookType>)
+                        {
+                            <option value="@item.Id">@item.Name</option>
+                        }
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <select class="form-control" name="author">
+                         <option>Tác giả</option>
+                          @foreach (var item in ViewData["Authors"] as IList<Author>)
+                        {
+                            <option value="@item.Id">@item.Name</option>
+                        }
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <select class="form-control" name="publisher">
+                         <option>Nhà xuất bản</option>
+                          @foreach (var item in ViewData["Publishers"] as IList<Publisher>)
+                        {
+                            <option value="@item.Id">@item.Name</option>
+                        }
+                    </select>
+                </div>
+
+
+                <div class="form-group d-flex"> 
+                     <div class="input-file-container">  
+                        <input class="input-file" id="my-file" type="file" data-target="#thumbnail-result" data-target-input="image"  accept="image/*">
+                        <label tabindex="0" for="my-file" class="input-file-trigger"><span> Hình ảnh </span> <i style="float: right; font-size: 10px; line-height: 20px" class="fas fa-arrow-up"></i></label>
+                    </div>
+                    <a style="margin-left:20px" id="thumbnail-result"  href="">
+                    </a>
+
+                    <input type="hidden" name="image">
+                </div>
+
+                <div class="form-group d-flex">
+                     <div class="input-file-container" >  
+                        <input class="input-file" id="my-file" type="file" data-target="#pdf-result" data-target-input="pdFfile"  accept=".pdf">
+                        <label tabindex="0" for="my-file" class="input-file-trigger"><span> Pdf </span> <i style="float: right; font-size: 10px; line-height: 20px" class="fas fa-arrow-up"></i></label>
+                    </div>
+                    <a style="margin-left:20px"  id="pdf-result"  href="">
+                    </a>
+                    <input type="hidden" name="pdFfile">
+                </div>
+                 
+                <div class="form-group">
+                        <p>Năm xuất bản: <input type="text" id="datepicker1" name="YearPublished"></p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                <button type="submit" class="btn btn-primary">Thêm mới</button>
+            </div>
+        </form>
+        </div>
+        </div>
+     </div>
+
+    @* update category  *@
+
+       @* @foreach (var item in Books)
+                                            {
+    <div class="modal fade" id="editCategory@(item.Id)" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit Category</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+        <form method="Post" action="/admin/book/Books/update/@(item.Id)">
+            <div class="modal-body">
+
+                <div class="form-group">
+                    <label for="recipient-name" class="col-form-label">Name:</label>
+                    <input type="text" class="form-control" id="recipient-name" name="name" value="@(item.Name)">
+                </div>
+                <div class="form-group">
+                    <label for="message-text" class="col-form-label">Desription:</label>
+                    <textarea class="form-control" id="message-text" name="description">@(item.Description)</textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Save change</button>
+            </div>
+        </form>
+     </div>
+     </div>
+     </div>
+
+    }
+  
+    @* delete category  *@
+
+       @* @foreach (var item in Books){
+
+        <div class="modal fade" id="deleteModal@(item.Id)" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Delete Category</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                You want delete category ?
+            </div>
+            <div class="modal-footer">
+                      <form method="Post" action="/admin/book/Books/delete/@(item.Id)">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-danger">Save changes</button>
+                     </form>
+            </div>
+            </div>
+        </div>
+        </div>
+    } *@ 
+
+
+@section Css {
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+    <style>
+
+.alert.alert-danger.validation-summary-valid {
+  display: none;
+}
+.input-file-container {
+  position: relative;
+  width: 150px;
+} 
+.js .input-file-trigger {
+  display: block;
+  padding: 6px 12px;
+  background: #39D2B4;
+  color: #fff;
+  font-size: 1em;
+  transition: all .4s;
+  cursor: pointer;
+}
+.js .input-file {
+  position: absolute;
+  top: 0; left: 0;
+  width: 150px;
+  opacity: 0;
+  padding: 14px 0;
+  cursor: pointer;
+}
+.js .input-file:hover + .input-file-trigger,
+.js .input-file:focus + .input-file-trigger,
+.js .input-file-trigger:hover,
+.js .input-file-trigger:focus {
+  background: #34495E;
+  color: #39D2B4;
+}
+
+.file-return {
+  margin: 0;
+}
+.file-return:not(:empty) {
+  margin: 1em 0;
+}
+.js .file-return {
+  font-style: italic;
+  font-size: .9em;
+  font-weight: bold;
+}
+.js .file-return:not(:empty):before {
+  content: "Selected file: ";
+  font-style: normal;
+  font-weight: normal;
+}
+    </style>
+}
+
+
+@section Script {
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css" rel="stylesheet"/>
+    <script>
+        $("#datepicker1").datepicker( {
+            format: " yyyy", // Notice the Extra space at the beginning
+            viewMode: "years", 
+            minViewMode: "years"
+        });
+    </script>
+   <script>
+        document.querySelector("html").classList.add('js');
+
+        var fileInput  = document.querySelectorAll( ".input-file" ),  
+            button     = document.querySelectorAll( ".input-file-trigger" ),
+            the_return = document.querySelectorAll(".file-return");
+            
+        button.forEach( item  => {
+            item.addEventListener( "keydown", function( event ) {  
+            if ( event.keyCode == 13 || event.keyCode == 32 ) {  
+                fileInput.focus();  
+            }  
+        });
+        });
+
+        button.forEach( item  =>
+             {item.addEventListener( "click", function( event ) {
+             fileInput.focus();
+             return false;
+        });
+        });  
+
+        fileInput.forEach ( item => {
+            addEventListener( "change", function( event ) {  
+            the_return.innerHTML = this.value;  
+        });
+        });  
+
+   </script>
+
+   <script>
+
+       //=========== Upload File 
+
+        var root = window.location.protocol + window.location.host;
+
+        var fileInputs  = document.querySelectorAll( ".input-file" );
+
+        
+        const url = "/admin/upload";
+
+        
+        fileInputs.forEach(item => {
+            item.addEventListener('change', function() {
+
+                    const idShowResult = item.getAttribute('data-target');
+                    const nameInput = item.getAttribute('data-target-input');
+                    const showResult  = document.querySelector(idShowResult);
+                    const inputValue = document.querySelector(`[name=${nameInput}]`);
+
+                    var formData = new FormData();
+
+                    formData.append("file", item.files[0]);
+                    fetch(url, {
+                                method: 'POST',
+                                body: formData
+                            })
+                            .then(response => response.json())
+                            .then(data => {
+                                 
+                                 showResult.setAttribute('href',data.path);
+                                 showResult.textContent = data.path.substring(data.pathFull.lastIndexOf("\\") + 1);
+                                 inputValue.value = data.path;
+                                 console.log(data.path);
+                                 console.log(inputValue.value);
+                            })
+                            .catch(err => {
+                                console.log(err);
+                    })
+            });
+        });
+        
+     
+        
+        /* var avatar = document.querySelector('#profile-avatar');
+        
+       
+        */
+
+   </script>
+
+
+} 
+
+

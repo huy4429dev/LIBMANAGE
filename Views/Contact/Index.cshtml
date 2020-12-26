@@ -1,0 +1,207 @@
+@{
+    Layout = "_Layout";
+}
+
+		<!-- Start Bradcaump area -->
+		<div class="ht__bradcaump__area bg-image--6">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="bradcaump__inner text-center">
+							<h2 class="bradcaump-title">Liên hệ</h2>
+							<nav class="bradcaump-content">
+								<a class="breadcrumb_item" href="index.html">Trang chủ</a>
+								<span class="brd-separetor">/</span>
+								<span class="breadcrumb_item active">Liên hệ</span>
+							</nav>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- End Bradcaump area -->
+		<!-- Start Contact Area -->
+		<section class="wn_contact_area bg--white pt--80 pb--80">
+			<div class="google__map pb--80">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12">
+							<div id="googleMap">
+								<iframe class="w-100" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7864042.220233749!2d101.41295700192096!3d15.758312883650813!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31157a4d736a1e5f%3A0xb03bb0c9e2fe62be!2zVmnhu4d0IE5hbQ!5e0!3m2!1svi!2s!4v1608043600584!5m2!1svi!2s" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-8 col-12">
+						<div class="contact-form-wrap">
+							<h2 class="contact__title">Liên hệ ngay với chúng tôi</h2>
+							<p>Đội ngũ tư vấn của chúng tôi luôn trực 24/24 để giải đáp thắc mắc của bạn </p>
+							<form id="form-contact" action="/lien-he" method="POST">
+
+							   @if (ViewData["SendContactSuccess"] != null)
+                                {
+                                    <div class="alert alert-success">
+                                        @ViewData["SendContactSuccess"]
+                                    </div>
+                                }
+				   			   @if (ViewData.ModelState.Any(x => x.Value.Errors.Any()))
+                                {
+                                    <div class="alert alert-danger" role="alert">
+                                        <a class="close" data-dismiss="alert">×</a>
+                                        @foreach (var modelError in Html.ViewData.ModelState.SelectMany(keyValuePair =>
+                                        keyValuePair.Value.Errors))
+                                        {
+                                            <p>@modelError.ErrorMessage</p>
+                                        }
+                                    </div>
+                                }
+
+                                <div id="alert-contact" class="pb-4">
+									
+                                    Gửi liên hệ thành công
+                                </div>
+
+
+								<div class="single-contact-form space-between">
+									<input id="subject-contact" type="text" name="Subject" placeholder="Chủ đề*">
+								</div>
+								<div class="single-contact-form space-between">
+									<input  id="fullname-contact" type="text" name="FullName" placeholder="Họ tên*">
+									<input  id="email-contact" type="email" name="Email" placeholder="Email*">
+								</div>
+								<div class="single-contact-form message">
+									<textarea id="content-contact" name="Content" placeholder="Nhập nội dung liên hệ.."></textarea>
+								</div>
+								<div class="contact-btn">
+									<button id="send-contact" type="button">Gửi liên hệ</button>
+								</div>
+							</form>
+						</div>
+						<div class="form-output">
+							<p class="form-messege">
+						</div>
+					</div>
+					<div class="col-lg-4 col-12 md-mt-40 sm-mt-40">
+						<div class="wn__address">
+							<h2 class="contact__title">BOIGHOR .</h2>
+							<p>Hãy liên hệ với BOIGHOR để chúng tôi có thể tư vấn trực tiếp cho bạn về sản phẩm và dịch vụ bạn quan tâm. Chúng tôi luôn sẵn lòng lắng nghe và hỗ trợ bạn. </p>
+							<div class="wn__addres__wreapper">
+
+								<div class="single__address">
+									<i class="icon-location-pin icons"></i>
+									<div class="content">
+										<span>Địa chỉ:</span>
+										<p>666 5t DHV - NA - Việt Nam</p>
+									</div>
+								</div>
+
+								<div class="single__address">
+									<i class="icon-phone icons"></i>
+									<div class="content">
+										<span>Điện thoại:</span>
+										<p>716-298-1822</p>
+									</div>
+								</div>
+
+								<div class="single__address">
+									<i class="icon-envelope icons"></i>
+									<div class="content">
+										<span>Email:</span>
+										<p>716-298-1822</p>
+									</div>
+								</div>
+
+								<div class="single__address">
+									<i class="icon-globe icons"></i>
+									<div class="content">
+										<span>website:</span>
+										<p><a href="#">http://boighor.com.vn/contact</a></p>
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+@section Css {
+	<style>
+        .fix-center {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+        }
+
+		.loader {
+			border: 16px solid #f3f3f3;
+			border-radius: 50%;
+			border-top: 16px solid #3498db;
+			width: 120px;
+			height: 120px;
+			-webkit-animation: spin 2s linear infinite; /* Safari */
+			animation: spin 2s linear infinite;
+		}
+
+    </style>
+	
+}
+@section Script {
+	<script>
+            
+            let btnSendContact = document.querySelector('#send-contact');
+            let inputEmailSendContact = document.querySelector('#email-contact');
+            let inputContentSendContact = document.querySelector('#content-contact');
+            let inputFullNameSendContact = document.querySelector('#fullname-contact');
+            let inputSubjectSendContact = document.querySelector('#subject-contact');
+            let alertSendContact = document.querySelector('#alert-contact');
+            let formContact = document.querySelector('#form-contact');
+
+			let loader = `<div class="fix-center">
+										<img style="width:50px" src="/assets/loading.gif" alt="">
+									</div>`;
+
+            btnSendContact.addEventListener('click', customerSendContact);
+
+
+
+            function customerSendContact() {
+
+            const data = { email: inputEmailSendContact.value , subject: inputSubjectSendContact.value , fullname: inputFullNameSendContact.value, content: inputContentSendContact.value};
+
+
+            alertSendContact.style.color = '#343a40 ';
+            alertSendContact.innerHTML = loader;
+
+            fetch('/contact', {
+            method: 'POST',
+				headers: {
+				'Content-Type': 'application/json',
+				},
+				body: JSON.stringify(data),
+				})
+				.then(response => response.json())
+				.then(data => {
+				if (data.success != null) {
+					alertSendContact.style.color = 'green';
+					alertSendContact.textContent = data.success;
+					formContact.reset();
+				}
+				else {
+				alertSendContact.style.color = 'red';
+				alertSendContact.textContent = data.error[0].errorMessage;
+				}
+				})
+				.catch((error) => {
+				console.error('Error:', error);
+				})
+            }
+
+
+
+        </script>
+}
