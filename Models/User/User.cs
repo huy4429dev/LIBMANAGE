@@ -10,27 +10,27 @@ namespace LibManage.Models
         [Key]
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "Username is not null")]
-        [MaxLength(30, ErrorMessage = "Username is too long")]
+        [Required(ErrorMessage = "Tài khoản không được bỏ trống")]
+        [MaxLength(30, ErrorMessage = "Tài khoản quá dài")]
         public string Username { get; set; }
 
-        [Required(ErrorMessage = "Password is not null ")]
-        [MaxLength(255, ErrorMessage = "The password is not too long")]
+        [Required(ErrorMessage = "Mật khẩu không được bỏ trống ")]
+        [MaxLength(255, ErrorMessage = "Mật khẩu không đúng định dạng")]
         public string Password { get; set; }
 
-        [Required(ErrorMessage = "Email is not null")]
-        [MaxLength(100, ErrorMessage = "Invalid email")]
+        [Required(ErrorMessage = "Email không được bỏ trống")]
+        [MaxLength(100, ErrorMessage = "Email không đúng định dạng")]
         public string Email { get; set; }
 
-        [Required(ErrorMessage = "Username is not null")]
-        [MaxLength(255, ErrorMessage = "Username is too long")]
+        [Required(ErrorMessage = "Họ tên không được bỏ trống")]
+        [MaxLength(255, ErrorMessage = "Họ tên không đúng định dạng")]
         public string FullName { get; set; }
         public Gender Gender { get; set; }
 
-        [MaxLength(200, ErrorMessage = "The address is not in the correct format")]
+        [MaxLength(200, ErrorMessage = "Địa chỉ không hợp lệ")]
         public string Address { get; set; }
 
-        [MaxLength(10, ErrorMessage = "Phone number incorrect format")]
+        [MaxLength(10, ErrorMessage = "Số điện thoại không hợp lệ")]
         public string Phone { get; set; }
 
         public DateTime BirthDate { get; set; }

@@ -1,5 +1,5 @@
 {
-  "FilePath": "c:\\Users\\HUY 4\\Desktop\\C#\\LibManage\\LibManage.csproj",
+  "FilePath": "c:\\Users\\HUY 4\\Desktop\\LIB2\\LibManage.csproj",
   "Configuration": {
     "ConfigurationName": "MVC-3.0",
     "LanguageVersion": "3.0",
@@ -14392,148 +14392,168 @@
   "RootNamespace": "LibManage",
   "Documents": [
     {
-      "FilePath": "c:\\Users\\HUY 4\\Desktop\\C#\\LibManage\\Views\\Account\\Index.cshtml",
-      "TargetPath": "Views\\Account\\Index.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "c:\\Users\\HUY 4\\Desktop\\C#\\LibManage\\Views\\Admin\\Customer\\Index.cshtml",
-      "TargetPath": "Views\\Admin\\Customer\\Index.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "c:\\Users\\HUY 4\\Desktop\\C#\\LibManage\\Views\\Admin\\Post\\Create.cshtml",
-      "TargetPath": "Views\\Admin\\Post\\Create.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "c:\\Users\\HUY 4\\Desktop\\C#\\LibManage\\Views\\Admin\\Profile\\Index.cshtml",
-      "TargetPath": "Views\\Admin\\Profile\\Index.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "c:\\Users\\HUY 4\\Desktop\\C#\\LibManage\\Views\\Contact\\Index.cshtml",
-      "TargetPath": "Views\\Contact\\Index.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "c:\\Users\\HUY 4\\Desktop\\C#\\LibManage\\Views\\Product\\Index.cshtml",
-      "TargetPath": "Views\\Product\\Index.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "c:\\Users\\HUY 4\\Desktop\\C#\\LibManage\\Views\\Admin\\Dashboard\\Index.cshtml",
-      "TargetPath": "Views\\Admin\\Dashboard\\Index.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "c:\\Users\\HUY 4\\Desktop\\C#\\LibManage\\Views\\Shared\\_Layout.cshtml",
-      "TargetPath": "Views\\Shared\\_Layout.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "c:\\Users\\HUY 4\\Desktop\\C#\\LibManage\\Views\\New\\Index.cshtml",
-      "TargetPath": "Views\\New\\Index.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "c:\\Users\\HUY 4\\Desktop\\C#\\LibManage\\Views\\Admin\\Book\\Author.cshtml",
-      "TargetPath": "Views\\Admin\\Book\\Author.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "c:\\Users\\HUY 4\\Desktop\\C#\\LibManage\\Views\\Cart\\Index.cshtml",
-      "TargetPath": "Views\\Cart\\Index.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "c:\\Users\\HUY 4\\Desktop\\C#\\LibManage\\Views\\Admin\\Report\\EmployeeReport.cshtml",
-      "TargetPath": "Views\\Admin\\Report\\EmployeeReport.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "c:\\Users\\HUY 4\\Desktop\\C#\\LibManage\\Views\\Admin\\Book\\Publisher.cshtml",
-      "TargetPath": "Views\\Admin\\Book\\Publisher.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "c:\\Users\\HUY 4\\Desktop\\C#\\LibManage\\Views\\Admin\\Post\\Index.cshtml",
-      "TargetPath": "Views\\Admin\\Post\\Index.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "c:\\Users\\HUY 4\\Desktop\\C#\\LibManage\\Views\\Admin\\Login\\Index.cshtml",
-      "TargetPath": "Views\\Admin\\Login\\Index.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "c:\\Users\\HUY 4\\Desktop\\C#\\LibManage\\Views\\Admin\\Order\\Index.cshtml",
-      "TargetPath": "Views\\Admin\\Order\\Index.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "c:\\Users\\HUY 4\\Desktop\\C#\\LibManage\\Views\\_ViewImports.cshtml",
-      "TargetPath": "Views\\_ViewImports.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "c:\\Users\\HUY 4\\Desktop\\C#\\LibManage\\Views\\Profile\\Index.cshtml",
+      "FilePath": "c:\\Users\\HUY 4\\Desktop\\LIB2\\Views\\Profile\\Index.cshtml",
       "TargetPath": "Views\\Profile\\Index.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "c:\\Users\\HUY 4\\Desktop\\C#\\LibManage\\Views\\Home\\Index.cshtml",
-      "TargetPath": "Views\\Home\\Index.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "c:\\Users\\HUY 4\\Desktop\\C#\\LibManage\\Views\\Shared\\_LayoutAdmin.cshtml",
-      "TargetPath": "Views\\Shared\\_LayoutAdmin.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "c:\\Users\\HUY 4\\Desktop\\C#\\LibManage\\Views\\_ViewStart.cshtml",
+      "FilePath": "c:\\Users\\HUY 4\\Desktop\\LIB2\\Views\\_ViewStart.cshtml",
       "TargetPath": "Views\\_ViewStart.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "c:\\Users\\HUY 4\\Desktop\\C#\\LibManage\\Views\\Admin\\Contact\\Index.cshtml",
-      "TargetPath": "Views\\Admin\\Contact\\Index.cshtml",
+      "FilePath": "c:\\Users\\HUY 4\\Desktop\\LIB2\\Views\\Admin\\Report\\EmployeeReport.cshtml",
+      "TargetPath": "Views\\Admin\\Report\\EmployeeReport.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "c:\\Users\\HUY 4\\Desktop\\C#\\LibManage\\Views\\Admin\\Report\\OrderReport.cshtml",
-      "TargetPath": "Views\\Admin\\Report\\OrderReport.cshtml",
+      "FilePath": "c:\\Users\\HUY 4\\Desktop\\LIB2\\Views\\Admin\\Customer\\Index.cshtml",
+      "TargetPath": "Views\\Admin\\Customer\\Index.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "c:\\Users\\HUY 4\\Desktop\\C#\\LibManage\\Views\\About\\Index.cshtml",
-      "TargetPath": "Views\\About\\Index.cshtml",
+      "FilePath": "c:\\Users\\HUY 4\\Desktop\\LIB2\\Views\\Cart\\Index.cshtml",
+      "TargetPath": "Views\\Cart\\Index.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "c:\\Users\\HUY 4\\Desktop\\C#\\LibManage\\Views\\Admin\\Order\\Detail.cshtml",
-      "TargetPath": "Views\\Admin\\Order\\Detail.cshtml",
+      "FilePath": "c:\\Users\\HUY 4\\Desktop\\LIB2\\Views\\Admin\\Post\\Create.cshtml",
+      "TargetPath": "Views\\Admin\\Post\\Create.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "c:\\Users\\HUY 4\\Desktop\\C#\\LibManage\\Views\\Admin\\Book\\Index.cshtml",
+      "FilePath": "c:\\Users\\HUY 4\\Desktop\\LIB2\\Views\\Account\\Index.cshtml",
+      "TargetPath": "Views\\Account\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\HUY 4\\Desktop\\LIB2\\Views\\Shared\\_Layout.cshtml",
+      "TargetPath": "Views\\Shared\\_Layout.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\HUY 4\\Desktop\\LIB2\\Views\\Home\\Index.cshtml",
+      "TargetPath": "Views\\Home\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\HUY 4\\Desktop\\LIB2\\Views\\Admin\\Book\\Publisher.cshtml",
+      "TargetPath": "Views\\Admin\\Book\\Publisher.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\HUY 4\\Desktop\\LIB2\\Views\\Test\\Index.cshtml",
+      "TargetPath": "Views\\Test\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\HUY 4\\Desktop\\LIB2\\Views\\Admin\\Book\\Index.cshtml",
       "TargetPath": "Views\\Admin\\Book\\Index.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "c:\\Users\\HUY 4\\Desktop\\C#\\LibManage\\Views\\Admin\\Book\\BookType.cshtml",
-      "TargetPath": "Views\\Admin\\Book\\BookType.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "c:\\Users\\HUY 4\\Desktop\\C#\\LibManage\\Views\\Admin\\Post\\Detail.cshtml",
+      "FilePath": "c:\\Users\\HUY 4\\Desktop\\LIB2\\Views\\Admin\\Post\\Detail.cshtml",
       "TargetPath": "Views\\Admin\\Post\\Detail.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "c:\\Users\\HUY 4\\Desktop\\C#\\LibManage\\Views\\Admin\\Report\\CustomerReport.cshtml",
+      "FilePath": "c:\\Users\\HUY 4\\Desktop\\LIB2\\Views\\Admin\\Order\\Index.cshtml",
+      "TargetPath": "Views\\Admin\\Order\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\HUY 4\\Desktop\\LIB2\\Views\\Checkout\\Index.cshtml",
+      "TargetPath": "Views\\Checkout\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\HUY 4\\Desktop\\LIB2\\Views\\Admin\\Book\\BookType.cshtml",
+      "TargetPath": "Views\\Admin\\Book\\BookType.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\HUY 4\\Desktop\\LIB2\\Views\\About\\Index.cshtml",
+      "TargetPath": "Views\\About\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\HUY 4\\Desktop\\LIB2\\Views\\_ViewImports.cshtml",
+      "TargetPath": "Views\\_ViewImports.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\HUY 4\\Desktop\\LIB2\\Views\\Admin\\Login\\Index.cshtml",
+      "TargetPath": "Views\\Admin\\Login\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\HUY 4\\Desktop\\LIB2\\Views\\Admin\\Post\\Index.cshtml",
+      "TargetPath": "Views\\Admin\\Post\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\HUY 4\\Desktop\\LIB2\\Views\\Admin\\Report\\CustomerReport.cshtml",
       "TargetPath": "Views\\Admin\\Report\\CustomerReport.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\HUY 4\\Desktop\\LIB2\\Views\\Admin\\Contact\\Index.cshtml",
+      "TargetPath": "Views\\Admin\\Contact\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\HUY 4\\Desktop\\LIB2\\Views\\Admin\\Order\\Detail.cshtml",
+      "TargetPath": "Views\\Admin\\Order\\Detail.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\HUY 4\\Desktop\\LIB2\\Views\\Account\\Profile.cshtml",
+      "TargetPath": "Views\\Account\\Profile.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\HUY 4\\Desktop\\LIB2\\Views\\Admin\\Report\\OrderReport.cshtml",
+      "TargetPath": "Views\\Admin\\Report\\OrderReport.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\HUY 4\\Desktop\\LIB2\\Views\\Admin\\Profile\\Index.cshtml",
+      "TargetPath": "Views\\Admin\\Profile\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\HUY 4\\Desktop\\LIB2\\Views\\Admin\\Dashboard\\Index.cshtml",
+      "TargetPath": "Views\\Admin\\Dashboard\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\HUY 4\\Desktop\\LIB2\\Views\\New\\Index.cshtml",
+      "TargetPath": "Views\\New\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\HUY 4\\Desktop\\LIB2\\Views\\Contact\\Index.cshtml",
+      "TargetPath": "Views\\Contact\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\HUY 4\\Desktop\\LIB2\\Views\\New\\Detail.cshtml",
+      "TargetPath": "Views\\New\\Detail.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\HUY 4\\Desktop\\LIB2\\Views\\Product\\Index.cshtml",
+      "TargetPath": "Views\\Product\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\HUY 4\\Desktop\\LIB2\\Views\\Shared\\_LayoutAdmin.cshtml",
+      "TargetPath": "Views\\Shared\\_LayoutAdmin.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\HUY 4\\Desktop\\LIB2\\Views\\Admin\\Book\\Author.cshtml",
+      "TargetPath": "Views\\Admin\\Book\\Author.cshtml",
       "FileKind": "mvc"
     }
   ],

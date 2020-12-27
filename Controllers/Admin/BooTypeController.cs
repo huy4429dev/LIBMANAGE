@@ -70,7 +70,7 @@ namespace LibManage.Controllers
                 db.SaveChanges();
 
                 // alert success to view
-                TempData["message"] = "Create Book type success";
+                TempData["message"] = "Thêm loại sách thành công";
             }
 
             return RedirectToAction("Index");
@@ -102,7 +102,7 @@ namespace LibManage.Controllers
                 db.SaveChanges();
 
                 // alert success to view
-                TempData["message"] = "Update Book type success";
+                TempData["message"] = "Sửa sản phẩm thành công";
             }
 
             return RedirectToAction("Index");
@@ -117,9 +117,6 @@ namespace LibManage.Controllers
         {
 
             var found = db.BookTypes.Find(id);
-
-            // check category found
-
             if (found == null)
             {
                 ModelState.AddModelError("Found Book type", "Book type not found");
@@ -128,7 +125,7 @@ namespace LibManage.Controllers
             db.BookTypes.Remove(found);
             db.SaveChanges();
 
-            TempData["message"] = "Delete Book type success";
+            TempData["message"] = "Xóa sản phẩm thành công";
 
             return RedirectToAction("Index");
         }

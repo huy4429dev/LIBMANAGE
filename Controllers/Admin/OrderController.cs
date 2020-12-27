@@ -27,7 +27,9 @@ namespace LibManage.Admin.Controllers
         public IActionResult Index()
         {
 
-            var data = db.Orders.Include(x => x.User).ToList();
+            var data = db.Orders.Include(x => x.User)
+                                .OrderByDescending(item => item.CreatedTime)
+                                .ToList();
 
             return View("/Views/Admin/Order/Index.cshtml", data);
         }
@@ -37,7 +39,39 @@ namespace LibManage.Admin.Controllers
         public IActionResult Detail(int id)
         {
 
-            var data = db.Orders.Include(x => x.User).FirstOrDefault(item => item.Id == id);
+            // var data = db.Orders
+            //              .Include(x => x.User)
+            //              .Include(d => d.OrderDetails)
+            //              .ThenInclude(p => p.Book)
+            //              .ThenInclude(a => a.Authors)
+            //              .FirstOrDefault(item => item.Id == id);
+
+            var data = db.Orders.Where(item => item.Id == id)
+                                 .Select(item => new Order
+                                 {
+                                     OrderDetails = item.OrderDetails.Select(d => new OrderDetail
+                                     {
+                                         Book = new Book
+                                         {
+                                             Title = d.Book.Title,
+                                             Authors = d.Book.Authors,
+                                             Publishers = d.Book.Publishers,
+                                             Quantity = d.Quantity,
+                                             Image = d.Book.Image
+                                         }, 
+                                         Quantity = d.Quantity
+                                     }).ToList(),
+
+                                     User = item.User,
+                                     Id = item.Id,
+                                     Amount = item.Amount,
+                                     PenaltyFee = item.PenaltyFee,
+                                     TimeEnd = item.TimeEnd,
+                                     Note = item.Note,
+                                     Status = item.Status,
+                                 })
+                                 .FirstOrDefault()
+                ;
 
             return View("/Views/Admin/Order/Detail.cshtml", data);
         }
@@ -89,7 +123,7 @@ namespace LibManage.Admin.Controllers
                     return File(
                         content,
                         "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-                        "DH"+count+".xlsx");
+                        "DH" + count + ".xlsx");
                 }
             }
         }

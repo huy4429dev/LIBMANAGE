@@ -42,12 +42,17 @@
 										@if(ViewBag.dataCart.Count > 0){
 											@foreach (var item in ViewBag.dataCart)
 											{
-												<tr>
+												<tr >
 													<td class="product-thumbnail"><a href="#"><img
 																src="@item.Product.Image" alt="product img"></a></td>
 													<td class="product-name"><a href="/product/@item.Product.Id">@item.Product.Title</a></td>
 													@* <td class="product-price"><span class="amount">$165.00</span></td> *@
-													<td class="product-quantity"><input type="number" value="1"></td>
+													<td class="product-quantity">
+														<input data-productId="@item.Product.Id" 
+															   class="quantity" 
+															   type="number" 
+															   value="@item.Quantity">
+													</td>
 													@* <td class="product-subtotal">$165.00</td> *@
 													<td><button type="button" onclick="removeCartItem(@item.Product.Id)">X</button></td>
 												</tr>
@@ -62,29 +67,9 @@
 						<div class="cartbox__btn">
 							<ul
 								class="cart__btn__list d-flex flex-wrap flex-md-nowrap flex-lg-nowrap justify-content-end">
-								<li class="mr-2"><a href="#">Cập nhật</a></li>
-								<li><a href="#">Xác nhận</a></li>
+								<li class="mr-2"><a onclick="updateCart()">Cập nhật</a></li>
+								<li><a href="/checkout">Xác nhận</a></li>
 							</ul>
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-lg-6 offset-lg-6">
-						<div class="cartbox__total__area">
-							<div class="cartbox-total d-flex justify-content-between">
-								<ul class="cart__total__list">
-									<li>Cart total</li>
-									<li>Sub Total</li>
-								</ul>
-								<ul class="cart__total__tk">
-									<li>$70</li>
-									<li>$70</li>
-								</ul>
-							</div>
-							<div class="cart__total__amount">
-								<span>Grand Total</span>
-								<span>$140</span>
-							</div>
 						</div>
 					</div>
 				</div>
@@ -117,6 +102,40 @@
 				itemsHTML = '';
 			})
 			.catch(err => console.log("ERR: " + err.message));
+		}
+
+		const quantityItems = document.querySelectorAll('.quantity');
+	
+		function updateCart(){
+
+			let items = [];
+
+			quantityItems.forEach(item => {
+
+				items.push({
+					quantity:  parseInt(item.value),
+					id:  parseInt(item.dataset.productid)
+				});
+			})
+
+
+			fetch(`${URL}/cart/update`, 
+				{
+					method: 'PUT',
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify(items)
+				}
+			)
+			.then(response => response.json())
+			.then(data => {
+					toastr.success("Cập nhật giỏ hàng thành công");
+				}
+			
+			)
+			.catch(err => console.log('ERR: ', err));
+			
 		}
 
 	</script>

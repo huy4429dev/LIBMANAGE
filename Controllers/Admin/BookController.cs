@@ -25,7 +25,7 @@ namespace LibManage.Controllers
         public IActionResult Index()
         {
 
-            var Books = db.Books.OrderBy(item => item.Id).ToList();
+            var Books = db.Books.OrderByDescending(item => item.Id).ToList();
 
             ViewData["BookTypes"] = db.BookTypes.ToList();
             ViewData["Authors"] = db.Authors.ToList();
@@ -67,7 +67,7 @@ namespace LibManage.Controllers
                 db.SaveChanges();
 
                 // alert success to view
-                TempData["message"] = "Create book success";
+                TempData["message"] = "Thêm mới sách thành công";
             }
 
             return RedirectToAction("Index");
@@ -99,7 +99,7 @@ namespace LibManage.Controllers
                 db.SaveChanges();
 
                 // alert success to view
-                TempData["message"] = "Update category success";
+                TempData["message"] = "Cập nhật sách thành công";
             }
 
             return RedirectToAction("Index");
@@ -125,7 +125,7 @@ namespace LibManage.Controllers
             db.Books.Remove(found);
             db.SaveChanges();
 
-            TempData["message"] = "Delete category success";
+            TempData["message"] = "Xóa sản phẩm thành công";
 
             return RedirectToAction("Index");
         }

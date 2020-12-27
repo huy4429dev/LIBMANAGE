@@ -287,6 +287,9 @@ namespace LibManage.Migrations
                     b.Property<int>("UserId")
                         .HasColumnType("integer");
 
+                    b.Property<int>("ViewCount")
+                        .HasColumnType("integer");
+
                     b.HasKey("Id");
 
                     b.HasIndex("UserId");
@@ -371,6 +374,21 @@ namespace LibManage.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Tags");
+                });
+
+            modelBuilder.Entity("LibManage.Models.Test", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Tests");
                 });
 
             modelBuilder.Entity("LibManage.Models.User", b =>
@@ -488,7 +506,7 @@ namespace LibManage.Migrations
             modelBuilder.Entity("LibManage.Models.OrderDetail", b =>
                 {
                     b.HasOne("LibManage.Models.Book", "Book")
-                        .WithMany()
+                        .WithMany("OrderDetails")
                         .HasForeignKey("BookId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

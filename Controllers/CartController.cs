@@ -44,7 +44,7 @@ namespace LibManage.Controllers
         }
 
         [HttpGet("add/{id}")]
-        public IActionResult AddItem(int id)
+        public IActionResult AddItem(int id, int quantity = 1)
         {
 
             var cart = HttpContext.Session.GetString("cart");//get key cart
@@ -72,7 +72,7 @@ namespace LibManage.Controllers
                    new Cart
                    {
                        Product = product,
-                       Quantity = 1
+                       Quantity = quantity
                    }
                };
                 HttpContext.Session.SetString("cart", JsonConvert.SerializeObject(dataCart));
@@ -111,8 +111,7 @@ namespace LibManage.Controllers
         public IActionResult RemoveItem(int id)
         {
 
-            var cart = HttpContext.Session.GetString("cart");
-
+                var cart = HttpContext.Session.GetString("cart");
                 List<Cart> dataCart = JsonConvert.DeserializeObject<List<Cart>>(cart);
                 var itemToRemove = dataCart.FirstOrDefault(r => r.Product.Id == id);
                 dataCart.Remove(itemToRemove);
@@ -122,7 +121,27 @@ namespace LibManage.Controllers
                     message = "Remove product success"
                 });
         }
+
+        [HttpPut("update")]
+        public IActionResult UpdateCart([FromBody]  List<CartUpdate> model){
+
+            var cart = HttpContext.Session.GetString("cart");
+            List<Cart> dataCart = JsonConvert.DeserializeObject<List<Cart>>(cart);
+             
+            model.ForEach(item => {
+                var product =  dataCart.FirstOrDefault(p => p.Product.Id == item.Id);
+                product.Quantity = item.Quantity;
+            });
+
+            HttpContext.Session.SetString("cart", JsonConvert.SerializeObject(dataCart));
+
+            return Ok(new {
+                Data = model,
+                Message = "Update cart success"
+            });
+        }
     }
+    
     public class Cart
     {
         public Book Product { get; set; }
@@ -133,5 +152,10 @@ namespace LibManage.Controllers
     {
         public int Id { get; set; }
         public string Title { get; set; }
+    }
+
+    public class CartUpdate {
+        public int Id {get;set;}
+        public int Quantity{get;set;}
     }
 }

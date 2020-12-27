@@ -68,7 +68,26 @@
       <td>@item.User.Email</td>
       <td>@item.User.Phone</td>
       <td class="text-center">@item.CreatedTime</td>
-      <td class="text-center">@(item.Status == OrderStatus.Success ? Html.Raw("<span class='label label-success'> Đã xử lý </span>") : Html.Raw("<span class='label label-warning'> Không xử lý   </span>")  )</td>
+      <td class="text-center">@(item.Status == OrderStatus.Success ? 
+                                Html.Raw("<span class='badge badge-success'>Hoàn thành</span>") 
+                                : 
+                                (
+                                   item.Status == OrderStatus.Dispose ?
+                                   Html.Raw("<span class='badge badge-danger'>Hủy bỏ</span>")   
+                                   : 
+                                   
+                                  (
+                                   item.Status == OrderStatus.Pendding ?
+                                   Html.Raw("<span class='badge badge-warning'>Đang mượn</span>")   
+                                   : 
+                                   Html.Raw("<span class='badge badge-primary'>Đang chờ xử lý</span>")   
+                                   )
+                            
+                                )
+                            
+                        
+
+                                )</td>
       @* <td data-toggle="modal" data-target="#basicExampleModal-@item.Id" class="d-flex justify-content-between show-message">
         @(@item.Content.Length > 25 ? @item.Content.Substring(0, 25) + "..." : @item.Content) <i class="fa fa-eye" aria-hidden="true"></i> 
       </td>

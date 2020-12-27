@@ -1,0 +1,135 @@
+@{
+    Layout = "_Layout";
+}
+<!-- Start Bradcaump area -->
+		<div class="ht__bradcaump__area bg-image--4">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="bradcaump__inner text-center">
+							<h2 class="bradcaump-title">Tạo phiếu mượn</h2>
+							<nav class="bradcaump-content">
+								<a class="breadcrumb_item" href="/">Trang chủ</a>
+								<span class="brd-separetor">/</span>
+								<span class="breadcrumb_item active">Tạo phiếu mượn</span>
+							</nav>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- End Bradcaump area -->
+		<!-- Start Checkout Area -->
+		<section class="wn__checkout__area section-padding--lg bg__white">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="wn_checkout_wrap">
+							<div class="checkout_info">
+								<a class="showlogin" href="#">Click để đăng nhập</a>
+							</div>
+							<div class="checkout_login">
+								<form class="wn__checkout__form" action="/customer/login" method="POST">
+									<div class="input__box">
+										<label>Tài khoản <span>*</span></label>
+										<input name="username" type="text">
+									</div>
+
+									<div class="input__box">
+										<label>Mật khẩu <span>*</span></label>
+										<input name="password" type="password">
+									</div>
+									<div class="form__btn">
+										<button>Đăng nhập</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-6 col-12">
+					<div class="row">
+								@if (@TempData["Message"] != null)
+											{
+									<div class="alert alert-success w-100 text-center">
+										@TempData["Message"]
+									</div>
+											}
+								@if (@TempData["Error"] != null)
+											{
+									<div class="alert alert-danger w-100 text-center">
+										@TempData["Error"]
+									</div>
+								}
+                    </div>
+						<div class="customer_details">
+                            @if( ViewBag.Customer != null){
+                                <h3>Tạo phiếu mượn</h3>
+								<form method="POST" action="/checkout">
+									<div class="customar__field">
+										<div class="margin_between">
+											<div class="input_box space_between">
+												<label>Họ tên <span>*</span></label>
+												<input name="fullname" type="text" value="@ViewBag.Customer.FullName">
+											</div>
+										</div>
+										<div class="input_box">
+											<label>Địa chỉ <span>*</span></label>
+											<input type="text" name="address" value="@ViewBag.Customer.Address">
+										</div>
+										<div class="margin_between">
+											<div class="input_box space_between">
+												<label>Điện thoại <span>*</span></label>
+												<input type="text" name="phone" value="@ViewBag.Customer.Phone">
+											</div> 
+
+											<div class="input_box space_between">
+												<label>Email  <span>*</span></label>
+												<input type="email" name="email" value="@ViewBag.Customer.Email">
+											</div>
+										</div>
+										<div>
+											<input type="submit" class="btn btn-primary" value="Xác nhận">
+										</div>
+									</div>
+								</form>
+                            }
+                            else{
+                                <div class="alert alert-warning text-center">
+                                    Vui lòng đăng nhập để xác nhận phiếu mượn
+                                </div>
+                            }
+						</div>
+					</div>
+					<div class="col-lg-6 col-12 md-mt-40 sm-mt-40">
+						<div class="wn__order__box">
+							<h3 class="onder__title">Phiếu mượn</h3>
+							<ul class="order_product">
+                            @if(ViewBag.dataCart.Count > 0){
+									@foreach (var item in ViewBag.dataCart)
+									    {
+								            <li>@item.Product.Title × @item.Quantity quyển</li>
+                                        }
+                                }
+							</ul>
+							<ul class="shipping__method">
+								<li>Shipping
+									<ul>
+										<li>
+											<input name="shipping_method[0]" data-index="0" value="legacy_flat_rate"
+												checked="checked" type="radio">
+											<label>Miến phí vận chuyển</label>
+										</li>
+									</ul>
+								</li>
+							</ul>
+							<ul class="total__amount">
+							</ul>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- End Checkout Area -->

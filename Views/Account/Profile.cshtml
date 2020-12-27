@@ -1,0 +1,126 @@
+@using LibManage.Controllers
+@using Microsoft.AspNetCore.Http
+@using Newtonsoft.Json
+@inject IHttpContextAccessor httpContextAccessor
+
+@{
+    var customer = httpContextAccessor.HttpContext.Session.Get<User>("customer");
+}
+
+@{
+    Layout = "_Layout";
+}
+
+
+<div class="ht__bradcaump__area bg-image--3">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="bradcaump__inner text-center">
+                    <h2 class="bradcaump-title">HỒ SƠ</h2>
+                    <nav class="bradcaump-content">
+                        <a class="breadcrumb_item" href="/">Trang chủ</a>
+                        <span class="brd-separetor">/</span>
+                        <span class="breadcrumb_item active">Hồ sơ</span>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row py-5 px-4">
+    <div class="col-md-7 mx-auto">
+        <!-- Profile widget -->
+        <div class="bg-white shadow rounded overflow-hidden">
+            <div class="px-4 pt-0 pb-4 cover">
+                <div class="media align-items-end profile-head">
+                    <div class="profile mr-3"><img
+                            src="https://i.pinimg.com/originals/56/f0/c7/56f0c7de57fdae6d0a9ddc43448b6dff.png" alt="..."
+                            width="130" class="rounded mb-2 img-thumbnail">
+                    </div>
+                    <div class="media-body mb-5 text-white">
+                        <h4 class="mt-0 mb-0">Mark Williams</h4>
+                        <p class="small mb-4"> <i class="fas fa-map-marker-alt mr-2"></i>New York</p>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-light p-4 d-flex justify-content-end text-center">
+                <ul class="list-inline mb-0">
+                    <li class="list-inline-item">
+                        <h5 class="font-weight-bold mb-0 d-block">0</h5>
+                        <small class="text-muted"></i>Số sách mượn</small>
+                    </li>
+                    <li class="list-inline-item">
+                        <h5 class="font-weight-bold mb-0 d-block">0</h5>
+                        <small class="text-muted"></i>Số sách đang mượn</small>
+                    </li>
+
+                </ul>
+            </div>
+            <div class="px-4 py-3">
+                <h5 class="mb-0">Thông tin</h5>
+                <div class="p-4 rounded shadow-sm bg-light">
+                      <div class="row">
+                    @if (@TempData["Message"] != null)
+                                {
+                        <div class="alert alert-success w-100 text-center">
+                            @TempData["Message"]
+                        </div>
+                                }
+                    @if (@TempData["Error"] != null)
+                                {
+                        <div class="alert alert-danger w-100 text-center">
+                            @TempData["Error"]
+                        </div>
+                                }
+                    </div>
+                    <form action="/customer/update" method="POST">
+                        <div class="account__form">
+                            <div class="input__box">
+                                <label>Tài khoản <span>*</span></label>
+                                <input type="text" value="@customer.Username" name="username" disabled>
+                            </div>
+                            <div class="input__box">
+                                <label>Email <span>*</span></label>
+                                <input type="email" value="@customer.Email" name="email">
+                            </div>
+                            <div class="input__box">
+                                <label>Họ tên <span>*</span></label>
+                                <input type="text" value="@customer.FullName" name="fullname">
+                            </div>
+                            <div class="input__box">
+                                <label>Địa chỉ <span></span></label>
+                                <input type="text" value="@customer.Address" name="address">
+                            </div>
+                            <div class="input__box">
+                                <label>Điện thoại <span></span></label>
+                                <input type="text" value="@customer.Phone" name="phone">
+                            </div>
+                            <div class="input__box">
+                                <label>Mật khẩu<span>*</span></label>
+                                <input type="password" placeholder="*******" name="password">
+                            </div>
+                            <div class="form__btn">
+                                <button>Cập nhật</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="px-4 py-3">
+                <h5 class="mb-0">Lịch sử mượn sách</h5>
+                <div class="p-4 rounded shadow-sm bg-light">
+                    <p class="font-italic mb-0 d-flex justify-content-between">
+                        <span>
+                            Phiếu mượn #1
+                        </span>
+                        <span>
+                            17:00 12/12/2020
+                        </span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

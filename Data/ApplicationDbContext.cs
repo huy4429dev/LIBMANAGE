@@ -94,5 +94,6 @@ namespace LibManage.Data
         public DbSet<Post> Posts { get; set; }
         public DbSet<Tag> Tags { get; set; }
         public DbSet<BookTag> BookTags { get; set; }
+        public DbSet<Test> Tests { get; set; }
     }
 }

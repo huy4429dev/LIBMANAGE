@@ -16,6 +16,8 @@ namespace LibManage.Models
         [Required(ErrorMessage = "Nội dung không được bỏ trống")]
         public string Content{get;set;}
         public int UserId{get;set;}
+
+        public int ViewCount {get;set;}
         public virtual User User{get;set;}
         public DateTime CreatedAt{get;set;}
         public DateTime UpdatedAt{get;set;}

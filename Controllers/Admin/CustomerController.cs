@@ -93,6 +93,7 @@ namespace LibManage.Admin.Controllers
         [HttpPost("update/{id}")]
         public IActionResult Update(int id, [FromForm] User model)
         {
+            return Ok(model);
             SkipModelValidate("ConfirmPassword");
             if (ModelState.IsValid)
             {

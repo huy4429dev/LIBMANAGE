@@ -10,7 +10,11 @@
             {
 				dataCart = JsonConvert.DeserializeObject<List<Cart>>(cart);
 			}
+    var customer = httpContextAccessor.HttpContext.Session.Get<User>("customer");
+
+
 }
+
 
 <!doctype html>
 <html class="no-js" lang="vi">
@@ -54,6 +58,9 @@
    /* Safari */
    animation: spin 2s linear infinite;
   }
+  .box-profile a{
+	  color:white;
+  }
  </style>
  @if (IsSectionDefined("Css"))
 	{
@@ -68,7 +75,7 @@
 
  <div class="wrapper" id="wrapper">
   <!-- Header -->
-  <header id="wn__header" class="header__area header__absolute sticky__header">
+  <header id="wn__header" class="oth-page header__area header__absolute sticky__header">
    <div class="container-fluid">
 	<div class="row">
 	 <div class="col-md-6 col-sm-6 col-6 col-lg-2">
@@ -132,66 +139,6 @@
 				</div>
 				</div>
 			   }
-			@* <div class="item01 d-flex">
-			 <div class="thumb">
-			  <a href="product-details.html"><img
-				src="/assets/page/images/product/sm-img/1.jpg"
-				alt="product images"></a>
-			 </div>
-			 <div class="content">
-			  <h6><a href="product-details.html">Voyage Yoga Bag</a></h6>
-			  <span class="prize">$30.00</span>
-			  <div class="product_prize d-flex justify-content-between">
-			   <span class="qun">Qty: 01</span>
-			   <ul class="d-flex justify-content-end">
-				<li><a href="#"><i class="zmdi zmdi-settings"></i></a>
-				</li>
-				<li><a href="#"><i class="zmdi zmdi-delete"></i></a>
-				</li>
-			   </ul>
-			  </div>
-			 </div>
-			</div>
-			<div class="item01 d-flex mt--20">
-			 <div class="thumb">
-			  <a href="product-details.html"><img
-				src="/assets/page/images/product/sm-img/3.jpg"
-				alt="product images"></a>
-			 </div>
-			 <div class="content">
-			  <h6><a href="product-details.html">Impulse Duffle</a></h6>
-			  <span class="prize">$40.00</span>
-			  <div class="product_prize d-flex justify-content-between">
-			   <span class="qun">Qty: 03</span>
-			   <ul class="d-flex justify-content-end">
-				<li><a href="#"><i class="zmdi zmdi-settings"></i></a>
-				</li>
-				<li><a href="#"><i class="zmdi zmdi-delete"></i></a>
-				</li>
-			   </ul>
-			  </div>
-			 </div>
-			</div>
-			<div class="item01 d-flex mt--20">
-			 <div class="thumb">
-			  <a href="product-details.html"><img
-				src="/assets/page/images/product/sm-img/2.jpg"
-				alt="product images"></a>
-			 </div>
-			 <div class="content">
-			  <h6><a href="product-details.html">Compete Track Tote</a></h6>
-			  <span class="prize">$40.00</span>
-			  <div class="product_prize d-flex justify-content-between">
-			   <span class="qun">Qty: 03</span>
-			   <ul class="d-flex justify-content-end">
-				<li><a href="#"><i class="zmdi zmdi-settings"></i></a>
-				</li>
-				<li><a href="#"><i class="zmdi zmdi-delete"></i></a>
-				</li>
-			   </ul>
-			  </div>
-			 </div>
-			</div> *@
 		   </div>
 		  </div>
 		  <div class="mini_action cart">
@@ -201,7 +148,18 @@
 		</div>
 		<!-- End Shopping Cart -->
 	   </li>
-	   <li class="setting__bar__icon"><a href="/account"></a>
+	   <li class="setting__bar__icon">
+		   <a href="/account"></a>
+		   @if(customer != null){
+				<div class="box-profile">
+					<div>
+						<a href="/customer/profile">Hồ sơ</a>
+					</div>
+					<div>
+						<a href="/customer/logout">Đăng xuất</a>
+					</div>
+				</div>
+		   }
 	   </li>
 	  </ul>
 	 </div>
@@ -381,7 +339,7 @@
 		const product_qun = document.querySelector('.product_qun');
 		console.log(totalProduct);
 		let itemsHTML = '';
-		function product(id,title,image,quantity){
+		function productCartSmall(id,title,image,quantity){
 
 		 							return     `
 														<div class="item01 d-flex">
@@ -406,14 +364,15 @@
 												
 		}
 
-		function addCartItem (id) {
-			fetch(`${URL}/cart/add/${id}`)
+		function addCartItem (id,quantity = 1) {
+			fetch(`${URL}/cart/add/${id}?quantity=${quantity}`)
 			.then(response => response.json())
 			.then(data => {
 
 				toastr.success('Thêm vào giỏ thành công');
 				data.dataCart.forEach(item => {
-					itemsHTML += product(item.product.id, item.product.title, item.product.image,item.quantity);
+					itemsHTML += productCartSmall(item.product.id, item.product.title, item.product.image,item.quantity);
+					console.log(itemsHTML);
 				});
 				eleCartList.innerHTML = itemsHTML;
 				totalProduct.innerHTML = data.dataCart.length + ' sản phẩm';

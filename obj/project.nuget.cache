@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Fh/YaJShqSD3deg3H8Y8Ms7FtIHN2XZVlTg9ACsatrV5KEWJnyRBv+MAZuhdQKjmrz/d+PRO4O3gwt6NP03Hlg==",
+  "dgSpecHash": "UbHBY4SdHAirZ9h/R2pU+JfLAq5UZLuE2wyBWKwO+iUt6tl1QlhOHJa6ZwPnbrDpO4HcLd05JVdSgvDmKtFB6g==",
   "success": true,
-  "projectFilePath": "C:\\Users\\HUY 4\\Desktop\\C#\\LibManage\\LibManage.csproj",
+  "projectFilePath": "C:\\Users\\HUY 4\\Desktop\\LIB2\\LibManage.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\HUY 4\\.nuget\\packages\\closedxml\\0.95.3\\closedxml.0.95.3.nupkg.sha512",
     "C:\\Users\\HUY 4\\.nuget\\packages\\documentformat.openxml\\2.7.2\\documentformat.openxml.2.7.2.nupkg.sha512",

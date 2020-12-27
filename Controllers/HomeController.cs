@@ -129,8 +129,10 @@ namespace LibManage.Controllers
             int TotalPage = 0;
 
             if(search != null){
+
+                search = $"%{search}%";
                 Products = db.Books
-                               .Where(item => item.Title.Contains(search))
+                               .Where(item => EF.Functions.ILike(item.Title,search) || EF.Functions.ILike(item.Authors.Name, search))
                                .Select(item => new Book
                                {
                                    Id = item.Id,

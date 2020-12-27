@@ -31,6 +31,7 @@ namespace LibManage.Controllers
                                 Authors = item.Authors,
                                 Publisher = item.Publisher,
                                 BookTpye = item.BookTpye,
+                                PDFfile = item.PDFfile,
                                 Description = item.Description,
                                 BookTypes = item.BookTypes,
                                 CreatedTime = item.CreatedTime

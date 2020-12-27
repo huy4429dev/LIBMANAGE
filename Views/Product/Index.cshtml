@@ -1,3 +1,12 @@
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor httpContextAccessor
+
+@{
+    var customer = httpContextAccessor.HttpContext.Session.Get<User>("customer");
+}
+
+
+
 @{
     Layout = "_Layout";
 }
@@ -8,11 +17,11 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="bradcaump__inner text-center">
-							<h2 class="bradcaump-title">Shop Single</h2>
+							<h2 class="bradcaump-title">@ViewBag.Product.Title</h2>
 							<nav class="bradcaump-content">
-								<a class="breadcrumb_item" href="index.html">Home</a>
+								<a class="breadcrumb_item" href="index.html">Trang chủ</a>
 								<span class="brd-separetor">/</span>
-								<span class="breadcrumb_item active">Shop Single</span>
+								<span class="breadcrumb_item active">@ViewBag.Product.Title</span>
 							</nav>
 						</div>
 					</div>
@@ -69,11 +78,7 @@
 											<input id="qty" class="input-text qty" name="qty" min="1" value="1"
 												title="Qty" type="number">
 											<div class="addtocart__actions">
-												<button class="tocart" type="submit" title="Add to Cart">Thêm vào giỏ</button>
-											</div>
-											<div class="product-addto-links clearfix">
-												<a class="wishlist" href="#"></a>
-												<a class="compare" href="#"></a>
+												<button class="tocart" id="addcart-detail" type="button"  title="Add to Cart">Thêm vào giỏ</button>
 											</div>
 										</div>
 										<div class="product_meta">
@@ -81,7 +86,12 @@
 												<a href="#">@ViewBag.Product.BookTypes.Name</a>,
 											</span>
 										</div>
-										<div class="product-share">
+										@if(customer != null){
+											<div class="mt-2">
+												<a target="_blank" href="@ViewBag.Product.PDFfile" class="btn btn-success">Tải bản PDF</a>
+											</div>
+										}
+										<div class="product-share">	
 											<ul>
 												<li class="categories-title">Share :</li>
 												<li>
@@ -859,35 +869,6 @@
 										<li><a href="/category/@(item.Id)">@item.Name <span>@item.CountProduct</span></a></li>
 									}
 								</ul>
-							</aside>
-							<aside class="wedget__categories pro--range">
-								<h3 class="wedget__title">Filter by price</h3>
-								<div class="content-shopby">
-									<div class="price_filter s-filter clear">
-										<form action="#" method="GET">
-											<div id="slider-range"></div>
-											<div class="slider__range--output">
-												<div class="price__output--wrap">
-													<div class="price--output">
-														<span>Price :</span><input type="text" id="amount" readonly="">
-													</div>
-													<div class="price--filter">
-														<a href="#">Filter</a>
-													</div>
-												</div>
-											</div>
-										</form>
-									</div>
-								</div>
-							</aside>
-							<aside class="wedget__categories poroduct--compare">
-								<h3 class="wedget__title">Compare</h3>
-								<ul>
-									<li><a href="#">x</a><a href="#">Condimentum posuere</a></li>
-									<li><a href="#">x</a><a href="#">Condimentum posuere</a></li>
-									<li><a href="#">x</a><a href="#">Dignissim venenatis</a></li>
-								</ul>
-							</aside>
 							<aside class="wedget__categories poroduct--tag">
 								<h3 class="wedget__title"> Tags</h3>
 								<ul>
@@ -929,4 +910,11 @@
 
 		@section Script{
 			<script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v9.0&appId=3208946999217769&autoLogAppEvents=1" nonce="yqJuEcR6"></script>	
+
+			<script>
+				let btnAddCartDetail = document.querySelector('#addcart-detail');
+				let inputQty = document.querySelector('#qty');
+
+				btnAddCartDetail.addEventListener('click', () => { addCartItem(@ViewBag.Product.Id, inputQty.value) });
+			</script>
 		}
