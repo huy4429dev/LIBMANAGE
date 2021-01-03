@@ -227,7 +227,6 @@ C:\Users\HUY 4\Desktop\C#\LibManage\obj\Debug\netcoreapp3.1\Razor\Views\New\Inde
 C:\Users\HUY 4\Desktop\C#\LibManage\obj\Debug\netcoreapp3.1\Razor\Views\Admin\Report\EmployeeReport.cshtml.g.cs
 C:\Users\HUY 4\Desktop\LIB2\bin\Debug\netcoreapp3.1\appsettings.Development.json
 C:\Users\HUY 4\Desktop\LIB2\bin\Debug\netcoreapp3.1\appsettings.json
-C:\Users\HUY 4\Desktop\LIB2\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
 C:\Users\HUY 4\Desktop\LIB2\bin\Debug\netcoreapp3.1\LibManage.exe
 C:\Users\HUY 4\Desktop\LIB2\bin\Debug\netcoreapp3.1\LibManage.deps.json
 C:\Users\HUY 4\Desktop\LIB2\bin\Debug\netcoreapp3.1\LibManage.runtimeconfig.json
@@ -318,3 +317,4 @@ C:\Users\HUY 4\Desktop\LIB2\obj\Debug\netcoreapp3.1\Razor\Views\Test\Index.cshtm
 C:\Users\HUY 4\Desktop\LIB2\obj\Debug\netcoreapp3.1\Razor\Views\Checkout\Index.cshtml.g.cs
 C:\Users\HUY 4\Desktop\LIB2\obj\Debug\netcoreapp3.1\Razor\Views\Account\Profile.cshtml.g.cs
 C:\Users\HUY 4\Desktop\LIB2\obj\Debug\netcoreapp3.1\Razor\Views\New\Detail.cshtml.g.cs
+C:\Users\HUY 4\Desktop\LIB2\obj\Debug\netcoreapp3.1\scopedcss\bundle\LibManage.styles.css

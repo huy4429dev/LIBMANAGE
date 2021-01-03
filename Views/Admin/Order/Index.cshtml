@@ -54,7 +54,7 @@
       </th>
       <th class="th-sm ">Điện thoại
       </th>
-      <th class="th-sm text-center">Ngày tạo
+      <th class="th-sm">Ngày tạo
       </th>
       <th class="th-sm text-center">Trạng thái</th>
     </tr>
@@ -67,20 +67,20 @@
       <td>@item.User.Username</td>
       <td>@item.User.Email</td>
       <td>@item.User.Phone</td>
-      <td class="text-center">@item.CreatedTime</td>
+      <td>@item.CreatedTime</td>
       <td class="text-center">@(item.Status == OrderStatus.Success ? 
-                                Html.Raw("<span class='badge badge-success'>Hoàn thành</span>") 
+                                Html.Raw("<span class='badge badge-success' style='min-width:100px; display:inline-block; padding:4px 2px'>Hoàn thành</span>") 
                                 : 
                                 (
                                    item.Status == OrderStatus.Dispose ?
-                                   Html.Raw("<span class='badge badge-danger'>Hủy bỏ</span>")   
+                                   Html.Raw("<span class='badge badge-danger' style='min-width:100px; display:inline-block; padding:4px 2px'>Hủy bỏ</span>")   
                                    : 
                                    
                                   (
                                    item.Status == OrderStatus.Pendding ?
-                                   Html.Raw("<span class='badge badge-warning'>Đang mượn</span>")   
+                                   Html.Raw("<span class='badge badge-warning' style='min-width:100px; display:inline-block; padding:4px 2px'>Đang mượn</span>")   
                                    : 
-                                   Html.Raw("<span class='badge badge-primary'>Đang chờ xử lý</span>")   
+                                   Html.Raw("<span class='badge badge-primary' style='min-width:100px; display:inline-block; padding:4px 2px'>Đang chờ xử lý</span>")   
                                    )
                             
                                 )

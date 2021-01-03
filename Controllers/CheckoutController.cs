@@ -99,6 +99,8 @@ namespace LibManage.Controllers
                     });
                 });
 
+                var CurrentTime = DateTime.Now;
+
                 var Order = new Order {
                     Amount = 0,
                     PenaltyFee = 0,
@@ -106,8 +108,11 @@ namespace LibManage.Controllers
                     Status = OrderStatus.NoProcess, 
                     UserId = user.Id, 
                     OrderDetails = listItems,
-                    CreatedTime = DateTime.Now,
-                    UpdatedTime = DateTime.Now
+                    CreatedTime = CurrentTime,
+                    UpdatedTime = CurrentTime,
+                    FromDate = CurrentTime,
+                    ToDate = CurrentTime.AddDays(3),
+                    
                 };
 
                 db.Orders.Add(Order);
