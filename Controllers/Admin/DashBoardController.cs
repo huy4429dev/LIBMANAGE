@@ -78,14 +78,14 @@ namespace LibManage.Controllers
             ViewBag.TotalBook_Phai_Tra = db.Orders
                                        .Where(o => o.CreatedTime > Date
                                                  && o.TimeEnd < ADD_NOW_DATE_GAN_TRA
-                                                 && o.Status == OrderStatus.Pendding
+                                                 && o.Status == OrderStatus.Borrowed 
                                                  )
                                        .Sum(o => o.OrderDetails.Sum(d => d.Quantity));
 
             ViewBag.TotalBook_Qua_Han = db.Orders
                                        .Where(o => o.CreatedTime > Date
                                                  && o.TimeEnd < Now
-                                                 && o.Status == OrderStatus.Pendding
+                                                 && o.Status == OrderStatus.Borrowed 
                                                  )
                                        .Sum(o => o.OrderDetails.Sum(d => d.Quantity));
 
@@ -149,7 +149,7 @@ namespace LibManage.Controllers
             var TotalBook_Phai_Tra_PerMonth = db.Orders
                                     .Where(o => o.CreatedTime > FirstDayOfWeek
                                                 && o.TimeEnd < ADD_NOW_DATE_GAN_TRA
-                                                && o.Status == OrderStatus.Pendding
+                                                && o.Status == OrderStatus.Borrowed 
                                                 )
                                      .Select(o => new
                                      {
@@ -169,7 +169,7 @@ namespace LibManage.Controllers
             var TotalBook_Qua_Han_PerMoth = db.Orders
                                        .Where(o => o.CreatedTime > FirstDayOfWeek
                                                  && o.TimeEnd < Now
-                                                 && o.Status == OrderStatus.Pendding
+                                                 && o.Status == OrderStatus.Borrowed 
                                                  )
                                         .Select(o => new
                                         {

@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using LibManage.Extension;
+using System.Globalization;
 
 namespace LibManage.Controllers
 {
@@ -45,8 +46,10 @@ namespace LibManage.Controllers
         {
             var user = HttpContext.Session.Get<User>("customer");
             var cart = HttpContext.Session.GetString("cart");
+
             SkipModelValidate("Password");
             SkipModelValidate("Username");
+
             if (string.IsNullOrWhiteSpace(model.Address))
             {
                 ModelState.AddModelError(string.Empty, "Vui lòng nhập địa chỉ");
@@ -59,12 +62,30 @@ namespace LibManage.Controllers
             {
                 ModelState.AddModelError(string.Empty, "Bạn chưa lựa chọn sản phẩm nào đệ mượn");
             }
+
+            string RangeTime = Request.Form["datetimes"];
+            var FromDate = DateTime.ParseExact(RangeTime.Substring(0, RangeTime.IndexOf("-")).Trim(), "hh:mm tt dd/MM/yyyy", CultureInfo.InvariantCulture);
+            var ToDate = DateTime.ParseExact(RangeTime.Substring(RangeTime.IndexOf("-") + 1).Trim(), "hh:mm tt dd/MM/yyyy", CultureInfo.InvariantCulture);
+            var TimeValid = (ToDate - FromDate).TotalDays;
+
+            if (TimeValid > 10)
+            {
+                ModelState.AddModelError(string.Empty, "Thời gian mượn sách không được quá 10 ngày");
+            }
+
             if (ModelState.IsValid)
             {
                 var dataCart = new List<Cart>();
                 if (cart != null)
                 {
                     dataCart = JsonConvert.DeserializeObject<List<Cart>>(cart);
+
+                    
+                    if (dataCart.Count > 3)
+                    {
+                        ModelState.AddModelError(string.Empty, "Số sách một lần không quá 3 quyển");
+                    }
+
                     if (dataCart.Count > 0)
                     {
                         ViewBag.carts = dataCart;
@@ -73,10 +94,10 @@ namespace LibManage.Controllers
 
                 var customer = db.Users.First(item => item.Id == user.Id);
 
-                    customer.Email = model.Email;
-                    customer.FullName = model.FullName;
-                    customer.Address = model.Address;
-                    customer.Phone = model.Phone;
+                customer.Email = model.Email;
+                customer.FullName = model.FullName;
+                customer.Address = model.Address;
+                customer.Phone = model.Phone;
 
                 HttpContext.Session.Set<User>("customer", new User
                 {
@@ -91,9 +112,11 @@ namespace LibManage.Controllers
                 });
 
                 var listItems = new List<OrderDetail>();
-                
-                dataCart.ForEach(item => {
-                    listItems.Add(new OrderDetail {
+
+                dataCart.ForEach(item =>
+                {
+                    listItems.Add(new OrderDetail
+                    {
                         BookId = item.Product.Id,
                         Quantity = item.Quantity
                     });
@@ -101,18 +124,19 @@ namespace LibManage.Controllers
 
                 var CurrentTime = DateTime.Now;
 
-                var Order = new Order {
+                var Order = new Order
+                {
                     Amount = 0,
                     PenaltyFee = 0,
                     Note = "Chưa xử lý",
-                    Status = OrderStatus.NoProcess, 
-                    UserId = user.Id, 
+                    Status = OrderStatus.NoProcess,
+                    UserId = user.Id,
                     OrderDetails = listItems,
                     CreatedTime = CurrentTime,
                     UpdatedTime = CurrentTime,
-                    FromDate = CurrentTime,
-                    ToDate = CurrentTime.AddDays(3),
-                    
+                    FromDate = FromDate,
+                    ToDate = ToDate,
+
                 };
 
                 db.Orders.Add(Order);

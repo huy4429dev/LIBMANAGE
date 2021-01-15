@@ -89,6 +89,11 @@
 												<input type="email" name="email" value="@ViewBag.Customer.Email">
 											</div>
 										</div>
+										<div class="md-form">
+											<label for="form1"> <span style="width: 200px; display:inline-block"> Thời gian mượn:</span> </label>
+											<input type="text" name="datetimes" />
+										</div>
+
 										<div>
 											<input type="submit" class="btn btn-primary" value="Xác nhận">
 										</div>
@@ -133,3 +138,26 @@
 			</div>
 		</section>
 		<!-- End Checkout Area -->
+
+@section Css{ 
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+}
+@section Script {
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <script>
+		var fromDate = @Html.Raw(Json.Serialize(""));
+		var toDate = @Html.Raw(Json.Serialize(""));
+		
+		$(function() {
+		$('input[name="datetimes"]').daterangepicker({
+			timePicker: true,
+			startDate: moment().startOf('hour'),
+    		endDate: moment().startOf('hour').add(32, 'hour'),
+			locale: {
+			format: 'hh:mm A DD/MM/YYYY'
+			}
+		});
+		});
+    </script>
+}

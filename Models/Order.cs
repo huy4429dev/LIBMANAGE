@@ -31,7 +31,9 @@ namespace LibManage.Models
     public enum OrderStatus : byte{
         Success = 1,
         Dispose = 2,
-        Pendding = 3,
-        NoProcess = 4
+        Borrowed  = 3,
+        NoProcess = 4,
+        Overdue = 5
+
     }
 }

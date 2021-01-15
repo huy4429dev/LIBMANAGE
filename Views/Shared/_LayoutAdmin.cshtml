@@ -19,11 +19,35 @@
     <link href="/assets/admin/css/styles.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"
         crossorigin="anonymous"></script>
+   <style>
+        table tr:hover {
+            background: #74b9ff;
+            transition: 0.2s all;
+        }
+          .fix-center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        }
 
+        .loader {
+        border: 16px solid #f3f3f3;
+        border-radius: 50%;
+        border-top: 16px solid #3498db;
+        width: 120px;
+        height: 120px;
+        -webkit-animation: spin 2s linear infinite;
+        /* Safari */
+        animation: spin 2s linear infinite;
+        }
+    </style>
+    
     @if (IsSectionDefined("Css"))
     {
         @RenderSection("Css", required:true)
     }
+
+ 
 
     </head>
 
@@ -32,17 +56,6 @@
             <a class="navbar-brand" href="/admin/dashboard">LIB MANAGE</a>
             <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i
                     class="fas fa-bars"></i></button>
-            <!-- Navbar Search-->
-            @* <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
-                <div class="input-group">
-                <input class="form-control" type="text" placeholder="Search for..." aria-label="Search"
-                aria-describedby="basic-addon2" />
-                <div class="input-group-append">
-                <button class="btn btn-primary" type="button"><i class="fas fa-search"></i></button>
-                </div>
-                </div>
-                </form> *@
-            <!-- Navbar-->
             <ul class="navbar-nav ml-auto ml-md-0 d-flex w-100 justify-content-end">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown"
@@ -116,7 +129,7 @@
                                 data-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
                                     <a class="nav-link collapsed" href="/admin/report/order">
-                                        Doanh số
+                                        Lượt mượn sách
                                     </a>
                                     <a class="nav-link collapsed" href="/admin/report/customer">
                                         Tương tác khách hàng

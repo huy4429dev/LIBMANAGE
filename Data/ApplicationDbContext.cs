@@ -1,4 +1,8 @@
 using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Threading.Tasks;
 using LibManage.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -76,7 +80,43 @@ namespace LibManage.Data
 
         }
 
+        public async Task<List<T>> QueryListAsync<T>(string query) where T : class, new()
+        {
+            using (var command = this.Database.GetDbConnection().CreateCommand())
+            {
+                command.CommandText = query;
+                command.CommandType = CommandType.Text;
+                await this.Database.OpenConnectionAsync();
 
+                using (var reader = await command.ExecuteReaderAsync())
+                {
+                    var entities = new List<T>();
+                    var props = typeof(T).GetProperties().Where(p => p.CanWrite).ToList();
+
+                    while (reader.Read())
+                    {
+                        var item = new T();
+                        for (int i = 0; i < reader.FieldCount; i++)
+                        {
+                            var name = reader.GetName(i);
+                            var value = reader.GetValue(i);
+                            var prop = props.FirstOrDefault(p => p.Name.Equals(name, StringComparison.CurrentCultureIgnoreCase));
+                            if (prop != null)
+                            {
+                                if (value == DBNull.Value) value = null;
+                                prop.SetValue(item, value);
+                            }
+                        }
+
+                        entities.Add(item);
+                    }
+
+                    this.Database.CloseConnection();
+
+                    return entities;
+                }
+            }
+        }
         // User 
 
         public DbSet<User> Users { get; set; }

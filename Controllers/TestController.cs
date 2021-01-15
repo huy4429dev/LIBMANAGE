@@ -22,7 +22,11 @@ namespace LibManage.Controllers
         [HttpGet]
         public IActionResult Index()
         {
+
+            
             ViewBag.products = db.Tests.ToList();
+
+            var data = db.Orders.Sum(o => o.OrderDetails.Count());
             
             return View("/Views/Test/Index.cshtml");
         }

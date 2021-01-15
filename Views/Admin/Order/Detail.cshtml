@@ -54,7 +54,7 @@
                                 <label for="form1"> <span style="width: 200px; display:inline-block"> Trạng thái:</span></label>
                                 <select class="form-input" asp-for="Status">
                                 @(Model.Status == OrderStatus.NoProcess ? Html.Raw("<option value='4' selected >Chưa xử lý</option>") : Html.Raw(" <option value='4' >Chưa xử lý</option>"))  
-                                @(Model.Status == OrderStatus.Pendding ? Html.Raw("<option value='3' selected >Đang mượn</option>") : Html.Raw(" <option value='3' >Đang mượn</option>"))  
+                                @(Model.Status == OrderStatus.Borrowed  ? Html.Raw("<option value='3' selected >Đang mượn</option>") : Html.Raw(" <option value='3' >Đang mượn</option>"))  
                                 @(Model.Status == OrderStatus.Success ? Html.Raw("<option value='1' selected >Hoàn thành</option>") : Html.Raw(" <option value='1' >Hoàn thành</option>"))  
                                 @(Model.Status == OrderStatus.Dispose ? Html.Raw("<option value='2' selected >Hủy</option>") : Html.Raw(" <option value='2' >Hủy</option>"))  
                                 </select>
