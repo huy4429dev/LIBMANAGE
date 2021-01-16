@@ -88,19 +88,19 @@ namespace LibManage.Admin.Controllers
             }
             else
             {
-
+                var user = HttpContext.Session.Get<User>("user");
                 var Order = db.Orders.Include(o => o.OrderDetails).FirstOrDefault(o => o.Id == id);
                 var CountBookValid = Order.OrderDetails.Count();
 
                 if (CountBookValid > 3)
                 {
-
                     TempData["Error"] = "Khách hàng này không được mượn số lượng sách quá 3 quyển";
                 }
 
                 Order.Status = model.Status;
                 Order.FromDate = FromDate;
                 Order.ToDate = ToDate;
+                Order.UserverifyId = user?.Id ?? db.Users.Where(item => item.Username == "Admin").Select(item => item.Id).First();
 
                 db.SaveChanges();
 

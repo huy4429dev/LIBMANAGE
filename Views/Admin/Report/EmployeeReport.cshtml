@@ -15,7 +15,7 @@
 											   position: absolute; 
 											   top: 0; left: 0; 
 											   width:100%;
-											   height:70%;
+											   height:100%;
 											   z-index: 4">
 
 										<img style="position: absolute; top: 30%; width:50px"  src="/assets/loading.gif" alt="">
@@ -45,7 +45,7 @@
         <thead>
             <tr>
                 <th>Nhân viên</th>
-                <th>Lượt mượn</th>
+                <th>Xác nhận lượt mượn</th>
                 <th>Lượt trả đúng hạn</th>
                 <th>Lượt trả trễ hạn</th>
                 <th>Tiền nộp phạt</th>
@@ -92,20 +92,18 @@
       });
     </script>
     <script>
-        const startOfMonth = moment().clone().startOf('month').format('YYYY-MM-DD hh:mm');
+            const startOfMonth = moment().clone().startOf('month').format('YYYY-MM-DD hh:mm');
             const endOfMonth   = moment().clone().endOf('month').format('YYYY-MM-DD hh:mm'); 
             const curentDate = moment().add('1','d');
             const lastMonth = moment(curentDate).add(-1,'M').add(-1,'day');
             const tableBodyReportOrder = document.querySelector('#report-order-table');
             const tableFooterReportOrder = document.querySelector('#report-order-total');
-            
-
             const loading = document.querySelector('.fix-center');
 
             const time = document.querySelector('#time');
             time.innerHTML = '(' +  moment(lastMonth).format("DD/MM/YYYY") + ' - ' + moment(curentDate).format('DD/MM/YYYY') + ')'; 
             var data = @Html.Raw(Json.Serialize(ViewBag.Data));
-            
+            console.log(data,'DATA');
             const row = (record) => { 
                 return  (
                     `<tr class="text-center">
@@ -133,7 +131,6 @@
             };
 
             const renderDataTable = (data) => { 
-
                 let rows = '';
                 let rowFooter = {
                     total: 0,
@@ -159,7 +156,6 @@
             }
 
             const enumerateDaysBetweenDates = function(startDate, endDate) {
-                
                 var dates = [];
                 var currDate = moment(startDate).startOf('day');
                 var lastDate = moment(endDate).startOf('day');
@@ -171,37 +167,7 @@
             };
 
             const listDates = enumerateDaysBetweenDates(lastMonth, curentDate).map(item => moment(item).format("DD/MM/YYYY"));
-            const fillDataToChart = (categories , data) => {
-                let dataFill = [];
 
-                categories.forEach(c => {
-                    const index = data.findIndex(d => moment(d.date).format("DD/MM/YYYY") === c); 
-                    if(index != - 1){
-                        dataFill.push({
-                            total:  data[index].total,
-                            totalOrdrerSuccess:  data[index].totalOrdrerSuccess,
-                            totalOrdrerOverdue:  data[index].totalOrdrerOverdue,
-                            penatyFee:  data[index].penatyFee,
-                            totalBook:  data[index].totalBook,
-                            totalCustomer:  data[index].totalCustomer
-                        }); 
-                    }
-                    else{
-                        dataFill.push({
-                                total: 0,
-                                totalOrdrerSuccess: 0,
-                                totalOrdrerOverdue: 0,
-                                penatyFee: 0,
-                                totalBook: 0,
-                                totalCustomer: 0,
-                        })
-                    }           
-                })
-
-                return dataFill;
-            }
-
-            const dataFill = fillDataToChart(listDates, data);
             renderDataTable(data);
 
             // call ajax
@@ -219,10 +185,8 @@
                         timerId = setInterval(() => {
                                 loading.style.display = 'none';
                                 let listDates = enumerateDaysBetweenDates(moment(start).add(-1,'d'),moment(end).add(1,)).map(item => moment(item).format("DD/MM/YYYY"));
-                                const dataFill = fillDataToChart(listDates, data.data);
-                                console.log(listDates);
+                                renderCharts(data.data);
                                 renderDataTable(data.data);
-                                renderCharts(listDates,dataFill);
                                 if(timerId != null){
                                     clearInterval(timerId);
                                 }
@@ -230,29 +194,35 @@
                     });
                 }
 
-            const renderCharts = (listDates, dataFill) => {
 
+      const renderCharts = ( data) => {
                     
           Highcharts.setOptions({
               colors: ['#01BAF2', '#71BF45', '#FAA74B']
           });  
+
+          
 
         Highcharts.chart('container', {
                         chart: {
                   plotBackgroundColor: null,
                   plotBorderWidth: null,
                   plotShadow: false,
-                  type: 'pie'
+                  type: 'pie',
+                  width: 250
                 },
                 title: {
                   text: 'Lượt cho mượn sách',
-                  y:225
+                  y:225,
+                 style: {
+                    fontSize: '14px' 
+                }
                 },
               legend:{
                 enabled:false
               },
                 tooltip: {
-                  pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                  pointFormat: '<b>{point.percentage:.1f}%</b>'
                 },
                 plotOptions: {
                   pie: {
@@ -261,37 +231,28 @@
                     dataLabels: {
                       enabled: true,
                       formatter:function(){
-                        return this.key+ ': ' + this.y + '%';
+                        return this.key+ ': ' + this.y + 'lượt xác nhận';
                       }
                     },
                     showInLegend: true
                   }
                 },
                 series: [{
-                  name: 'Nguyễn Văn A',
-                  colorByPoint: true,
-                    innerSize: '70%',
-                  data: [{
-                    name: 'Nguyễn Văn X',
-                  // color: '#01BAF2',
-                    y: 78,
-                  }, {
-                    name: 'Nguyễn Văn Y',
-                  // color: '#71BF45',
-                    y: 20.9
-                  }, {
-                    name: 'Nguyễn Văn Z',
-                    //color: '#FAA74B',
-                    y: 1.1
-                  }]
-                }]
+                    name: 'Lần mượn',
+                    colorByPoint: true,
+                    innerSize: '80%',
+                    data: data.map((item) => ({
+                            name: item.userName,
+                            y: item.total,
+                     }))
+                 }]
               });
 
             }
 
             // render first
 
-            renderCharts(listDates,dataFill);
+            renderCharts(data);
 
         </script>
 }

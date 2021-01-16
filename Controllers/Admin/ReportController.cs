@@ -236,7 +236,7 @@ namespace LibManage.Admin.Controllers
             .GroupBy(g => g.Userverify.Username)
             .Select(g => new
             {
-                Date = g.Key,
+                userName = g.Key,
                 Total = g.Count(),
                 PenatyFee = g.Sum(o => o.PenaltyFee),
                 TotalOrdrerSuccess = g.Sum(o => o.Status == OrderStatus.Success ? 1 : 0),
@@ -246,8 +246,8 @@ namespace LibManage.Admin.Controllers
                 TotalOrdrerOverdue = g.Sum(o => o.Status == OrderStatus.Overdue ? 1 : 0),
                 TotalBook = g.Sum(o => o.TotalBook),
                 TotalCustomer = g.Select(o => o.CustomerId).Distinct().Count(),
-
             }).ToList();
+
             return View("/Views/Admin/Report/EmployeeReport.cshtml");
         }
 
