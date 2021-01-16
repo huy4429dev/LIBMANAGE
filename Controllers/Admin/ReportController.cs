@@ -92,12 +92,14 @@ namespace LibManage.Admin.Controllers
         public IActionResult ExportExcelReportOrder(DateTime? fromDate = null, DateTime? toDate = null)
         {
 
-            // if(fromDate.HasValue){
-            //     fromDate = DateTime.Now;
-            //     toDate = toDate.Value.AddMonths(-1);
-            // }
+            if (!fromDate.HasValue)
+            {
+                fromDate = DateTime.Now;
+                toDate = fromDate.Value.AddMonths(-1);
+            }
+
             var data = db.Orders
-            // .Where(item => item.CreatedTime > toDate && item.CreatedTime < fromDate)
+            .Where(item => item.CreatedTime > toDate && item.CreatedTime < fromDate)
             .Select(o => new
             {
                 o.CreatedTime,
@@ -135,11 +137,12 @@ namespace LibManage.Admin.Controllers
                 worksheet.Cell(currentRow, 7).Value = "Số khách hàng";
 
 
-                foreach(var item in data){
+                foreach (var item in data)
+                {
                     currentRow++;
                     worksheet.Cell(currentRow, 1).Value = item.Date.ToString("dd/MM/yyyy");
                     worksheet.Cell(currentRow, 2).Value = item.Total;
-                    worksheet.Cell(currentRow, 3).Value = item.TotalOrdrerSuccess; 
+                    worksheet.Cell(currentRow, 3).Value = item.TotalOrdrerSuccess;
                     worksheet.Cell(currentRow, 4).Value = item.TotalOrdrerOverdue;
                     worksheet.Cell(currentRow, 5).Value = item.PenatyFee;
                     worksheet.Cell(currentRow, 6).Value = item.TotalBook;
@@ -159,24 +162,129 @@ namespace LibManage.Admin.Controllers
             }
         }
 
-
-        [HttpGet("book")]
-        public IActionResult BookReport()
-        {
-            return Ok("report book");
-        }
-
         [HttpGet("customer")]
-        public IActionResult CustomerReport()
+        public IActionResult CustomerReport(DateTime FromDate, DateTime ToDate)
         {
+
+            ViewBag.Data = db.Orders.Select(o => new
+            {
+                o.CreatedTime,
+                o.PenaltyFee,
+                o.Status,
+                TotalBook = o.OrderDetails.Sum(d => d.Quantity),
+                CustomerId = o.User.Id,
+                Customer = o.User
+            })
+            .GroupBy(g => g.CreatedTime.Date)
+            .Select(g => new
+            {
+                Date = g.Key,
+                Total = g.Count(),
+                TotalCustomer = g.Select(o => o.CustomerId).Distinct().Count(),
+                TotalOldCustomer = g.Where(c => c.Customer.CreatTime < g.Key).Select(c => c.CustomerId).Distinct().Count(),
+                TotalNewCustomer = g.Where(c => c.Customer.CreatTime >= g.Key).Select(c => c.CustomerId).Distinct().Count()
+            });
+
             return View("/Views/Admin/Report/CustomerReport.cshtml");
         }
 
-        [HttpGet("employee")]
-        public IActionResult EmployeeReport()
+        [HttpGet("customer/ajax")]
+        public IActionResult GetDataCustomerReport(DateTime toDate, DateTime fromDate)
         {
+            var data = db.Orders
+            .Where(item => item.CreatedTime > toDate && item.CreatedTime < fromDate)
+           .Select(o => new
+            {
+                o.CreatedTime,
+                o.PenaltyFee,
+                o.Status,
+                TotalBook = o.OrderDetails.Sum(d => d.Quantity),
+                CustomerId = o.User.Id,
+                Customer = o.User
+            })
+            .GroupBy(g => g.CreatedTime.Date)
+            .Select(g => new
+            {
+                Date = g.Key,
+                Total = g.Count(),
+                TotalCustomer = g.Select(o => o.CustomerId).Distinct().Count(),
+                TotalOldCustomer = g.Where(c => c.Customer.CreatTime < g.Key).Select(c => c.CustomerId).Distinct().Count(),
+                TotalNewCustomer = g.Where(c => c.Customer.CreatTime >= g.Key).Select(c => c.CustomerId).Distinct().Count()
+            });
+
+            return Ok(new
+            {
+                data
+            });
+        }
+
+
+        [HttpGet("employee")]
+        public IActionResult EmployeeReport(DateTime FromDate, DateTime ToDate)
+        {
+            ViewBag.Data = db.Orders
+            .Where(o => o.UserverifyId != null)
+            .Select(o => new
+            {
+                o.CreatedTime,
+                o.PenaltyFee,
+                o.Status,
+                TotalBook = o.OrderDetails.Sum(d => d.Quantity),
+                CustomerId = o.User.Id, 
+                o.Userverify
+            })
+            .GroupBy(g => g.Userverify.Username)
+            .Select(g => new
+            {
+                Date = g.Key,
+                Total = g.Count(),
+                PenatyFee = g.Sum(o => o.PenaltyFee),
+                TotalOrdrerSuccess = g.Sum(o => o.Status == OrderStatus.Success ? 1 : 0),
+                TotalOrdrerDispose = g.Sum(o => o.Status == OrderStatus.Dispose ? 1 : 0),
+                TotalOrdrerBorrowed = g.Sum(o => o.Status == OrderStatus.Borrowed ? 1 : 0),
+                TotalOrdrerNoProcess = g.Sum(o => o.Status == OrderStatus.NoProcess ? 1 : 0),
+                TotalOrdrerOverdue = g.Sum(o => o.Status == OrderStatus.Overdue ? 1 : 0),
+                TotalBook = g.Sum(o => o.TotalBook),
+                TotalCustomer = g.Select(o => o.CustomerId).Distinct().Count(),
+
+            }).ToList();
             return View("/Views/Admin/Report/EmployeeReport.cshtml");
         }
 
+        [HttpGet("employee/ajax")]
+        public IActionResult GetDataEmployeeReport(DateTime toDate, DateTime fromDate)
+        {
+
+            var data = db.Orders
+            .Where(item => item.CreatedTime > toDate && item.CreatedTime < fromDate)
+            .Select(o => new
+            {
+                o.CreatedTime,
+                o.PenaltyFee,
+                o.Status,
+                o.Userverify,
+                TotalBook = o.OrderDetails.Sum(d => d.Quantity),
+                CustomerId = o.User.Id
+            })
+             .GroupBy(g => g.Userverify.Id)
+             .Select(g => new
+             {
+                 Date = g.Key,
+                 Total = g.Count(),
+                 PenatyFee = g.Sum(o => o.PenaltyFee),
+                 TotalOrdrerSuccess = g.Sum(o => o.Status == OrderStatus.Success ? 1 : 0),
+                 TotalOrdrerDispose = g.Sum(o => o.Status == OrderStatus.Dispose ? 1 : 0),
+                 TotalOrdrerBorrowed = g.Sum(o => o.Status == OrderStatus.Borrowed ? 1 : 0),
+                 TotalOrdrerNoProcess = g.Sum(o => o.Status == OrderStatus.NoProcess ? 1 : 0),
+                 TotalOrdrerOverdue = g.Sum(o => o.Status == OrderStatus.Overdue ? 1 : 0),
+                 TotalBook = g.Sum(o => o.TotalBook),
+                 TotalCustomer = g.Select(o => o.CustomerId).Distinct().Count()
+             });
+
+            return Ok(new
+            {
+                data
+            });
+        }
     }
 }

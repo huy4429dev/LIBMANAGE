@@ -6,10 +6,17 @@
     ViewBag.PageName = "BÁO CÁO TƯƠNG TÁC KHÁCH HÀNG";
     ViewBag.Link = "/admin/report/order";
     var user = ViewData["User"] as User;
-    @* var dataChart  = JsonSerializer.Serialize(ViewBag.Chart_PerMonth); *@
-    var dataChart  = new List<object>();
  }
+	<div class="fix-center loading" 
+										style="background:white; 
+											   position: absolute; 
+											   top: 0; left: 0; 
+											   width:100%;
+											   height:70%;
+											   z-index: 4">
 
+										<img style="position: absolute; top: 30%; width:50px"  src="/assets/loading.gif" alt="">
+	</div>
 <div class="d-flex justify-content-end">
     <div>
         <div class="form-group">
@@ -21,7 +28,7 @@
     <div class="col-12">
         <h5 class="text-center mb-5" style="font-weight:400;font-size:20px; color: #414141">
             Biểu đồ thống kê lượng tương tác khách hàng <br /> 
-            <small>1/12/2020 - 12/12/2020</small> 
+            <small id="time">1/12/2020 - 12/12/2020</small> 
         </h5>
         <div class="d-flex justify-content-center">
             <figure class="highcharts-figure">
@@ -35,59 +42,28 @@
         <thead>
             <tr>
                 <th>Thời gian</th>
+                <th>Khách hàng mới</th>
+                <th>Khách hàng cũ</th>
+                <th>Khách hàng</th>
                 <th>Lượt mượn</th>
-                <th>Lượt trả đúng hạn</th>
-                <th>Lượt trả trễ hạn</th>
-                <th>Tiền nộp phạt</th>
-                <th>Số sách mượn</th>
-                <th>Số khách hàng</th>
+                <th>Tỷ lệ khách hàng quay lại (%)</th>
+                <th>Tỷ lệ khách hàng mới mượn sách (%)</th>
             </tr>
         </thead>
-        <tbody>
-            <tr>
-                <td>1/12/2020</td>
-                <td>10</td>
-                <td>11</td>
-                <td>12</td>
-                <td>12.000 đ</td>
-                <td>10</td>
-                <td>13</td>
-            </tr>
-            <tr>
-                <td>2/12/2020</td>
-                <td>10</td>
-                <td>11</td>
-                <td>12</td>
-                <td>12.000 đ</td>
-                <td>10</td>
-                <td>13</td>
-            </tr>
-            <tr>
-                <td>3/12/2020</td>
-                <td>10</td>
-                <td>11</td>
-                <td>12</td>
-                <td>12.000 đ</td>
-                <td>10</td>
-                <td>13</td>
-            </tr>
+        <tbody id="report-order-table">
         </tbody>
-        <tfoot>
-            <tr>
-                <th>Tổng</th>
-                <td>10</td>
-                <td>11</td>
-                <td>12</td>
-                <td>12.000 đ</td>
-                <td>10</td>
-                <td>13</td>
-            </tr>
+        <tfoot id="report-order-total">
         </tfoot>
     </table>
 </div>
 
 @section Css {
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    <style>
+		.fix-center{
+			display: none;
+		}
+    </style>
 }
 
 @section Script {
@@ -98,151 +74,202 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
     <script>
-
-Highcharts.chart('container', {
-    chart: {
-        plotBackgroundColor: null,
-        plotBorderWidth: null,
-        plotShadow: false,
-        type: 'pie',
-        width: 400
-    },
-    title: {
-        text: ''
-    },
-    tooltip: {
-        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-    },
-    accessibility: {
-        point: {
-            valueSuffix: '%'
-        }
-    },
-    plotOptions: {
-        pie: {
-            cursor: 'pointer',
-            dataLabels: {
-                enabled: true,
-                format: '<b>{point.name}</b>: {point.percentage:.1f} %'
-            }
-        }
-    },
-    series: [{
-        name: 'Loại khách hàng',
-        colorByPoint: true,
-        data: [{
-            name: 'Khách hàng mới',
-            y: 10,
-        }, {
-            name: 'Khách hàng cũ',
-            y: 50
-        }]
-    }]
-});
-
+    	var fromDate = @Html.Raw(Json.Serialize(""));
+		var toDate = @Html.Raw(Json.Serialize(""));
+		
+		$(function() {
+            $('input[name="daterange"]').daterangepicker({
+                timePicker: true,
+                startDate: moment().add(-1, 'month'),
+                endDate: moment(),
+                locale: {
+                format: 'DD/MM/YYYY'
+                }
+            },(start,end,label) => { getDataAjax(start,end,label)});
+		});
+    </script>
     </script>
     <script>
 
-        var dataChart = '@dataChart';
-      /*  dataChart = rhtmlspecialchars(dataChart);
-        dataChart = JSON.parse(dataChart);
+            const startOfMonth = moment().clone().startOf('month').format('YYYY-MM-DD hh:mm');
+            const endOfMonth   = moment().clone().endOf('month').format('YYYY-MM-DD hh:mm'); 
+            const curentDate = moment().add('1','d');
+            const lastMonth = moment(curentDate).add(-1,'M').add(-1,'day');
+            const tableBodyReportOrder = document.querySelector('#report-order-table');
+            const tableFooterReportOrder = document.querySelector('#report-order-total');
+            const loading = document.querySelector('.fix-center');
+            const time = document.querySelector('#time');
+            time.innerHTML = '(' +  moment(lastMonth).format("DD/MM/YYYY") + ' - ' + moment(curentDate).format('DD/MM/YYYY') + ')'; 
+            var data = @Html.Raw(Json.Serialize(ViewBag.Data));
+            
+            const row = (record) => { 
+                return  (
+                    `<tr class="text-center">
+                        <td>${moment(record.date).format("DD-MM-YYYY")}</td>
+                        <td>${record.totalNewCustomer}</td>
+                        <td>${record.totalOldCustomer}</td>
+                        <td>${record.totalCustomer}</td>
+                        <td>${record.total}</td>
+                        <td>${record.totalOldCustomer / ((record.totalNewCustomer + record.totalNewCustomer) == 0 ? 1 : record.totalNewCustomer + record.totalNewCustomer ) * 100}</td>
+                        <td>${record.total / ((record.totalNewCustomer + record.totalOldCustomer) == 0 ? 1 : (record.totalNewCustomer + record.totalOldCustomer)) * 100}</td>
+                    </tr>` )
+            };
 
-        function generateListDay(firstDay,countDay){
-            let listDays = [firstDay];
-            let i = 1;
+            const rowFooterRender = (record) => { 
+                return  (
+                    `<tr class="text-center">
+                        <td>Tổng</td>
+                        <td>${record.totalNewCustomer}</td>
+                        <td>${record.totalOldCustomer}</td>
+                        <td>${record.totalCustomer}</td>
+                        <td>${record.total}</td>
+                        <td>${record.totalOldCustomer / ((record.totalNewCustomer + record.totalNewCustomer) == 0 ? 1 : record.totalNewCustomer + record.totalNewCustomer ) * 100 / record.length}</td>
+                        <td>${record.total / ((record.totalNewCustomer + record.totalOldCustomer) == 0 ? 1 : (record.totalNewCustomer + record.totalOldCustomer)) * 100 / record.length}</td>
+                    </tr>` )
+            };
 
-            while(i < countDay) {
+            const renderDataTable = (data) => { 
 
-                firstDay = firstDay.addDays(1);
-                listDays.push(firstDay);
-                i ++;   
+                let rows = '';
+                let rowFooter = {
+                    totalNewCustomer: 0,
+                    totalOldCustomer: 0,
+                    totalCustomer: 0,
+                    total: 0,
+                    length: 0
+                };
+
+                data.forEach(item => {
+                    rows += row(item);
+                    rowFooter.totalNewCustomer += item.totalNewCustomer;
+                    rowFooter.totalOldCustomer += item.totalOldCustomer;
+                    rowFooter.totalCustomer += item.totalCustomer;
+                    rowFooter.total += item.total;
+                    rowFooter.length +=  1;
+                })
+                
+                tableBodyReportOrder.innerHTML = rows;
+                tableFooterReportOrder.innerHTML = rowFooterRender(rowFooter);
             }
 
-            return  listDays;
-        } 
+            const enumerateDaysBetweenDates = function(startDate, endDate) {
+                
+                var dates = [];
+                var currDate = moment(startDate).startOf('day');
+                var lastDate = moment(endDate).startOf('day');
+                while(currDate.add(1, 'days').diff(lastDate) < 0) {
+                    dates.push(currDate.clone().toDate());
+                }
+                return dates;
+            };
 
+            const listDates = enumerateDaysBetweenDates(lastMonth, curentDate).map(item => moment(item).format("DD/MM/YYYY"));
+            const fillDataToChart = (categories , data) => {
+                let dataFill = [];
 
-        let categories = generateListDay(FIRST_DAY_OF_WEEK, 7).map(day => formatDate(day));
-
-        function mapDateChart(data,categories) {
-                return categories.map(c => {
-                    let found = data.filter(d =>  d.Key.substring(0,d.Key.indexOf('T')) == c) ?? [];
-                    if(found[0])
-                    {
-                        return found[0].Count;
+                categories.forEach(c => {
+                    const index = data.findIndex(d => moment(d.date).format("DD/MM/YYYY") === c); 
+                    if(index != - 1){
+                        dataFill.push({
+                            totalNewCustomer:  data[index].totalNewCustomer,
+                            totalOldCustomer:  data[index].totalOldCustomer,
+                        }); 
                     }
-                    return 0;
+                    else{
+                        dataFill.push({
+                                totalNewCustomer: 0,
+                                totalOldCustomer: 0,
+                        })
+                    }           
+                })
+
+                return dataFill;
+            }
+
+            const dataFill = fillDataToChart(listDates, data);
+            renderDataTable(data);
+
+            // call ajax
+
+            const URL = window.location.origin;
+
+            function getDataAjax(start, end , label){
+
+                    loading.style.display = 'flex';
+                    let productsHTML = '';
+                    let timerId = null; 
+                    fetch(`${URL}/admin/report/order/ajax?toDate=${moment(start).toISOString()}&fromDate=${moment(end).toISOString()}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        timerId = setInterval(() => {
+                                loading.style.display = 'none';
+                                let listDates = enumerateDaysBetweenDates(moment(start).add(-1,'d'),moment(end).add(1,)).map(item => moment(item).format("DD/MM/YYYY"));
+                                const dataFill = fillDataToChart(listDates, data.data);
+                                renderDataTable(data.data);
+                                renderCharts(listDates,dataFill);
+                                if(timerId != null){
+                                    clearInterval(timerId);
+                                }
+                        },2000);
+                    });
+                }
+
+            const renderCharts = (listDates, dataFill) => {
+                    console.log(dataFill,'data fill');
+                    let totalOldCustomer = 0;
+                    let totalNewCustomer = 0;
+                    dataFill.forEach(item => {
+                        totalOldCustomer += item.totalOldCustomer;
+                        totalNewCustomer += item.totalNewCustomer;
+                    });
+
+                    Highcharts.chart('container', {
+                    chart: {
+                        plotBackgroundColor: null,
+                        plotBorderWidth: null,
+                        plotShadow: false,
+                        type: 'pie',
+                        width: 500
+                    },
+                    title: {
+                        text: ''
+                    },
+                    tooltip: {
+                        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                    },
+                    accessibility: {
+                        point: {
+                            valueSuffix: '%'
+                        }
+                    },
+                    plotOptions: {
+                        pie: {
+                            cursor: 'pointer',
+                            dataLabels: {
+                                enabled: true,
+                                format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+                            }
+                        }
+                    },
+                    series: [{
+                        name: 'Loại khách hàng',
+                        colorByPoint: true,
+                        data: [{
+                            name: 'Khách hàng cũ',
+                            y: totalOldCustomer,
+                        }, {
+                            name: 'Khách hàng mới',
+                            y: totalNewCustomer
+                        }]
+                    }]
                 });
-        } 
+            }
 
-    
+            // render first
 
-        Highcharts.chart('container', {
-            chart: {
-                type: 'line'
-            },
-            title: {
-                text: ''
-            },
-            subtitle: {
-                text: ''
-            },
-            xAxis: {
-                categories: categories.map(d => formatDateVN(d)),
-                tickmarkPlacement: 'on',
-                title: {
-                    enabled: true
-                }
-            },
-            yAxis: {
-                title: {
-                    text: 'Số lượng'
-                },
-                labels: {
-                    formatter: function () {
-                        return this.value / 1000;
-                    }
-                }
-            },
-            tooltip: {
-                split: true
-            },
-            plotOptions: {
-                area: {
-                    stacking: 'normal',
-                    lineColor: '#666666',
-                    lineWidth: 1,
-                    marker: {
-                        lineWidth: 1,
-                        lineColor: '#666666'
-                    }
-                }
-            },
-            series: [{
-                name: 'Sách mượn',
-                data:  mapDateChart(dataChart.TotalBook_MuonPerWeek, categories)
+            renderCharts(listDates,dataFill);
 
-            }, {
-                name: 'Sách đến hạn trả',
-                data:  mapDateChart(dataChart.TotalBook_Phai_Tra_PerMonth, categories)
-
-            }, {
-                name: 'Sách quá hạn trả',
-                data:  mapDateChart(dataChart.TotalBook_Qua_Han_PerMoth, categories)
-            }, {
-                name: 'KH mới',
-                data:  mapDateChart(dataChart.TotalNewCustomerPerWeek, categories)
-            }]
-        }); */
     </script>
-    <script>
-        $(function() {
-        $('input[name="daterange"]').daterangepicker({
-            opens: 'left'
-        }, function(start, end, label) {
-            console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
-        });
-        });
-    </script>
+
 
 }

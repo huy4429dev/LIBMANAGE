@@ -15,23 +15,23 @@ namespace LibManage.Models
 
         [MaxLength(500)]
         public string Note { get; set; }
-        public OrderStatus Status {get;set;}
-        public DateTime FromDate {get;set;}
-        public DateTime ToDate {get;set;}
+        public OrderStatus Status { get; set; }
+        public DateTime FromDate { get; set; }
+        public DateTime ToDate { get; set; }
+        public int? UserverifyId { get; set; }
+        public User Userverify { get; set; }
         public int UserId { get; set; }
-
-        [ForeignKey("UserId")]
-        public User User {get;set;}
-         
-        public virtual ICollection<OrderDetail> OrderDetails {get;set;}
+        public User User { get; set; }
+        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
         public DateTime CreatedTime { get; set; }
         public DateTime UpdatedTime { get; set; }
     }
 
-    public enum OrderStatus : byte{
+    public enum OrderStatus : byte
+    {
         Success = 1,
         Dispose = 2,
-        Borrowed  = 3,
+        Borrowed = 3,
         NoProcess = 4,
         Overdue = 5
 

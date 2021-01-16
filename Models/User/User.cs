@@ -32,12 +32,12 @@ namespace LibManage.Models
 
         [MaxLength(10, ErrorMessage = "Số điện thoại không hợp lệ")]
         public string Phone { get; set; }
-
         public DateTime BirthDate { get; set; }
         public bool Status { get; set; }
         public DateTime CreatTime { get; set; }
-
         public virtual ICollection<UserRole> UserRoles { get; set; }
+        public virtual ICollection<Order> OrderCustomers { get; set; }
+        public virtual ICollection<Order> OrderUserverify { get; set; }
 
     }
 

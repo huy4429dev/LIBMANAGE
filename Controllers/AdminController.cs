@@ -25,7 +25,7 @@ namespace LibManage.Controllers
         public IActionResult CreateAdmin()
         {
 
-            string key = "password encryption";
+            string key = "mot cai key khong thang nao biet";
 
             var roleAdmin = new Role
             {
@@ -33,6 +33,14 @@ namespace LibManage.Controllers
             };
 
             db.Roles.Add(roleAdmin);
+
+            var roleCustomer = new Role
+            {
+                Name = "Customer"
+            };
+
+            db.Roles.Add(roleCustomer);
+
             db.SaveChanges(); 
 
 

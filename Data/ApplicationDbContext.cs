@@ -77,7 +77,22 @@ namespace LibManage.Data
                 .HasOne(ta => ta.Tag)
                 .WithMany(t => t.BookTags)
                 .OnDelete(DeleteBehavior.Cascade);
+           
+            // relation one - many user & order -> creator
 
+            builder.Entity<Order>()
+                .HasOne<User>(s => s.User)
+                .WithMany(g => g.OrderCustomers)
+                .HasForeignKey(t => t.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            // relation one - many user & order -> customer
+
+            builder.Entity<Order>()
+                .HasOne<User>(s => s.Userverify)
+                .WithMany(g => g.OrderUserverify)
+                .HasForeignKey(t => t.UserverifyId)
+                .OnDelete(DeleteBehavior.Cascade);;
         }
 
         public async Task<List<T>> QueryListAsync<T>(string query) where T : class, new()
