@@ -68,9 +68,9 @@ List<Book> Books = Model;
                                                         <img style="width:50px" src="@item.Image" alt="">
                                                          
                                                     </td>
-                                                    <td> <a href=" @item.PDFfile"> <i class="far fa-file-powerpoint"></i> @(item.PDFfile.Substring(item.PDFfile.LastIndexOf("\\") + 1).Length < 10 ? @item.PDFfile.Substring(item.PDFfile.LastIndexOf("\\") + 1) :  @item.PDFfile.Substring(item.PDFfile.LastIndexOf("\\") + 1).Substring(0,10) + "...")</a></td>
+                                                    <td> <a href=" @item.PDFfile"> <i class="far fa-file-powerpoint"></i> @(item.PDFfile != null ? item.PDFfile.Substring(item.PDFfile.LastIndexOf("\\") + 1).Length < 10 ? @item.PDFfile.Substring(item.PDFfile.LastIndexOf("\\") + 1) :  @item.PDFfile.Substring(item.PDFfile.LastIndexOf("\\") + 1).Substring(0,10) + "..." : "")</a></td>
                                                     <td>@item.Authors.Name</td>
-                                                    <td>@item.BookTypes`.Name</td>
+                                                    <td>@item.BookTypes.Name</td>
                                                     <td>@item.Publishers.Name</td>
                                                     <td>@item.YearPublished</td>
                                                     <td style="width: 100px"><button class="btn btn-sm btn-success" type="button" data-toggle="modal" data-target="#editCategory@(item.Id)">Sửa</button></td>

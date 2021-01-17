@@ -1,23 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\HUY 4\\Desktop\\LIB2\\LibManage.csproj": {}
+    "E:\\project\\c#\\LIBMANAGE\\LibManage.csproj": {}
   },
   "projects": {
-    "C:\\Users\\HUY 4\\Desktop\\LIB2\\LibManage.csproj": {
+    "E:\\project\\c#\\LIBMANAGE\\LibManage.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\HUY 4\\Desktop\\LIB2\\LibManage.csproj",
+        "projectUniqueName": "E:\\project\\c#\\LIBMANAGE\\LibManage.csproj",
         "projectName": "LibManage",
-        "projectPath": "C:\\Users\\HUY 4\\Desktop\\LIB2\\LibManage.csproj",
-        "packagesPath": "C:\\Users\\HUY 4\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\HUY 4\\Desktop\\LIB2\\obj\\",
+        "projectPath": "E:\\project\\c#\\LIBMANAGE\\LibManage.csproj",
+        "packagesPath": "C:\\Users\\HUY4\\.nuget\\packages\\",
+        "outputPath": "E:\\project\\c#\\LIBMANAGE\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\HUY 4\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\HUY4\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
@@ -100,7 +97,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
         }
       }
     }
