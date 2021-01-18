@@ -19,7 +19,7 @@ List<Book> Books = Model;
                                 </div>
                             }
 
-                            <form method="GET" action="/admin/book/Books/search">
+                            <form method="GET" action="/admin/book/search">
                                     <div class="input-group mb-3 p-3">
                                             <input name="query" type="text" class="form-control" placeholder="Tìm sách" aria-label="Recipient's username" aria-describedby="basic-addon2">
                                             <div class="input-group-append">
@@ -81,6 +81,23 @@ List<Book> Books = Model;
                                             }
                                         </tbody>
                                     </table>
+                                    <div class="d-flex justify-content-end">
+                                      
+                                        <ul class="pagination pagination-sm">
+                                              	@for (int i = 1; i <= ViewBag.TotalPage; i++)
+                                                {
+                                                    @if(ViewBag.TotalPage == i){
+                                                        <li class="page-item active"><a  class="page-link" href="?page=@i">@i</a></li>	
+                                                    }
+                                                    else{
+                                                        <li class="page-item"><a class="page-link" href="?page=@i">@i</a></li>
+                                                    }
+                                                }
+                                                @if(ViewBag.TotalPage > ViewBag.CurentPage){
+                                                    <li  class="page-item"><a class="page-link" href="?page=@(ViewBag.CurentPage + 1)"><i class="zmdi zmdi-chevron-right"></i></a></li>
+                                                }
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
                      </div>
@@ -107,7 +124,6 @@ List<Book> Books = Model;
                     <label for="message-text" class="col-form-label">Mô tả:</label>
                     <textarea class="form-control" id="message-text" name="description"></textarea>
                 </div>
-
                 <div class="form-group">
                     <select class="form-control" name="BookTpye">
                          <option>Loại sách</option>
@@ -117,7 +133,6 @@ List<Book> Books = Model;
                         }
                     </select>
                 </div>
-
                 <div class="form-group">
                     <select class="form-control" name="author">
                          <option>Tác giả</option>
@@ -127,7 +142,6 @@ List<Book> Books = Model;
                         }
                     </select>
                 </div>
-
                 <div class="form-group">
                     <select class="form-control" name="publisher">
                          <option>Nhà xuất bản</option>
@@ -137,8 +151,10 @@ List<Book> Books = Model;
                         }
                     </select>
                 </div>
-
-
+               <div class="form-group">
+                    <label for="message-text" class="col-form-label">Số lượng:</label>
+                    <input type="text" class="form-control" name="Quantity">
+                </div>
                 <div class="form-group d-flex"> 
                      <div class="input-file-container">  
                         <input class="input-file" id="my-file" type="file" data-target="#thumbnail-result" data-target-input="image"  accept="image/*">

@@ -35,7 +35,7 @@
 											@* <th class="product-price">Price</th> *@
 											<th class="product-quantity">Số lượng</th>
 											@* <th class="product-subtotal">Total</th> *@
-											<th class="product-remove">Remove</th>
+											<th class="product-remove">Xóa</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -54,7 +54,14 @@
 															   value="@item.Quantity">
 													</td>
 													@* <td class="product-subtotal">$165.00</td> *@
-													<td><button type="button" onclick="removeCartItem(@item.Product.Id)">X</button></td>
+													<td><button type="button" onclick="removeCartItem(@item.Product.Id)"
+																style=" color: red;
+																		width: 25px;
+																		height: 25px;
+																		border-radius: 50%;
+																		border: none;
+																		font-weight: bold;"
+														>X</button></td>
 												</tr>
 											}
 										}

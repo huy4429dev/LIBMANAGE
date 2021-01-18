@@ -54,9 +54,9 @@ namespace LibManage.Controllers
                 var found = db.Users
                             .FirstOrDefault(item =>
                                                           item.Username == UserName &&
-                                                          item.Password == Password
+                                                          item.Password == Password && 
+                                                          item.UserRoles.Any(u => u.Role.Name == "Admin" || u.Role.Name == "Librarian" )
                                                     )
-                                                    
                             ;
 
                 if (found != null)

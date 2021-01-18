@@ -49,7 +49,11 @@ namespace LibManage.Controllers
                                    Id = item.Id,
                                    Name = item.Name,
                                    CountProduct = item.Books.Count()
-                               }).ToList();
+                               })
+                               .OrderByDescending(a => a.CountProduct)
+                               .Skip(0)
+                               .Take(10)
+                               .ToList();
 
             ViewBag.Tags = db.Tags
                                .Select(item => new Tag
@@ -132,7 +136,11 @@ namespace LibManage.Controllers
 
                 search = $"%{search}%";
                 Products = db.Books
-                               .Where(item => EF.Functions.ILike(item.Title,search) || EF.Functions.ILike(item.Authors.Name, search))
+                               .Where(item => 
+                                                EF.Functions.ILike(item.Title,search) 
+                                                || EF.Functions.ILike(item.Authors.Name, search)
+                                                || item.BookTags.Any(t => t.Tag.Name.Contains(search))
+                                      )
                                .Select(item => new Book
                                {
                                    Id = item.Id,
@@ -145,7 +153,7 @@ namespace LibManage.Controllers
                                })
                                .OrderBy(item => item.CreatedTime)
                                .Skip((page - 1) * pageSize)
-                               .Take(1)
+                               .Take(pageSize)
                                .ToList();
             }
 
@@ -164,7 +172,7 @@ namespace LibManage.Controllers
                                })
                                .OrderBy(item => item.CreatedTime)
                                .Skip((page - 1) * pageSize)
-                               .Take(1)
+                               .Take(pageSize)
                                .ToList();
 
                 TotalProduct = db.Books.Count();
@@ -186,7 +194,7 @@ namespace LibManage.Controllers
                                })
                                .OrderBy(item => item.Rate)
                                .Skip((page - 1) * pageSize)
-                               .Take(2)
+                               .Take(pageSize)
                                .ToList();
 
                 TotalProduct = db.Books.Count();
@@ -208,7 +216,7 @@ namespace LibManage.Controllers
                                })
                                .OrderBy(item => item.CreatedTime)
                                .Skip((page - 1) * pageSize)
-                               .Take(3)
+                               .Take(pageSize)
                                .ToList();
 
                 TotalProduct = db.Books.Count();
@@ -221,6 +229,7 @@ namespace LibManage.Controllers
             ViewBag.TotalProduct = TotalProduct;
             ViewBag.CurentPage = page;
             ViewBag.TotalPage = TotalPage;
+            ViewBag.Search = search.Replace("%","");
 
             return View("/Views/Home/Index.cshtml");
         }
@@ -247,7 +256,7 @@ namespace LibManage.Controllers
                                })
                                .OrderBy(item => item.CreatedTime)
                                .Skip((page - 1) * pageSize)
-                               .Take(1)
+                               .Take(pageSize)
                                .ToList();
 
                 TotalProduct = db.Books.Count();
@@ -269,7 +278,7 @@ namespace LibManage.Controllers
                                })
                                .OrderBy(item => item.Rate)
                                .Skip((page - 1) * pageSize)
-                               .Take(2)
+                               .Take(pageSize)
                                .ToList();
 
                 TotalProduct = db.Books.Count();
@@ -291,7 +300,7 @@ namespace LibManage.Controllers
                                })
                                .OrderBy(item => item.CreatedTime)
                                .Skip((page - 1) * pageSize)
-                               .Take(3)
+                                .Take(pageSize)
                                .ToList();
 
                 TotalProduct = db.Books.Count();

@@ -24,14 +24,6 @@ namespace LibManage.Controllers
             this.db = db;  // create object dbcontext to manipulation db 
         }
 
-
-        [HttpGet("admin/test")]
-        public IActionResult Test ()
-        {
-            return Ok("TEST --------- 1");
-        }
-
-
         [HttpGet("admin/dashboard")]
         public IActionResult Index()
         {
@@ -89,7 +81,6 @@ namespace LibManage.Controllers
                                                  )
                                        .Sum(o => o.OrderDetails.Sum(d => d.Quantity));
 
-
             // SO LIEU BIEU DO 
 
             var TotalNewCustomerPerWeek = db.Users
@@ -104,29 +95,6 @@ namespace LibManage.Controllers
                                         })
                                         .ToList();
 
-            //   var TotalBook_MuonPerWeek = db.OrderDetails
-            //                             .Where(d => d.CreatedTime > FirstDayOfWeek)
-            //                             .GroupBy(d => d.OrderId)
-            //                             .Select(g => new
-            //                             {
-            //                                 OrderId = g.Key,
-            //                                 Quantity = g.Sum(d => d.Quantity)
-            //                             })
-            //                             .Join(db.Orders,
-            //                                 o1 => o1.OrderId, 
-            //                                 o2 => o2.Id,
-            //                                 (o1, o2) => new {
-            //                                     OrderId = o1.OrderId, 
-            //                                     Quantity = o1.Quantity,  
-            //                                     CreatedTime = o2.CreatedTime
-            //                                 } 
-            //                             )
-            //                             .GroupBy(o => o.CreatedTime.Date)
-            //                             .Select(g2 => new {
-            //                                 g2.Key,
-            //                                 Quantity = g2.Sum(g22 => g22.Quantity)
-            //                             })
-            //                             .ToList();
 
             var TotalBook_MuonPerWeek = db.Orders
                                     .Where(o => o.CreatedTime > FirstDayOfWeek)
@@ -144,7 +112,6 @@ namespace LibManage.Controllers
                                         Quantity = g2.Sum(g22 => g22.Quantity)
                                     })
                                     .ToList();
-
 
             var TotalBook_Phai_Tra_PerMonth = db.Orders
                                     .Where(o => o.CreatedTime > FirstDayOfWeek
@@ -215,7 +182,6 @@ namespace LibManage.Controllers
 
             ViewBag.Chart_PerMonth = new
             {
-
                 TotalNewCustomerPerWeek,
                 TotalBook_Qua_Han_PerMoth,
                 TotalBook_Phai_Tra_PerMonth,

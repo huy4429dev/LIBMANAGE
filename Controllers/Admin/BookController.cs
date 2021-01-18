@@ -22,32 +22,61 @@ namespace LibManage.Controllers
         }
 
         [HttpGet]
-        public IActionResult Index()
+        public IActionResult Index(int page = 1, int pageSize = 25)
         {
 
-            var Books = db.Books.OrderByDescending(item => item.Id).ToList();
+            var Books = db.Books
+                          .OrderByDescending(item => item.Id)
+                          .Skip((page - 1) * pageSize)
+                          .Take(pageSize)
+                          .ToList();
 
             ViewData["BookTypes"] = db.BookTypes.ToList();
             ViewData["Authors"] = db.Authors.ToList();
             ViewData["Publishers"] = db.Publishers.ToList();
+            ViewBag.TotalPage = db.Books.Count() / pageSize == 0 ? db.Books.Count() / pageSize : db.Books.Count() / pageSize + 1;
+            ViewBag.CurentPage = page;
 
             return View("/Views/Admin/book/Index.cshtml", Books);
         }
 
         [HttpGet("search")]
 
-        public IActionResult Search(string query)
+        public IActionResult Search(string query, int page = 1, int pageSize = 25)
         {
 
             query = "%" + query + "%";
 
             var Books = db.Books
-                               //    .Where(item => EF.Functions.ILike(item.Name, query)
-                               //                   || EF.Functions.ILike(item.Description, query)
-                               //           )
-                               .OrderBy(item => item.Id).ToList();
+                                  .Where(item => EF.Functions.ILike(item.Title, query)
+                                                 || EF.Functions.ILike(item.Description, query)
+                                         )
+                                   .Select(item => new Book
+                                   {
+                                       Title = item.Title,
+                                       CreatedTime = item.CreatedTime,
+                                       UpdatedTime = item.UpdatedTime,
+                                       Description = item.Description,
+                                       PDFfile = item.PDFfile,
+                                       YearPublished = item.YearPublished,
+                                       Id = item.Id,
+                                       Image = item.Image,
+                                       Authors = item.Authors,
+                                       BookTypes = item.BookTypes,
+                                       Publishers = item.Publishers
+                                   })
+                                  .OrderByDescending(item => item.Id)
+                                  .Skip((page - 1) * pageSize)
+                                  .Take(pageSize)
+                                  .ToList();
 
-            return View("/Views/Admin/Book/Category.cshtml", Books);
+            ViewData["BookTypes"] = db.BookTypes.ToList();
+            ViewData["Authors"] = db.Authors.ToList();
+            ViewData["Publishers"] = db.Publishers.ToList();
+            ViewBag.TotalPage = db.Books.Count() / pageSize == 0 ? db.Books.Count() / pageSize : db.Books.Count() / pageSize + 1;
+            ViewBag.CurentPage = page;
+
+            return View("/Views/Admin/book/Index.cshtml", Books);
         }
 
 
@@ -59,7 +88,7 @@ namespace LibManage.Controllers
 
             if (ModelState.IsValid)
             {
-                
+
                 db.Books.Add(model);
                 model.Rate = 5;
                 model.CreatedTime = DateTime.Now;

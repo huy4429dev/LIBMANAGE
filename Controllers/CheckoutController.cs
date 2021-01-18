@@ -80,71 +80,101 @@ namespace LibManage.Controllers
                 {
                     dataCart = JsonConvert.DeserializeObject<List<Cart>>(cart);
 
-                    
-                    if (dataCart.Count > 3)
+
+                    if (dataCart.Sum(d => d.Quantity) > 3)
                     {
                         ModelState.AddModelError(string.Empty, "Số sách một lần không quá 3 quyển");
                     }
 
                     if (dataCart.Count > 0)
                     {
+                        dataCart.ForEach(item =>
+                        {
+                            if (db.Books.Any(b => b.Id == item.Product.Id && item.Quantity > b.Quantity))
+                            {
+                                ModelState.AddModelError(string.Empty, $"Sách  \"{item.Product.Title}\" hiện tại không đủ số lượng");
+                            }
+                        });
                         ViewBag.carts = dataCart;
                     }
+
                 }
 
-                var customer = db.Users.First(item => item.Id == user.Id);
-
-                customer.Email = model.Email;
-                customer.FullName = model.FullName;
-                customer.Address = model.Address;
-                customer.Phone = model.Phone;
-
-                HttpContext.Session.Set<User>("customer", new User
+                if (!ModelState.IsValid)
                 {
-                    Username = user.Username,
-                    Id = user.Id,
-                    UserRoles = user.UserRoles,
-                    Email = model.Email,
-                    FullName = model.FullName,
-                    Address = model.Address,
-                    Phone = model.Phone
-
-                });
-
-                var listItems = new List<OrderDetail>();
-
-                dataCart.ForEach(item =>
-                {
-                    listItems.Add(new OrderDetail
+                    foreach (var modelStateKey in ModelState.Keys)
                     {
-                        BookId = item.Product.Id,
-                        Quantity = item.Quantity
-                    });
-                });
-
-                var CurrentTime = DateTime.Now;
-
-                var Order = new Order
+                        var modelStateVal = ModelState[modelStateKey];
+                        foreach (var error in modelStateVal.Errors)
+                        {
+                            TempData["Error"] = error.ErrorMessage;
+                        }
+                    }
+                }
+                else
                 {
-                    Amount = 0,
-                    PenaltyFee = 0,
-                    Note = "Chưa xử lý",
-                    Status = OrderStatus.NoProcess,
-                    UserId = user.Id,
-                    OrderDetails = listItems,
-                    CreatedTime = CurrentTime,
-                    UpdatedTime = CurrentTime,
-                    FromDate = FromDate,
-                    ToDate = ToDate,
+                    var customer = db.Users.First(item => item.Id == user.Id);
 
-                };
+                    customer.Email = model.Email;
+                    customer.FullName = model.FullName;
+                    customer.Address = model.Address;
+                    customer.Phone = model.Phone;
 
-                db.Orders.Add(Order);
-                db.SaveChanges();
+                    HttpContext.Session.Set<User>("customer", new User
+                    {
+                        Username = user.Username,
+                        Id = user.Id,
+                        UserRoles = user.UserRoles,
+                        Email = model.Email,
+                        FullName = model.FullName,
+                        Address = model.Address,
+                        Phone = model.Phone
 
-                HttpContext.Session.Remove("cart");
+                    });
 
-                TempData["Message"] = "Tạo phiếu mượn thành công, thư viện sẽ phản hồi lại cho bạn";
+                    var listItems = new List<OrderDetail>();
+
+                    dataCart.ForEach(item =>
+                    {
+                        listItems.Add(new OrderDetail
+                        {
+                            BookId = item.Product.Id,
+                            Quantity = item.Quantity
+                        });
+
+                        // update quantity book in store
+                        var Book = db.Books.Find(item.Product.Id);
+                        Book.Quantity -= item.Quantity;
+                        db.SaveChanges();
+
+                    });
+
+                    var CurrentTime = DateTime.Now;
+
+                    var Order = new Order
+                    {
+                        Amount = 0,
+                        PenaltyFee = 0,
+                        Note = "Chưa xử lý",
+                        Status = OrderStatus.NoProcess,
+                        UserId = user.Id,
+                        OrderDetails = listItems,
+                        CreatedTime = CurrentTime,
+                        UpdatedTime = CurrentTime,
+                        FromDate = FromDate,
+                        ToDate = ToDate,
+
+                    };
+
+                    db.Orders.Add(Order);
+                    db.SaveChanges();
+
+                    HttpContext.Session.Remove("cart");
+
+                    TempData["Message"] = "Tạo phiếu mượn thành công, thư viện sẽ phản hồi lại cho bạn";
+                }
+
+
             }
             else
             {
@@ -174,7 +204,5 @@ namespace LibManage.Controllers
                 }
             }
         }
-
-
     }
 }
