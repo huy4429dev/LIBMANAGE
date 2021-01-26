@@ -63,7 +63,7 @@ namespace LibManage.Controllers
                                         .Count();
 
             ViewBag.TotalBook_Muon = db.Orders
-                                       .Where(o => o.CreatedTime > Date)
+                                       .Where(o => o.CreatedTime > Date && o.Status != OrderStatus.Dispose && o.Status != OrderStatus.Success)
                                        .Sum(o => o.OrderDetails.Sum(d => d.Quantity));
 
 

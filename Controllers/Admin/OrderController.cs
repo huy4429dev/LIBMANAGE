@@ -95,12 +95,21 @@ namespace LibManage.Admin.Controllers
                 if (CountBookValid > 3)
                 {
                     TempData["Error"] = "Khách hàng này không được mượn số lượng sách quá 3 quyển";
+                    
                 }
 
                 Order.Status = model.Status;
                 Order.FromDate = FromDate;
                 Order.ToDate = ToDate;
                 Order.UserverifyId = user?.Id ?? db.Users.Where(item => item.Username == "Admin").Select(item => item.Id).First();
+                if(model.Status == OrderStatus.Success || model.Status == OrderStatus.Dispose){
+                    foreach (var item in Order.OrderDetails)
+                    {
+                        var book = db.Books.Find(item.BookId);                    
+                        book.Quantity += item.Quantity;
+                        db.SaveChanges();
+                    }
+                }
 
                 db.SaveChanges();
 

@@ -59,8 +59,7 @@ namespace LibManage.Models
         [MaxLength(50, ErrorMessage = "Name is too long")]
         public string Name {get; set;}
 
-        [Required(ErrorMessage = "Name is not null")]
-        [MaxLength(150, ErrorMessage = "Name is toso long")]
+        [MaxLength(255, ErrorMessage = "Name is toso long")]
         public string Description {get; set;}
 
         public ICollection<Book> Books { get; set; }
@@ -75,7 +74,6 @@ namespace LibManage.Models
         [MaxLength(50, ErrorMessage = "Name is too long")]
         public string Name {get; set;}
 
-        [Required(ErrorMessage = "Name is not null")]
         [MaxLength(150, ErrorMessage = "Name is too long")]
         public string Description {get; set;}
 
@@ -91,7 +89,6 @@ namespace LibManage.Models
         [MaxLength(50, ErrorMessage = "Name is too long")]
         public string Name {get; set;}
 
-        [Required(ErrorMessage = "Name is not null")]
         [MaxLength(150, ErrorMessage = "Name is too long")]
         public string Description {get; set;}
 

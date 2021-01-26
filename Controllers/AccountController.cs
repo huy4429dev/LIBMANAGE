@@ -107,6 +107,16 @@ namespace LibManage.Controllers
         {
             string key = "mot cai key khong thang nao biet";
             var RoleCustomer = db.Roles.FirstOrDefault(r => r.Name == "Customer");
+            if (db.Users.Any(item => item.Username == model.Username))
+            {
+                ModelState.AddModelError(string.Empty, "Tên tài khoản đã được sử dụng");
+            }
+
+            if (db.Users.Any(item => item.Email == model.Email))
+            {
+                ModelState.AddModelError(string.Empty, "Địa chỉ email đã được sử dụng");
+            }
+
             if (ModelState.IsValid)
             {
                 var customer = new User
@@ -209,7 +219,7 @@ namespace LibManage.Controllers
                 }
             }
 
-          return Redirect(Request.Headers["Referer"].ToString());
+            return Redirect(Request.Headers["Referer"].ToString());
         }
 
         private void SkipModelValidate(string keyword)

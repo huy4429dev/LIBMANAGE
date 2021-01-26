@@ -62,7 +62,7 @@
 								<ul>
 									@foreach (var item in ViewBag.Categories)
 									{
-										<li><a href="/category/@(item.Id)">@item.Name <span>@item.CountProduct</span></a></li>
+										<li><a href="/product/view/search?categoryId=@(item.Id)">@item.Name <span>@item.CountProduct</span></a></li>
 									}
 								</ul>
 							</aside>

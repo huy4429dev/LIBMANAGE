@@ -99,6 +99,7 @@
         dataChart = rhtmlspecialchars(dataChart);
         dataChart = JSON.parse(dataChart);
 
+        console.log(dataChart);
         function generateListDay(firstDay,countDay){
             let listDays = [firstDay];
             let i = 1;
@@ -121,7 +122,7 @@
                     let found = data.filter(d =>  d.Key.substring(0,d.Key.indexOf('T')) == c) ?? [];
                     if(found[0])
                     {
-                        return found[0].Count;
+                        return found[0].Count ?? 0;
                     }
                     return 0;
                 });

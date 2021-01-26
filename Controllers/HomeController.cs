@@ -88,7 +88,7 @@ namespace LibManage.Controllers
 
 
         [HttpGet("product/view/search")]
-        public IActionResult ViewSearch(int page = 1, int pageSize = 12, string filter = null, string search = null)
+        public IActionResult ViewSearch(int page = 1, int pageSize = 12, string filter = null, string search = null, int? categoryId = null)
         {
 
             var data = db.Books.GroupBy(item => new
@@ -132,12 +132,13 @@ namespace LibManage.Controllers
             int TotalProduct = 0;
             int TotalPage = 0;
 
-            if(search != null){
+            if (search != null)
+            {
 
                 search = $"%{search}%";
                 Products = db.Books
-                               .Where(item => 
-                                                EF.Functions.ILike(item.Title,search) 
+                               .Where(item =>
+                                                EF.Functions.ILike(item.Title, search)
                                                 || EF.Functions.ILike(item.Authors.Name, search)
                                                 || item.BookTags.Any(t => t.Tag.Name.Contains(search))
                                       )
@@ -155,6 +156,27 @@ namespace LibManage.Controllers
                                .Skip((page - 1) * pageSize)
                                .Take(pageSize)
                                .ToList();
+            }
+
+            if (categoryId.HasValue)
+            {
+                Products = db.Books
+                              .Where(item => item.BookTpye == categoryId
+                                     )
+                              .Select(item => new Book
+                              {
+                                  Id = item.Id,
+                                  Title = item.Title,
+                                  Image = item.Image,
+                                  Rate = item.Rate,
+                                  Authors = item.Authors,
+                                  Description = item.Description,
+                                  CreatedTime = item.CreatedTime
+                              })
+                              .OrderBy(item => item.CreatedTime)
+                              .Skip((page - 1) * pageSize)
+                              .Take(pageSize)
+                              .ToList();
             }
 
             if (filter == "new")
@@ -229,7 +251,7 @@ namespace LibManage.Controllers
             ViewBag.TotalProduct = TotalProduct;
             ViewBag.CurentPage = page;
             ViewBag.TotalPage = TotalPage;
-            ViewBag.Search = search.Replace("%","");
+            ViewBag.Search = search?.Replace("%", "");
 
             return View("/Views/Home/Index.cshtml");
         }
