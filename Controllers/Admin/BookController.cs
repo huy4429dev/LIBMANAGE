@@ -119,11 +119,21 @@ namespace LibManage.Controllers
                 {
                     ModelState.AddModelError("Found Cateogry", "Category not found");
                 }
+                if (String.IsNullOrWhiteSpace(model.Image))
+                {
+                    model.Image = found.Image;
+                }
+                if (String.IsNullOrWhiteSpace(model.PDFfile))
+                {
+                    model.PDFfile = found.PDFfile;
+                }
 
-                // add category
-
-                // found.Name = model.Name;
-                // found.Description = model.Description;
+                found.Title = model.Title;
+                found.Publisher = model.Publisher;
+                found.Author = model.Author;
+                found.BookTpye = model.BookTpye;
+                found.Quantity = model.Quantity;
+                found.YearPublished = model.YearPublished;
 
                 db.SaveChanges();
 

@@ -36,7 +36,7 @@
             <div class="px-4 pt-0 pb-4 cover">
                 <div class="media align-items-end profile-head">
                     <div class="profile mr-3"><img
-                            src="https://i.pinimg.com/originals/56/f0/c7/56f0c7de57fdae6d0a9ddc43448b6dff.png" alt="..."
+                            src="https://cdn1.vectorstock.com/i/1000x1000/31/95/user-sign-icon-person-symbol-human-avatar-vector-12693195.jpg" alt="..."
                             width="130" class="rounded mb-2 img-thumbnail">
                     </div>
                     <div class="media-body mb-5 text-white">
@@ -48,11 +48,11 @@
             <div class="bg-light p-4 d-flex justify-content-end text-center">
                 <ul class="list-inline mb-0">
                     <li class="list-inline-item">
-                        <h5 class="font-weight-bold mb-0 d-block">0</h5>
+                        <h5 class="font-weight-bold mb-0 d-block">@ViewBag.TotalBookOrder</h5>
                         <small class="text-muted"></i>Số sách mượn</small>
                     </li>
                     <li class="list-inline-item">
-                        <h5 class="font-weight-bold mb-0 d-block">0</h5>
+                        <h5 class="font-weight-bold mb-0 d-block">@ViewBag.TotalBookOrderIncomplete</h5>
                         <small class="text-muted"></i>Số sách đang mượn</small>
                     </li>
 
@@ -110,16 +110,39 @@
             </div>
             <div class="px-4 py-3">
                 <h5 class="mb-0">Lịch sử mượn sách</h5>
+                @foreach (var item in ViewBag.Orders)
+                {
                 <div class="p-4 rounded shadow-sm bg-light">
                     <p class="font-italic mb-0 d-flex justify-content-between">
+                 
                         <span>
-                            Phiếu mượn #1
+                            <span>
+                                >
+                            </span>
+                            Phiếu mượn #@item.Id
                         </span>
                         <span>
-                            17:00 12/12/2020
+                            @item.CreatedTime.ToString("dd/MM/yyyy")
                         </span>
                     </p>
+                    <div class="history-content">
+                             @foreach (var detail in item.OrderDetails)
+                            {
+                                    <div class="card mt-1 " style="width: 18rem;">
+                                        <div class="card-body">
+                                            <img src="@detail.Book.Image" class="image-fulid" style="width:100px" alt="">
+                                            <h6 class="card-subtitle mt-2 mb-2 text-muted">@detail.Book.Title</h6>
+                                            <p class="card-text">Tác giả: @detail.Book.Authors.Name</p>
+                                            <p class="card-text">NXB: @detail.Book.Publishers.Name</p>
+                                            <a href="#" class="card-link">Số lượng mượn</a>
+                                            <a href="#" class="card-link">@detail.Quantity</a>
+                                        </div>
+                                    </div>
+                            }
+           
+                    </div>
                 </div>
+                }
             </div>
         </div>
     </div>

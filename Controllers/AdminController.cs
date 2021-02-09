@@ -34,14 +34,22 @@ namespace LibManage.Controllers
 
             db.Roles.Add(roleAdmin);
 
+            var roleLibrarian = new Role
+            {
+                Name = "Librarian"
+            };
+
+            db.Roles.Add(roleLibrarian);
+
             var roleCustomer = new Role
             {
                 Name = "Customer"
             };
 
+
             db.Roles.Add(roleCustomer);
 
-            db.SaveChanges(); 
+            db.SaveChanges();
 
 
             var admin = new User
@@ -49,7 +57,7 @@ namespace LibManage.Controllers
                 Username = "admin",
                 Email = "admin@gmail.com",
                 Status = true,
-                Password = AesOperation.EncryptString(key,"123456"),
+                Password = AesOperation.EncryptString(key, "123456"),
                 CreatTime = DateTime.Now,
                 UserRoles = new List<UserRole> {
                     new UserRole {
@@ -59,12 +67,44 @@ namespace LibManage.Controllers
             };
 
             db.Users.Add(admin);
+
+            var customer = new User
+            {
+                Username = "customer",
+                Email = "customer@gmail.com",
+                Status = true,
+                Password = AesOperation.EncryptString(key, "123456"),
+                CreatTime = DateTime.Now,
+                UserRoles = new List<UserRole> {
+                    new UserRole {
+                        Role = roleCustomer
+                    }
+                },
+            };
+
+            db.Users.Add(customer);
+
+            var librarian = new User
+            {
+                Username = "librarian",
+                Email = "librarian@gmail.com",
+                Status = true,
+                Password = AesOperation.EncryptString(key, "123456"),
+                CreatTime = DateTime.Now,
+                UserRoles = new List<UserRole> {
+                    new UserRole {
+                        Role = roleLibrarian
+                    }
+                },
+            };
+
+            db.Users.Add(librarian);
             db.SaveChanges();
 
             return Ok("admin created !");
         }
-        
-   
-   
+
+
+
     }
 }

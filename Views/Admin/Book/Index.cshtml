@@ -191,58 +191,131 @@ List<Book> Books = Model;
 
     @* update category  *@
 
-       @* @foreach (var item in Books)
+    @foreach (var item in Books)
                                             {
     <div class="modal fade" id="editCategory@(item.Id)" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+            <div class="modal-dialog">
         <div class="modal-content">
         <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Edit Category</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Thêm sách</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-      </div>
-        <form method="Post" action="/admin/book/Books/update/@(item.Id)">
+        </div>
+        <form method="POST" action="/admin/book/update/@item.Id">
             <div class="modal-body">
 
                 <div class="form-group">
-                    <label for="recipient-name" class="col-form-label">Name:</label>
-                    <input type="text" class="form-control" id="recipient-name" name="name" value="@(item.Name)">
+                    <label for="recipient-name" class="col-form-label">Tiêu đề:</label>
+                    <input type="text" class="form-control" id="recipient-name" name="title" value="@item.Title">
+                </div>
+        
+                <div class="form-group">
+                    <label for="message-text" class="col-form-label">Mô tả:</label>
+                    <textarea class="form-control" id="message-text" name="description" value="@item.Description"></textarea>
                 </div>
                 <div class="form-group">
-                    <label for="message-text" class="col-form-label">Desription:</label>
-                    <textarea class="form-control" id="message-text" name="description">@(item.Description)</textarea>
+                    <select class="form-control" name="BookTpye">
+                         <option>Loại sách</option>
+                        @foreach (var itemx in ViewData["BookTypes"] as IList<BookType>)
+                        {
+                            if(itemx.Id == item.BookTpye)
+                            {
+                                <option value="@itemx.Id" selected>@itemx.Name</option>
+
+                            }
+                            else{
+                                <option value="@itemx.Id">@itemx.Name</option>
+                            }
+                        }
+                    </select>
+                </div>
+                <div class="form-group">
+                    <select class="form-control" name="author">
+                         <option>Tác giả</option>
+                          @foreach (var itemx in ViewData["Authors"] as IList<Author>)
+                        {
+                            if(itemx.Id == item.Author){
+                                <option value="@itemx.Id" selected>@itemx.Name</option>
+                            }
+                            else{
+                                <option value="@itemx.Id">@itemx.Name</option>
+                            }
+                        }
+                    </select>
+                </div>
+                <div class="form-group">
+                    <select class="form-control" name="publisher">
+                         <option>Nhà xuất bản</option>
+                          @foreach (var itemx in ViewData["Publishers"] as IList<Publisher>)
+                        {
+                            if(itemx.Id == item.Publisher){
+                                 <option value="@itemx.Id" selected>@itemx.Name</option>
+                            }
+                            else{
+                                 <option value="@itemx.Id">@itemx.Name</option>
+                            }
+                        }
+                    </select>
+                </div>
+               <div class="form-group">
+                    <label for="message-text" class="col-form-label">Số lượng:</label>
+                    <input type="text" class="form-control" name="Quantity" value="@item.Quantity">
+                </div>
+                <div class="form-group d-flex"> 
+                     <div class="input-file-container">  
+                        <input class="input-file" id="my-file" type="file" data-target="#thumbnail-result" data-target-input="image"  accept="image/*">
+                        <label tabindex="0" for="my-file" class="input-file-trigger"><span> Hình ảnh </span> <i style="float: right; font-size: 10px; line-height: 20px" class="fas fa-arrow-up"></i></label>
+                    </div>
+                    <a style="margin-left:20px" id="thumbnail-result"  href="">
+                    </a>
+
+                    <input type="hidden" name="image">
+                </div>
+
+                <div class="form-group d-flex">
+                     <div class="input-file-container" >  
+                        <input class="input-file" id="my-file" type="file" data-target="#pdf-result" data-target-input="pdFfile"  accept=".pdf">
+                        <label tabindex="0" for="my-file" class="input-file-trigger"><span> Pdf </span> <i style="float: right; font-size: 10px; line-height: 20px" class="fas fa-arrow-up"></i></label>
+                    </div>
+                    <a style="margin-left:20px"  id="pdf-result"  href="">
+                    </a>
+                    <input type="hidden" name="pdFfile">
+                </div>
+                 
+                <div class="form-group">
+                        <p>Năm xuất bản: <input type="text" id="datepicker1" name="YearPublished" value="@item.YearPublished"></p>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">Save change</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                <button type="submit" class="btn btn-primary">Lưu</button>
             </div>
         </form>
-     </div>
-     </div>
+        </div>
+        </div>
      </div>
 
     }
   
-    @* delete category  *@
+    @* delete book  *@
 
-       @* @foreach (var item in Books){
+        @foreach (var item in Books){
 
         <div class="modal fade" id="deleteModal@(item.Id)" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Delete Category</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Delete book</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                You want delete category ?
+                You want delete book ?
             </div>
             <div class="modal-footer">
-                      <form method="Post" action="/admin/book/Books/delete/@(item.Id)">
+                      <form method="Post" action="/admin/book/delete/@(item.Id)">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                             <button type="submit" class="btn btn-danger">Save changes</button>
                      </form>
@@ -250,7 +323,7 @@ List<Book> Books = Model;
             </div>
         </div>
         </div>
-    } *@ 
+    }  
 
 
 @section Css {

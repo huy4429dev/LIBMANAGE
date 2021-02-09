@@ -160,6 +160,31 @@ namespace LibManage.Controllers
 
             var user = HttpContext.Session.Get<User>("customer");
 
+            ViewBag.TotalBookOrder = db.Orders.Where(item => item.UserId == user.Id)
+                                               .SelectMany(item => item.OrderDetails)
+                                               .Sum(o => o.Quantity);
+
+            ViewBag.TotalBookOrderIncomplete = db.Orders.Where(item => item.UserId == user.Id && 
+                                                             item.Status != OrderStatus.Success &&
+                                                             item.Status != OrderStatus.Dispose)
+                                               .SelectMany(item => item.OrderDetails)
+                                               .Sum(o => o.Quantity);
+            
+            ViewBag.Orders = db.Orders.Select(item => new Order {
+                Id = item.Id,
+                OrderDetails = item.OrderDetails.Select(d => new OrderDetail {
+                    Quantity = d.Quantity,
+                    Book = new Book {
+                        Title = d.Book.Title,
+                        Authors = d.Book.Authors,
+                        Publishers = d.Book.Publishers,
+                        Image = d.Book.Image
+                    }
+                }).ToList(),
+                Status = item.Status,
+                CreatedTime = item.CreatedTime
+            }).ToList();
+                                
             if (user == null)
             {
                 return RedirectToAction("Index", "Home");

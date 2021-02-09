@@ -52,11 +52,23 @@ namespace LibManage.Controllers
                 // string Password = model.Password;
 
                 var found = db.Users
-                            .FirstOrDefault(item =>
+                            .Where(item =>
                                                           item.Username == UserName &&
-                                                          item.Password == Password && 
-                                                          item.UserRoles.Any(u => u.Role.Name == "Admin" || u.Role.Name == "Librarian" )
+                                                          item.Password == Password &&
+                                                          item.UserRoles.Any(u => u.Role.Name == "Admin" || u.Role.Name == "Librarian")
                                                     )
+                            .Select(item => new User
+                            {
+                                Username = item.Username,
+                                Id = item.Id,
+                                UserRoles = item.UserRoles.Select(u => new UserRole
+                                {
+                                    Role = u.Role
+                                }).ToList(),
+                                Email = item.Email, 
+                                FullName = item.FullName
+                            })
+                            .FirstOrDefault()
                             ;
 
                 if (found != null)
@@ -65,10 +77,13 @@ namespace LibManage.Controllers
                     {
                         Username = found.Username,
                         Id = found.Id,
-                        UserRoles = found.UserRoles,
-                        Email  = found.Email,
+                        UserRoles = found.UserRoles.Select(u => new UserRole
+                        {
+                            Role = u.Role
+                        }).ToList(),
+                        Email = found.Email,
                         FullName = found.FullName
-                        
+
                     });
 
                     return RedirectToAction("Index", "DashBoard");
@@ -85,7 +100,8 @@ namespace LibManage.Controllers
 
 
         [HttpGet("admin/logout")]
-        public IActionResult LogOut(){
+        public IActionResult LogOut()
+        {
 
             HttpContext.Session.Clear();
 

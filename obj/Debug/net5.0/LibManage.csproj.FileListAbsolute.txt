@@ -162,3 +162,4 @@ E:\project\c#\LIBMANAGE\obj\Debug\net5.0\LibManage.dll
 E:\project\c#\LIBMANAGE\obj\Debug\net5.0\ref\LibManage.dll
 E:\project\c#\LIBMANAGE\obj\Debug\net5.0\LibManage.pdb
 E:\project\c#\LIBMANAGE\obj\Debug\net5.0\LibManage.genruntimeconfig.cache
+E:\project\c#\LIBMANAGE\obj\Debug\net5.0\Razor\Views\Admin\Employee\Index.cshtml.g.cs

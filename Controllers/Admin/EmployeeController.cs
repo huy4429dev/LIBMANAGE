@@ -9,13 +9,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace LibManage.Admin.Controllers
 {
-    [Route("/admin/customer")]
-    public class CustomerController : Controller
+    [Route("/admin/Employee")]
+    public class EmployeeController : Controller
     {
 
         private readonly ApplicationDbContext db;
 
-        public CustomerController(ApplicationDbContext db)
+        public EmployeeController(ApplicationDbContext db)
         {
 
             this.db = db;
@@ -25,12 +25,12 @@ namespace LibManage.Admin.Controllers
         public IActionResult Index()
         {
 
-            var Customers = db.Users
-                              .Where(item => item.UserRoles.Any(r => r.Role.Name.ToLower() == "customer"))
+            var Employees = db.Users
+                              .Where(item => item.UserRoles.Any(r => r.Role.Name.ToLower() == "librarian"))
                               .OrderBy(item => item.Id)
                               .ToList();
 
-            return View("/Views/Admin/Customer/Index.cshtml", Customers);
+            return View("/Views/Admin/Employee/Index.cshtml", Employees);
 
         }
 
@@ -41,13 +41,13 @@ namespace LibManage.Admin.Controllers
 
             query = "%" + query + "%";
 
-            var Customers = db.Users
+            var Employees = db.Users
                                   .Where(item => EF.Functions.ILike(item.Username, query)
                                                  || EF.Functions.ILike(item.Address, query)
                                          )
                                .OrderBy(item => item.Id).ToList();
 
-            return View("/Views/Admin/Customer/Index.cshtml", Customers);
+            return View("/Views/Admin/Employee/Index.cshtml", Employees);
         }
 
 
@@ -63,7 +63,7 @@ namespace LibManage.Admin.Controllers
 
                 if (found)
                 {
-                    ModelState.AddModelError("Found Customer", "Khách hàng đã tồn tại");
+                    ModelState.AddModelError("Found Employee", "nhân viên đã tồn tại");
                 }
                 else
                 {
@@ -74,12 +74,12 @@ namespace LibManage.Admin.Controllers
                     model.Status = true;
                     model.UserRoles = new List<UserRole> {
                         new UserRole{
-                             RoleId = db.Roles.Where(r => r.Name == "Customer").Select(r => r.Id).FirstOrDefault()
+                             RoleId = db.Roles.Where(r => r.Name == "Librarian").Select(r => r.Id).FirstOrDefault()
                         }
                     };
                     db.Users.Add(model);
                     db.SaveChanges();
-                    TempData["message"] = "Thêm mới khách hàng thành công";
+                    TempData["message"] = "Thêm mới nhân viên thành công";
                 }
 
             }
@@ -110,7 +110,7 @@ namespace LibManage.Admin.Controllers
 
                 if (found == null)
                 {
-                    ModelState.AddModelError("Found Customer", "Không tồn tại khách hàng");
+                    ModelState.AddModelError("Found Employee", "Không tồn tại nhân viên");
                 }
 
                 found.Address = model.Address;
@@ -124,7 +124,7 @@ namespace LibManage.Admin.Controllers
                 db.SaveChanges();
 
                 // alert success to view
-                TempData["message"] = "Cập nhật khách hàng thành công";
+                TempData["message"] = "Cập nhật nhân viên thành công";
             }
             return RedirectToAction("Index");
 
@@ -141,13 +141,13 @@ namespace LibManage.Admin.Controllers
 
             if (found == null)
             {
-                ModelState.AddModelError("Found Customer", "Customer not found");
+                ModelState.AddModelError("Found Employee", "Employee not found");
             }
 
             db.Users.Remove(found);
             db.SaveChanges();
 
-            TempData["message"] = "Xóa khách hàng thành công";
+            TempData["message"] = "Xóa nhân viên thành công";
 
             return RedirectToAction("Index");
         }

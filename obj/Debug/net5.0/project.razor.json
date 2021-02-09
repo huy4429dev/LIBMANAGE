@@ -15718,6 +15718,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "e:\\project\\c#\\LIBMANAGE\\Views\\Admin\\Employee\\Index.cshtml",
+      "TargetPath": "Views\\Admin\\Employee\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "e:\\project\\c#\\LIBMANAGE\\Views\\Admin\\Post\\Detail.cshtml",
       "TargetPath": "Views\\Admin\\Post\\Detail.cshtml",
       "FileKind": "mvc"
