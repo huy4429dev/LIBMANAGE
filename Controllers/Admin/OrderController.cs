@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using ClosedXML.Excel;
 using System.IO;
 using System.Globalization;
+using System.Collections.Generic;
 
 namespace LibManage.Admin.Controllers
 {
@@ -41,8 +42,11 @@ namespace LibManage.Admin.Controllers
 
             query = $"%{query}%";
             var data = db.Orders.Include(x => x.User)
-                                .Where(item => EF.Functions.ILike(item.User.FullName,query) ||  EF.Functions.ILike(item.User.Phone,query))
-                                .OrderByDescending(item => item.CreatedTime)
+                                .Where(item => EF.Functions.ILike(item.User.FullName, query) ||
+                                               EF.Functions.ILike(item.User.Phone, query) ||
+                                               EF.Functions.ILike(item.User.Email, query) ||
+                                               EF.Functions.ILike(item.User.Username, query))
+                                .OrderByDescending(item => item.Status == OrderStatus.Overdue)
                                 .ToList();
 
             return View("/Views/Admin/Order/Index.cshtml", data);
@@ -76,10 +80,13 @@ namespace LibManage.Admin.Controllers
                                      Note = item.Note,
                                      Status = item.Status,
                                      FromDate = item.FromDate,
-                                     ToDate = item.ToDate
+                                     ToDate = item.ToDate,
+                                     OrderRuleFees = item.OrderRuleFees
                                  })
                                  .FirstOrDefault()
                 ;
+
+            ViewBag.Rules = db.RuleFees.ToList();
 
             return View("/Views/Admin/Order/Detail.cshtml", data);
         }
@@ -91,8 +98,7 @@ namespace LibManage.Admin.Controllers
             string RangeTime = Request.Form["datetimes"];
             var FromDate = DateTime.ParseExact(RangeTime.Substring(0, RangeTime.IndexOf("-")).Trim(), "hh:mm tt dd/MM/yyyy", CultureInfo.InvariantCulture);
             var ToDate = DateTime.ParseExact(RangeTime.Substring(RangeTime.IndexOf("-") + 1).Trim(), "hh:mm tt dd/MM/yyyy", CultureInfo.InvariantCulture);
-            // check time valid 
-
+            // check time valid
             var TimeValid = (ToDate - FromDate).TotalDays;
 
             if (TimeValid > 10)
@@ -102,7 +108,9 @@ namespace LibManage.Admin.Controllers
             else
             {
                 var user = HttpContext.Session.Get<User>("user");
-                var Order = db.Orders.Include(o => o.OrderDetails).FirstOrDefault(o => o.Id == id);
+                var Order = db.Orders.Include(o => o.OrderDetails)
+                                     .Include(o => o.OrderRuleFees)
+                                     .FirstOrDefault(o => o.Id == id);
                 var CountBookValid = Order.OrderDetails.Count();
 
                 if (CountBookValid > 3)
@@ -115,6 +123,8 @@ namespace LibManage.Admin.Controllers
                 Order.FromDate = FromDate;
                 Order.ToDate = ToDate;
                 Order.UserverifyId = user?.Id ?? db.Users.Where(item => item.Username == "Admin").Select(item => item.Id).First();
+                Order.PenaltyFee = model.PenaltyFee;
+                Order.Note = model.Note;
                 if (model.Status == OrderStatus.Success || model.Status == OrderStatus.Dispose)
                 {
                     foreach (var item in Order.OrderDetails)
@@ -125,6 +135,30 @@ namespace LibManage.Admin.Controllers
                     }
                 }
 
+                var TotalInput = HttpContext.Request.Form["Total"];
+                var ruleFeeIdInput = HttpContext.Request.Form["ruleFeeId"];
+                var Totals = TotalInput.Select(s => Int32.TryParse(s, out int n) ? n : 0).ToList();
+                var ruleFees = ruleFeeIdInput.Select(s => Int32.TryParse(s, out int n) ? n : 0).ToList();
+                int index = 0;
+
+                var OrderRuleFees = new List<OrderRuleFee>();
+                db.OrderRuleFee.RemoveRange(Order.OrderRuleFees);
+                db.SaveChanges();
+                foreach (var item in ruleFees)
+                {
+                    var ruleFee = db.RuleFees.Find(item);
+
+                    OrderRuleFees.Add(new OrderRuleFee
+                    {
+                        OrderId = Order.Id,
+                        RoleFeeId = item,
+                        Total = Totals[index],
+                        TotalFee = ruleFee.Value * Totals[index]
+                    });
+                    index++;
+                }
+                Order.OrderRuleFees = OrderRuleFees; 
+                Order.PenaltyFee += OrderRuleFees.Sum(item => item.TotalFee);
                 db.SaveChanges();
 
                 TempData["Success"] = "Cập nhật trạng thái phiếu mượn thành công";

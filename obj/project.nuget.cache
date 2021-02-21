@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "fjxitpFef8Vgy/6yAUFxmKUdii2lGaqznXUWDUChQr4rxGqzcNWDfshDcoLDHz8wHCxL90nMUbxfxoPiHT+rgg==",
+  "dgSpecHash": "egVwwm+RRxn4SeLTiusE51CTX3SL+jH5SvDZMwLF+KUqpN4WyQGr5nGfX0jjrD4x/lSxyqIZhXLL2y06XH3uuQ==",
   "success": true,
   "projectFilePath": "E:\\project\\c#\\LIBMANAGE\\LibManage.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\HUY4\\.nuget\\packages\\closedxml\\0.95.3\\closedxml.0.95.3.nupkg.sha512",
+    "C:\\Users\\HUY4\\.nuget\\packages\\cronos\\0.7.0\\cronos.0.7.0.nupkg.sha512",
     "C:\\Users\\HUY4\\.nuget\\packages\\documentformat.openxml\\2.7.2\\documentformat.openxml.2.7.2.nupkg.sha512",
     "C:\\Users\\HUY4\\.nuget\\packages\\excelnumberformat\\1.0.10\\excelnumberformat.1.0.10.nupkg.sha512",
     "C:\\Users\\HUY4\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
@@ -78,6 +79,7 @@
     "C:\\Users\\HUY4\\.nuget\\packages\\system.io.filesystem.primitives\\4.3.0\\system.io.filesystem.primitives.4.3.0.nupkg.sha512",
     "C:\\Users\\HUY4\\.nuget\\packages\\system.io.packaging\\4.0.0\\system.io.packaging.4.0.0.nupkg.sha512",
     "C:\\Users\\HUY4\\.nuget\\packages\\system.linq\\4.3.0\\system.linq.4.3.0.nupkg.sha512",
+    "C:\\Users\\HUY4\\.nuget\\packages\\system.linq.dynamic\\1.0.8\\system.linq.dynamic.1.0.8.nupkg.sha512",
     "C:\\Users\\HUY4\\.nuget\\packages\\system.linq.expressions\\4.3.0\\system.linq.expressions.4.3.0.nupkg.sha512",
     "C:\\Users\\HUY4\\.nuget\\packages\\system.net.http\\4.3.0\\system.net.http.4.3.0.nupkg.sha512",
     "C:\\Users\\HUY4\\.nuget\\packages\\system.net.primitives\\4.3.0\\system.net.primitives.4.3.0.nupkg.sha512",
@@ -115,5 +117,16 @@
     "C:\\Users\\HUY4\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
     "C:\\Users\\HUY4\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'System.Linq.Dynamic 1.0.8' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework 'net5.0'. This package may not be fully compatible with your project.",
+      "libraryId": "System.Linq.Dynamic",
+      "targetGraphs": [
+        "net5.0"
+      ]
+    }
+  ]
 }

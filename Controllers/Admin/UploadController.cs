@@ -24,7 +24,7 @@ namespace LibManage.Controllers
         }
 
         [HttpPost, DisableRequestSizeLimit]
-        public async Task<IActionResult> Upload(string path)
+        public  IActionResult Upload(string path)
         {
             try
             {

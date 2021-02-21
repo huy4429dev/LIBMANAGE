@@ -32,38 +32,125 @@
                     <div class="d-flex justify-content-between">
                         <div>
                               <div class="md-form mt-5">
-                              <label for="form1"> <span style="width: 200px; display:inline-block"> Tên khách hàng:</span> @Model.User.Username</label>
+                              <label for="form1"> <span style=" width: 200px;
+                                                                display: inline-block;
+                                                                font-weight: 600;
+                                                                color: #007bff;
+                                                                text-transform: uppercase;"> Tên khách hàng:</span> @Model.User.Username</label>
                             </div>
                             <div class="md-form">
-                                <label for="form1"> <span style="width: 200px; display:inline-block"> Điện thoại:</span> @Model.User.Phone</label>
+                                <label for="form1"> <span style=" width: 200px;
+                                                                display: inline-block;
+                                                                font-weight: 600;
+                                                                color: #007bff;
+                                                                text-transform: uppercase;">  Điện thoại:</span> @Model.User.Phone</label>
                             </div>
                             <div class="md-form">
-                                <label for="form1"> <span style="width: 200px; display:inline-block"> Email:</span> @Model.User.Email</label>
+                                <label for="form1"><span style=" width: 200px;
+                                                                display: inline-block;
+                                                                font-weight: 600;
+                                                                color: #007bff;
+                                                                text-transform: uppercase;">  Email:</span> @Model.User.Email</label>
                             </div>
                             <div class="md-form">
-                                <label for="form1"> <span style="width: 200px; display:inline-block"> Địa chỉ:</span> @Model.User.Address</label>
+                                <label for="form1"><span style=" width: 200px;
+                                                                display: inline-block;
+                                                                font-weight: 600;
+                                                                color: #007bff;
+                                                                text-transform: uppercase;">  Địa chỉ:</span> @Model.User.Address</label>
                             </div>
                             @* <div class="md-form">
                                 <label for="form1"> <span style="width: 200px; display:inline-block"> Đơn giá:</span> @Model.UnitPrice.ToString("N0") VND</label>
                             </div> *@
                             <div class="md-form">
-                                <label for="form1"> <span style="width: 200px; display:inline-block"> Thành tiền:</span> @Model.Amount.ToString("N0") VND</label>
+                                <label for="form1"> <span style=" width: 200px;
+                                                                display: inline-block;
+                                                                font-weight: 600;
+                                                                color: #007bff;
+                                                                text-transform: uppercase;">  Phí phạt:</span> <input type="text" name="PenaltyFee" value='@Model.PenaltyFee.ToString("N0")'> VND</label>
                             </div>
 
                             <div class="md-form">
-                                <label for="form1"> <span style="width: 200px; display:inline-block"> Trạng thái:</span></label>
+                                <label for="form1"> <span style=" width: 200px;
+                                                                display: inline-block;
+                                                                font-weight: 600;
+                                                                color: #007bff;
+                                                                text-transform: uppercase;"> Trạng thái:</span></label>
                                 <select class="form-input" asp-for="Status">
                                 @(Model.Status == OrderStatus.NoProcess ? Html.Raw("<option value='4' selected >Chưa xử lý</option>") : Html.Raw(" <option value='4' >Chưa xử lý</option>"))  
                                 @(Model.Status == OrderStatus.Borrowed  ? Html.Raw("<option value='3' selected >Đang mượn</option>") : Html.Raw(" <option value='3' >Đang mượn</option>"))  
                                 @(Model.Status == OrderStatus.Success ? Html.Raw("<option value='1' selected >Hoàn thành</option>") : Html.Raw(" <option value='1' >Hoàn thành</option>"))  
                                 @(Model.Status == OrderStatus.Dispose ? Html.Raw("<option value='2' selected >Hủy</option>") : Html.Raw(" <option value='2' >Hủy</option>"))  
+                                @(Model.Status == OrderStatus.Overdue ? Html.Raw("<option value='5' selected >Quá hạn</option>") : Html.Raw(" <option value='5' >Qúa hạn</option>"))  
                                 </select>
                             </div>
-
                             <div class="md-form">
-                                <label for="form1"> <span style="width: 200px; display:inline-block"> Thời gian mượn:</span> </label>
+                                <label for="form1"> <span style=" width: 200px;
+                                                                display: inline-block;
+                                                                font-weight: 600;
+                                                                color: #007bff;
+                                                                text-transform: uppercase;">  Thời gian mượn:</span> </label>
                                 <input type="text" name="datetimes" />
                             </div>
+                        <div class="form-group">
+                      <span style="
+                                                     
+                                                                font-weight: 600;
+                                                                color: #007bff;
+                                                                text-transform: uppercase;"> Vi phạm:</label>
+
+                        @foreach (var item in ViewBag.Rules)
+                        {
+                            var total = 0;
+                            var check = false;
+                            foreach (var rule in Model.OrderRuleFees)
+                            {
+                                   if(item.Id == rule.RoleFeeId){
+                                        check = true;
+                                        total = rule.Total;
+                                   }
+                            }
+
+                             if(check){
+                                <div class="form-check mt-1 d-flex align-items-start justify-content-between">
+                                    <div>
+                                    <input checked class="form-check-input" type="checkbox" name="ruleFeeId" value="@item.Id" id="defaultCheck1">
+                                    <label class="form-check-label" for="defaultCheck1" style="font-weight: 400;
+                                    text-transform: capitalize;
+                                    color: red;
+                                    font-size: 14px;"> 
+                                        @item.Name
+                                    </label>
+                                    </div>
+                                    <input type="text" name="Total" style="width: 40px" class="text-center form-input" value="@total">
+                                </div>
+                                  continue;
+                                }
+                                else{   
+                                       <div class="form-check mt-1 d-flex align-items-start justify-content-between">
+                                <div>
+                                <input  class="form-check-input" type="checkbox" name="ruleFeeId" value="@item.Id" id="defaultCheck1">
+                                <label class="form-check-label" for="defaultCheck1" style="font-weight: 400;
+                                text-transform: capitalize;
+                                color: red;
+                                font-size: 14px;"> 
+                                    @item.Name
+                                </label>
+                                </div>
+                                 <input type="text" name="Total" style="width: 40px" class="text-center form-input" value="@total">
+                            </div>
+                                }
+                        
+                        }
+                       </div>
+                        <div class="form-group">
+                            <span style="
+                                                           
+                                                                font-weight: 600;
+                                                                color: #007bff;
+                                                                text-transform: uppercase;"> Ghi chú:</label>
+                            <textarea  asp-for="Note" id="rtxBlogContent"   class="form-control"></textarea>
+                          </div>
 
                         </div>
                         <div class="pt-5">
@@ -108,10 +195,14 @@
     </style>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
   }
+
+
 @section Script{
     <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <script src="~/lib/ckeditor/ckeditor.js"></script>
+    <script src="~/lib/ckeditor/adapters/jquery.js"></script>
     <script>
 
     var fromDate = @Html.Raw(Json.Serialize(Model.FromDate));
@@ -127,5 +218,8 @@
         }
     });
     });
+    </script>
+    <script>
+        $("#rtxBlogContent").ckeditor();
     </script>
 }

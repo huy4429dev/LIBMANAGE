@@ -77,7 +77,7 @@ namespace LibManage.Data
                 .HasOne(ta => ta.Tag)
                 .WithMany(t => t.BookTags)
                 .OnDelete(DeleteBehavior.Cascade);
-           
+
             // relation one - many user & order -> creator
 
             builder.Entity<Order>()
@@ -92,11 +92,36 @@ namespace LibManage.Data
                 .HasOne<User>(s => s.Userverify)
                 .WithMany(g => g.OrderUserverify)
                 .HasForeignKey(t => t.UserverifyId)
-                .OnDelete(DeleteBehavior.Cascade);;
+                .OnDelete(DeleteBehavior.Cascade); ;
+
+
+            // ruleFees many - many 
+
+            // book tag 
+
+            builder.Entity<OrderRuleFee>()
+          .HasKey(e => new { e.RoleFeeId, e.OrderId });  // add primary key for table UserRoles
+
+            builder.Entity<OrderRuleFee>()
+                .HasOne(ta => ta.Order)
+                .WithMany(t => t.OrderRuleFees)
+                .OnDelete(DeleteBehavior.Cascade);
+
+
+            builder.Entity<OrderRuleFee>()              // add relation  
+                .HasOne(ta => ta.RuleFee)
+                .WithMany(t => t.OrderRuleFees)
+                .OnDelete(DeleteBehavior.Cascade);
+
+
+            builder.Entity<RuleFee>().HasData(
+               new RuleFee { Id = 1, Name = "LOL 1", Description = "Mất tài liệu hoặc làm cho tài liệu hoàn toàn không sử dụng được: giá bìa của cuốn sách + 20$ phí phạt", Value = 100 },
+               new RuleFee { Id = 2, Name = "LOL 2", Description = "Làm bẩn, viết vẽ bẩn lên tài liệu: 10$/tờ", Value = 100 });
+
         }
 
         // User 
-
+        //ko hiểuko hiểu
         public DbSet<User> Users { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<UserRole> UserRoles { get; set; }
@@ -112,6 +137,7 @@ namespace LibManage.Data
         public DbSet<Post> Posts { get; set; }
         public DbSet<Tag> Tags { get; set; }
         public DbSet<BookTag> BookTags { get; set; }
-        public DbSet<Test> Tests { get; set; }
+        public DbSet<RuleFee> RuleFees { get; set; }
+        public DbSet<OrderRuleFee> OrderRuleFee { get; set; }
     }
 }

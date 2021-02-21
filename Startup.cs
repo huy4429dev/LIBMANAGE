@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using LibManage.Data;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using LibManage.Services;
 
 namespace LibManage
 {
@@ -43,6 +44,17 @@ namespace LibManage
             services.AddSession();
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+            // scope service
+
+
+            services.AddScoped<IMyScopedService, MyScopedService>();
+
+            IServiceCollection serviceCollection = services.AddCronJob<MyCronJob1>(c =>
+            {
+                c.TimeZoneInfo = TimeZoneInfo.Local;
+                c.CronExpression = @"* * * * *"; // format min / hour / day / month / dayOfWeek
+            });
 
             services.AddMvc();
             services.AddControllers().AddNewtonsoftJson(options =>

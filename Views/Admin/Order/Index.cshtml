@@ -9,11 +9,11 @@
 
      <main>
                     <div class="card mb-4">
-                              <div asp-validation-summary="All" class="alert alert-danger"></div>
+                              <div asp-validation-summary="All" class="alert alert-danger text-center"></div>
                             
                             @if(@TempData["message"] != null)
                             {
-                                <div class="alert alert-success">
+                                <div class="alert alert-success text-center">
                                     @TempData["message"]
                                 </div>
                             }
@@ -73,14 +73,20 @@
                                 : 
                                 (
                                    item.Status == OrderStatus.Dispose ?
-                                   Html.Raw("<span class='badge badge-danger' style='min-width:100px; display:inline-block; padding:4px 2px'>Hủy bỏ</span>")   
+                                   Html.Raw("<span class='badge badge-secondary' style='min-width:100px; display:inline-block; padding:4px 2px'>Hủy bỏ</span>")   
                                    : 
                                    
                                   (
                                    item.Status == OrderStatus.Borrowed  ?
-                                   Html.Raw("<span class='badge badge-warning' style='min-width:100px; display:inline-block; padding:4px 2px'>Đang mượn</span>")   
+                                   Html.Raw("<span class='badge badge-primary' style='min-width:100px; display:inline-block; padding:4px 2px'>Đang mượn</span>")   
                                    : 
-                                   Html.Raw("<span class='badge badge-primary' style='min-width:100px; display:inline-block; padding:4px 2px'>Đang chờ xử lý</span>")   
+                                   (
+                                   item.Status == OrderStatus.Overdue  
+                                   ? 
+                                    Html.Raw("<span class='badge badge-danger' style='min-width:100px; display:inline-block; padding:4px 2px'>Quá hạn</span>") 
+                                     :
+                                   Html.Raw("<span class='badge badge-warning' style='min-width:100px; display:inline-block; padding:4px 2px'>Đang chờ xử lý</span>")   
+                                   )
                                    )
                             
                                 )

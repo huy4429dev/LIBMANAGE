@@ -23,6 +23,7 @@ namespace LibManage.Models
         public int UserId { get; set; }
         public User User { get; set; }
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }
+        public virtual ICollection<OrderRuleFee> OrderRuleFees { get; set; }
         public DateTime CreatedTime { get; set; }
         public DateTime UpdatedTime { get; set; }
     }

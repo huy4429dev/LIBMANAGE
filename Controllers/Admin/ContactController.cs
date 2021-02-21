@@ -17,7 +17,7 @@ namespace LibManage.Admin.Controllers{
         }
 
         [HttpGet]
-        public  async Task<IActionResult> Index(){
+        public  IActionResult Index(){
              
             var data  =  db.Contacts.OrderByDescending(item => item.Id).ToList();
             return View("Views/Admin/Contact/Index.cshtml", data);
