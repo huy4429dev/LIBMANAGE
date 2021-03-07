@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "E:\\project\\c#\\LIBMANAGE\\LibManage.csproj": {}
+    "E:\\project\\c#\\LIB2\\LIBMANAGE\\LibManage.csproj": {}
   },
   "projects": {
-    "E:\\project\\c#\\LIBMANAGE\\LibManage.csproj": {
+    "E:\\project\\c#\\LIB2\\LIBMANAGE\\LibManage.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\project\\c#\\LIBMANAGE\\LibManage.csproj",
+        "projectUniqueName": "E:\\project\\c#\\LIB2\\LIBMANAGE\\LibManage.csproj",
         "projectName": "LibManage",
-        "projectPath": "E:\\project\\c#\\LIBMANAGE\\LibManage.csproj",
-        "packagesPath": "C:\\Users\\HUY4\\.nuget\\packages\\",
-        "outputPath": "E:\\project\\c#\\LIBMANAGE\\obj\\",
+        "projectPath": "E:\\project\\c#\\LIB2\\LIBMANAGE\\LibManage.csproj",
+        "packagesPath": "C:\\Users\\lexua\\.nuget\\packages\\",
+        "outputPath": "E:\\project\\c#\\LIB2\\LIBMANAGE\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\HUY4\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\lexua\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
@@ -84,6 +84,10 @@
             "Npgsql.EntityFrameworkCore.PostgreSQL": {
               "target": "Package",
               "version": "[5.0.0, )"
+            },
+            "PayPal": {
+              "target": "Package",
+              "version": "[2.0.0-rc2, )"
             },
             "System.Linq.Dynamic": {
               "target": "Package",

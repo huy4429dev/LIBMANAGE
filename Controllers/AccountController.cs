@@ -8,6 +8,11 @@ using LibManage.Extension;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
+using PayPal.Core;
+using PayPal;
+using PayPal.v1.Payments;
+using System.Threading.Tasks;
+using BraintreeHttp;
 
 namespace LibManage.Controllers
 {
@@ -164,17 +169,20 @@ namespace LibManage.Controllers
                                                .SelectMany(item => item.OrderDetails)
                                                .Sum(o => o.Quantity);
 
-            ViewBag.TotalBookOrderIncomplete = db.Orders.Where(item => item.UserId == user.Id && 
+            ViewBag.TotalBookOrderIncomplete = db.Orders.Where(item => item.UserId == user.Id &&
                                                              item.Status != OrderStatus.Success &&
                                                              item.Status != OrderStatus.Dispose)
                                                .SelectMany(item => item.OrderDetails)
                                                .Sum(o => o.Quantity);
-            
-            ViewBag.Orders = db.Orders.Select(item => new Order {
+
+            ViewBag.Orders = db.Orders.Select(item => new Models.Order
+            {
                 Id = item.Id,
-                OrderDetails = item.OrderDetails.Select(d => new OrderDetail {
+                OrderDetails = item.OrderDetails.Select(d => new OrderDetail
+                {
                     Quantity = d.Quantity,
-                    Book = new Book {
+                    Book = new Book
+                    {
                         Title = d.Book.Title,
                         Authors = d.Book.Authors,
                         Publishers = d.Book.Publishers,
@@ -184,7 +192,7 @@ namespace LibManage.Controllers
                 Status = item.Status,
                 CreatedTime = item.CreatedTime
             }).ToList();
-                                
+
             if (user == null)
             {
                 return RedirectToAction("Index", "Home");
@@ -193,7 +201,7 @@ namespace LibManage.Controllers
         }
 
         [HttpPost("customer/update")]
-        public IActionResult EditProfle([FromForm] User model)
+        public async Task<IActionResult> EditProfle([FromForm] User model)
         {
 
 
@@ -245,6 +253,103 @@ namespace LibManage.Controllers
             }
 
             return Redirect(Request.Headers["Referer"].ToString());
+        }
+
+
+        [HttpGet("thanh-toan")]
+        public async Task<IActionResult> Payment()
+        {
+            var environment = new SandboxEnvironment("Abm64fb2pMsiOB3-qjZ2wPR24vpvTFKLz1vsXd5wKZdnAcJGGEOBweT2zYUsJHGJ_DcSsRQzIiIJBuqd",
+             "EK3hTnRuHU7HKT9qbkzLe4Rp7iyJrSSJVWkPEmk1m7EDc9z8uS7YO5ZHt0yQAUzpkQA-AUTW4N3JG5Up");
+            var client = new PayPalHttpClient(environment);
+
+            var itemList = new ItemList()
+            {
+                Items = new List<Item>()
+            };
+
+            var Total = 1000;
+
+            itemList.Items.Add(new Item()
+            {
+                Currency = "USD",
+                Description = "LOL",
+                Name = "THANH TOAN PHAT",
+                Price = "200",
+                Quantity = "1",
+                Sku = "sku",
+                Tax = "0",
+            });
+
+            var payment = new Payment()
+            {
+                Intent = "Sale",
+                Transactions = new List<Transaction>()
+                {
+                    new Transaction()
+                    {
+                        Amount = new Amount()
+                        {
+                            Total = "10",
+                            Currency = "USD"
+                        }
+                    }
+                },
+                RedirectUrls = new RedirectUrls()
+                {
+                    CancelUrl = "https://localhost:5001/thanh-toan/thanh-cong",
+                    ReturnUrl = "https://localhost:5001/thanh-toan/that-bai"
+                },
+                Payer = new Payer()
+                {
+                    PaymentMethod = "paypal"
+                }
+            };
+
+            PaymentCreateRequest request = new PaymentCreateRequest();
+            request.RequestBody(payment);
+
+            try
+            {
+                var response = await client.Execute(request);
+                var statusCode = response.StatusCode;
+                Payment result = response.Result<Payment>();
+
+                var links = result.Links.GetEnumerator();
+                string paypalRedirectUrl = null;
+                while (links.MoveNext())
+                {
+                    LinkDescriptionObject lnk = links.Current;
+                    if (lnk.Rel.ToLower().Trim().Equals("approval_url"))
+                    {
+                        //saving the payapalredirect URL to which user will be redirected for payment  
+                        paypalRedirectUrl = lnk.Href;
+                    }
+                }
+
+                return Redirect(paypalRedirectUrl);
+            }
+            catch (HttpException httpException)
+            {
+                var statusCode = httpException.StatusCode;
+                var debugId = httpException.Headers.GetValues("PayPal-Debug-Id").FirstOrDefault();
+
+                //Process when Checkout with Paypal fails
+                return Redirect("thanh-toan/that-bai");
+            }
+        }
+
+        [HttpGet("thanh-toan/thanh-cong")]
+        public IActionResult PaymentSuccess()
+        {
+            return Ok("payment success");
+        }
+
+
+        [HttpGet("thanh-toan/that-bai")]
+        public IActionResult PaymentDispose()
+        {
+            return Ok("payment bad");
         }
 
         private void SkipModelValidate(string keyword)

@@ -1,5 +1,5 @@
 {
-  "FilePath": "e:\\project\\c#\\LIBMANAGE\\LibManage.csproj",
+  "FilePath": "e:\\project\\c#\\LIB2\\LIBMANAGE\\LibManage.csproj",
   "Configuration": {
     "ConfigurationName": "MVC-3.0",
     "LanguageVersion": "5.0",
@@ -15603,173 +15603,173 @@
   "RootNamespace": "LibManage",
   "Documents": [
     {
-      "FilePath": "e:\\project\\c#\\LIBMANAGE\\Views\\New\\Detail.cshtml",
-      "TargetPath": "Views\\New\\Detail.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "e:\\project\\c#\\LIBMANAGE\\Views\\Admin\\Dashboard\\Index.cshtml",
-      "TargetPath": "Views\\Admin\\Dashboard\\Index.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "e:\\project\\c#\\LIBMANAGE\\Views\\Product\\Index.cshtml",
-      "TargetPath": "Views\\Product\\Index.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "e:\\project\\c#\\LIBMANAGE\\Views\\Admin\\Contact\\Index.cshtml",
-      "TargetPath": "Views\\Admin\\Contact\\Index.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "e:\\project\\c#\\LIBMANAGE\\Views\\Contact\\Index.cshtml",
-      "TargetPath": "Views\\Contact\\Index.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "e:\\project\\c#\\LIBMANAGE\\Views\\Admin\\Login\\Index.cshtml",
-      "TargetPath": "Views\\Admin\\Login\\Index.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "e:\\project\\c#\\LIBMANAGE\\Views\\Shared\\_Layout.cshtml",
-      "TargetPath": "Views\\Shared\\_Layout.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "e:\\project\\c#\\LIBMANAGE\\Views\\Admin\\Book\\Author.cshtml",
-      "TargetPath": "Views\\Admin\\Book\\Author.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "e:\\project\\c#\\LIBMANAGE\\Views\\Admin\\Report\\OrderReport.cshtml",
-      "TargetPath": "Views\\Admin\\Report\\OrderReport.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "e:\\project\\c#\\LIBMANAGE\\Views\\Checkout\\Index.cshtml",
-      "TargetPath": "Views\\Checkout\\Index.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "e:\\project\\c#\\LIBMANAGE\\Views\\Admin\\Post\\Create.cshtml",
-      "TargetPath": "Views\\Admin\\Post\\Create.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "e:\\project\\c#\\LIBMANAGE\\Views\\Admin\\Book\\Index.cshtml",
-      "TargetPath": "Views\\Admin\\Book\\Index.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "e:\\project\\c#\\LIBMANAGE\\Views\\Admin\\Order\\Index.cshtml",
-      "TargetPath": "Views\\Admin\\Order\\Index.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "e:\\project\\c#\\LIBMANAGE\\Views\\_ViewImports.cshtml",
-      "TargetPath": "Views\\_ViewImports.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "e:\\project\\c#\\LIBMANAGE\\Views\\Profile\\Index.cshtml",
-      "TargetPath": "Views\\Profile\\Index.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "e:\\project\\c#\\LIBMANAGE\\Views\\New\\Index.cshtml",
-      "TargetPath": "Views\\New\\Index.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "e:\\project\\c#\\LIBMANAGE\\Views\\Admin\\Profile\\Index.cshtml",
-      "TargetPath": "Views\\Admin\\Profile\\Index.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "e:\\project\\c#\\LIBMANAGE\\Views\\Admin\\Order\\Detail.cshtml",
-      "TargetPath": "Views\\Admin\\Order\\Detail.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "e:\\project\\c#\\LIBMANAGE\\Views\\Admin\\Book\\BookType.cshtml",
-      "TargetPath": "Views\\Admin\\Book\\BookType.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "e:\\project\\c#\\LIBMANAGE\\Views\\Account\\Index.cshtml",
-      "TargetPath": "Views\\Account\\Index.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "e:\\project\\c#\\LIBMANAGE\\Views\\Test\\Index.cshtml",
-      "TargetPath": "Views\\Test\\Index.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "e:\\project\\c#\\LIBMANAGE\\Views\\Account\\Profile.cshtml",
-      "TargetPath": "Views\\Account\\Profile.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "e:\\project\\c#\\LIBMANAGE\\Views\\_ViewStart.cshtml",
-      "TargetPath": "Views\\_ViewStart.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "e:\\project\\c#\\LIBMANAGE\\Views\\Admin\\Employee\\Index.cshtml",
-      "TargetPath": "Views\\Admin\\Employee\\Index.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "e:\\project\\c#\\LIBMANAGE\\Views\\Admin\\Post\\Detail.cshtml",
-      "TargetPath": "Views\\Admin\\Post\\Detail.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "e:\\project\\c#\\LIBMANAGE\\Views\\About\\Index.cshtml",
-      "TargetPath": "Views\\About\\Index.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "e:\\project\\c#\\LIBMANAGE\\Views\\Admin\\Book\\Publisher.cshtml",
+      "FilePath": "e:\\project\\c#\\LIB2\\LIBMANAGE\\Views\\Admin\\Book\\Publisher.cshtml",
       "TargetPath": "Views\\Admin\\Book\\Publisher.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "e:\\project\\c#\\LIBMANAGE\\Views\\Shared\\_LayoutAdmin.cshtml",
+      "FilePath": "e:\\project\\c#\\LIB2\\LIBMANAGE\\Views\\Admin\\Dashboard\\Index.cshtml",
+      "TargetPath": "Views\\Admin\\Dashboard\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "e:\\project\\c#\\LIB2\\LIBMANAGE\\Views\\Shared\\_LayoutAdmin.cshtml",
       "TargetPath": "Views\\Shared\\_LayoutAdmin.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "e:\\project\\c#\\LIBMANAGE\\Views\\Admin\\Report\\CustomerReport.cshtml",
-      "TargetPath": "Views\\Admin\\Report\\CustomerReport.cshtml",
+      "FilePath": "e:\\project\\c#\\LIB2\\LIBMANAGE\\Views\\Account\\Index.cshtml",
+      "TargetPath": "Views\\Account\\Index.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "e:\\project\\c#\\LIBMANAGE\\Views\\Admin\\Report\\EmployeeReport.cshtml",
+      "FilePath": "e:\\project\\c#\\LIB2\\LIBMANAGE\\Views\\Admin\\Book\\BookType.cshtml",
+      "TargetPath": "Views\\Admin\\Book\\BookType.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "e:\\project\\c#\\LIB2\\LIBMANAGE\\Views\\Checkout\\Index.cshtml",
+      "TargetPath": "Views\\Checkout\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "e:\\project\\c#\\LIB2\\LIBMANAGE\\Views\\Profile\\Index.cshtml",
+      "TargetPath": "Views\\Profile\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "e:\\project\\c#\\LIB2\\LIBMANAGE\\Views\\Test\\Index.cshtml",
+      "TargetPath": "Views\\Test\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "e:\\project\\c#\\LIB2\\LIBMANAGE\\Views\\Admin\\Contact\\Index.cshtml",
+      "TargetPath": "Views\\Admin\\Contact\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "e:\\project\\c#\\LIB2\\LIBMANAGE\\Views\\_ViewImports.cshtml",
+      "TargetPath": "Views\\_ViewImports.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "e:\\project\\c#\\LIB2\\LIBMANAGE\\Views\\Admin\\Login\\Index.cshtml",
+      "TargetPath": "Views\\Admin\\Login\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "e:\\project\\c#\\LIB2\\LIBMANAGE\\Views\\Admin\\Book\\Index.cshtml",
+      "TargetPath": "Views\\Admin\\Book\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "e:\\project\\c#\\LIB2\\LIBMANAGE\\Views\\Admin\\Post\\Create.cshtml",
+      "TargetPath": "Views\\Admin\\Post\\Create.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "e:\\project\\c#\\LIB2\\LIBMANAGE\\Views\\Admin\\Report\\EmployeeReport.cshtml",
       "TargetPath": "Views\\Admin\\Report\\EmployeeReport.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "e:\\project\\c#\\LIBMANAGE\\Views\\Admin\\Post\\Index.cshtml",
+      "FilePath": "e:\\project\\c#\\LIB2\\LIBMANAGE\\Views\\New\\Detail.cshtml",
+      "TargetPath": "Views\\New\\Detail.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "e:\\project\\c#\\LIB2\\LIBMANAGE\\Views\\Admin\\Order\\Index.cshtml",
+      "TargetPath": "Views\\Admin\\Order\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "e:\\project\\c#\\LIB2\\LIBMANAGE\\Views\\Cart\\Index.cshtml",
+      "TargetPath": "Views\\Cart\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "e:\\project\\c#\\LIB2\\LIBMANAGE\\Views\\About\\Index.cshtml",
+      "TargetPath": "Views\\About\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "e:\\project\\c#\\LIB2\\LIBMANAGE\\Views\\Admin\\Post\\Index.cshtml",
       "TargetPath": "Views\\Admin\\Post\\Index.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "e:\\project\\c#\\LIBMANAGE\\Views\\Home\\Index.cshtml",
+      "FilePath": "e:\\project\\c#\\LIB2\\LIBMANAGE\\Views\\Admin\\Post\\Detail.cshtml",
+      "TargetPath": "Views\\Admin\\Post\\Detail.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "e:\\project\\c#\\LIB2\\LIBMANAGE\\Views\\Admin\\Report\\OrderReport.cshtml",
+      "TargetPath": "Views\\Admin\\Report\\OrderReport.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "e:\\project\\c#\\LIB2\\LIBMANAGE\\Views\\Account\\Profile.cshtml",
+      "TargetPath": "Views\\Account\\Profile.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "e:\\project\\c#\\LIB2\\LIBMANAGE\\Views\\Home\\Index.cshtml",
       "TargetPath": "Views\\Home\\Index.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "e:\\project\\c#\\LIBMANAGE\\Views\\Admin\\Customer\\Index.cshtml",
+      "FilePath": "e:\\project\\c#\\LIB2\\LIBMANAGE\\Views\\Admin\\Employee\\Index.cshtml",
+      "TargetPath": "Views\\Admin\\Employee\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "e:\\project\\c#\\LIB2\\LIBMANAGE\\Views\\New\\Index.cshtml",
+      "TargetPath": "Views\\New\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "e:\\project\\c#\\LIB2\\LIBMANAGE\\Views\\Shared\\_Layout.cshtml",
+      "TargetPath": "Views\\Shared\\_Layout.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "e:\\project\\c#\\LIB2\\LIBMANAGE\\Views\\Admin\\Profile\\Index.cshtml",
+      "TargetPath": "Views\\Admin\\Profile\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "e:\\project\\c#\\LIB2\\LIBMANAGE\\Views\\Product\\Index.cshtml",
+      "TargetPath": "Views\\Product\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "e:\\project\\c#\\LIB2\\LIBMANAGE\\Views\\Contact\\Index.cshtml",
+      "TargetPath": "Views\\Contact\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "e:\\project\\c#\\LIB2\\LIBMANAGE\\Views\\Admin\\Order\\Detail.cshtml",
+      "TargetPath": "Views\\Admin\\Order\\Detail.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "e:\\project\\c#\\LIB2\\LIBMANAGE\\Views\\Admin\\Customer\\Index.cshtml",
       "TargetPath": "Views\\Admin\\Customer\\Index.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "e:\\project\\c#\\LIBMANAGE\\Views\\Cart\\Index.cshtml",
-      "TargetPath": "Views\\Cart\\Index.cshtml",
+      "FilePath": "e:\\project\\c#\\LIB2\\LIBMANAGE\\Views\\Admin\\Book\\Author.cshtml",
+      "TargetPath": "Views\\Admin\\Book\\Author.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "e:\\project\\c#\\LIB2\\LIBMANAGE\\Views\\Admin\\Report\\CustomerReport.cshtml",
+      "TargetPath": "Views\\Admin\\Report\\CustomerReport.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "e:\\project\\c#\\LIB2\\LIBMANAGE\\Views\\_ViewStart.cshtml",
+      "TargetPath": "Views\\_ViewStart.cshtml",
       "FileKind": "mvc"
     }
   ],
